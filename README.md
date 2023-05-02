@@ -1,0 +1,2 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/eed6dea2e0bf31c23ac3/maintainability)](https://codeclimate.com/github/Ghriim/life-saver/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/eed6dea2e0bf31c23ac3/test_coverage)](https://codeclimate.com/github/Ghriim/life-saver/test_coverage)

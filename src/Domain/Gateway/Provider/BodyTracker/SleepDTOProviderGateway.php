@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Domain\Gateway\BodyTracker;
+namespace App\Domain\Gateway\Provider\BodyTracker;
 
 use App\Domain\DTO\BodyTracker\SleepDTO;
 
-interface GetSleepDTOGateway
+interface SleepDTOProviderGateway
 {
+    public function getSleepById(int $sleepId): ?SleepDTO;
+
     /**
      * @return SleepDTO[]
      */

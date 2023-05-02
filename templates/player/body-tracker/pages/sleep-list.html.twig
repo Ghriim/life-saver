@@ -1,0 +1,31 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        <a href="{{ path('page_sleep_add') }}" title="">Add new Sleep</a>
+    </div>
+    {% for sleep in sleeps %}
+        <article>
+            <ul>
+                <li>
+                    <a href="{{ path('page_sleep_edit', {sleepId: sleep.id}) }}" title="">
+                        Id: {{ sleep.id }}</a>
+                </li>
+                <li>In bed: {{ sleep.inBed }}</li>
+                <li>Out of bed: {{ sleep.outOfBed }}</li>
+                <li>Duration: {{ sleep.duration }}</li>
+                <li>User: {{ sleep.userId }}</li>
+                <li>
+                    <ul>
+                        <li>
+                            <a href="{{ path('page_sleep_edit', {sleepId: sleep.id}) }}" title="">Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('page_sleep_delete', {sleepId: sleep.id}) }}" title="">Delete</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
+{% endblock %}

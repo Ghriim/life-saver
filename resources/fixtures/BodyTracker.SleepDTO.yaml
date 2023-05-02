@@ -1,0 +1,22 @@
+App\Domain\DTO\BodyTracker\SleepDTO:
+  base_sleep (template):
+    createDate: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+
+  quentin_sleep_1 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    duration: 12800
+    userId: 1
+
+  quentin_sleep_2 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    duration: 12800
+    userId: 1
+
+  quentin_sleep_3 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+    duration: 12800
+    userId: 2

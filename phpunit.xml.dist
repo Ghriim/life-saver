@@ -30,6 +30,7 @@
         <exclude>
             <file>src/Kernel.php</file>
             <directory>src/Infrastructure/Controller</directory>
+            <directory>src/Infrastructure/Command</directory>
         </exclude>
         <report>
             <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="true"/>

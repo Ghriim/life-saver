@@ -1,0 +1,12 @@
+App\Domain\DTO\AbstractBaseDTO:
+  type: mappedSuperclass
+
+  fields:
+    createDate:
+      type: datetime_immutable
+      nullable: false
+      unique: false
+    updateDate:
+      type: datetime_immutable
+      nullable: false
+      unique: false

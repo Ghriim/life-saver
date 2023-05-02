@@ -23,7 +23,7 @@ docker-compose.yaml: docker-compose.yaml.dist
 
 start: down up vendor create_dbs
 
-create_dbs: create_db_body_tracker
+create_dbs: create_db_body_tracker load_fixtures
 
 create_db_body_tracker:
 	$(SF_CONSOLE) app:mysql-wait -c body_tracker --env=$(APP_ENV)

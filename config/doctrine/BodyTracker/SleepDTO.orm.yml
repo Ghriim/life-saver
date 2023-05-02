@@ -1,0 +1,28 @@
+App\Domain\DTO\BodyTracker\SleepDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\BodyTracker\SleepRepository
+  table: '`SLEEP`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    inBed:
+      type: datetime_immutable
+      nullable: false
+      unique: false
+    outOfBed:
+      type: datetime_immutable
+      nullable: true
+      unique: false
+    duration:
+      type: integer
+      nullable: true
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false

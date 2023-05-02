@@ -6,6 +6,10 @@ DOCKER=docker-compose
 DOCKER_EXEC= ${DOCKER} exec
 SF_CONSOLE := ${DOCKER_EXEC} php bin/console
 
+ifeq ($(APP_ENV),test)
+	XDEBUG_MODE	:=coverage
+endif
+
 setup: .env.local docker-compose.yaml
 
 .env.local:
@@ -42,3 +46,7 @@ down:
 
 mysql.connect.body-tracker:
 	@$(DOCKER_EXEC) mysql-body-tracker /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD'
+
+unit_tests:
+	@XDEBUG_MODE=coverage $(DOCKER_EXEC) php bin/phpunit --colors=never  --testsuite unit
+	sh ./export-report.sh

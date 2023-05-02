@@ -2,6 +2,7 @@ FROM php:8.1-fpm
 
 VOLUME /srv/cache
 
+ENV COMPOSER_DISABLE_XDEBUG_WARN 1
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
@@ -12,6 +13,7 @@ RUN apt-get update -qq \
         libxml2-dev \
         npm \
     && npm i -g corepack \
+    && pecl install xdebug && docker-php-ext-enable xdebug \
     && docker-php-ext-install -j$(nproc) \
         zip \
         mysqli \

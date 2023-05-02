@@ -18,8 +18,8 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="unit">
+            <directory>./tests/unit</directory>
         </testsuite>
     </testsuites>
 
@@ -27,6 +27,15 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <file>src/Kernel.php</file>
+            <directory>src/Infrastructure/Controller</directory>
+        </exclude>
+        <report>
+            <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="true"/>
+            <html outputDirectory="tests-report/build/coverage/html" lowUpperBound="50" highLowerBound="70"/>
+            <clover outputFile="tests-report/build/coverage/clover/clover.xml"/>
+        </report>
     </coverage>
 
     <listeners>

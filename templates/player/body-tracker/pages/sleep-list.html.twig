@@ -2,13 +2,13 @@
 
 {% block page_content %}
     <div>
-        <a href="{{ path('page_sleep_add') }}" title="">Add new Sleep</a>
+        <a href="{{ path('page_player_sleep_add') }}" title="">Add new Sleep</a>
     </div>
     {% for sleep in sleeps %}
         <article>
             <ul>
                 <li>
-                    <a href="{{ path('page_sleep_edit', {sleepId: sleep.id}) }}" title="">
+                    <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">
                         Id: {{ sleep.id }}</a>
                 </li>
                 <li>In bed: {{ sleep.inBed }}</li>
@@ -18,10 +18,10 @@
                 <li>
                     <ul>
                         <li>
-                            <a href="{{ path('page_sleep_edit', {sleepId: sleep.id}) }}" title="">Edit</a>
+                            <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">Edit</a>
                         </li>
                         <li>
-                            <a href="{{ path('page_sleep_delete', {sleepId: sleep.id}) }}" title="">Delete</a>
+                            <a href="{{ path('page_player_sleep_delete', {sleepId: sleep.id}) }}" title="">Delete</a>
                         </li>
                     </ul>
                 </li>

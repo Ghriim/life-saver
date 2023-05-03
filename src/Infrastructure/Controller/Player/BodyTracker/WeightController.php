@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class WeightController extends AbstractPlayerController
 {
-    #[Route('/me/body-tracker/weights', name: 'page_weights_for_current_user', methods: ['GET'])]
+    #[Route('/me/body-tracker/weights', name: 'page_player_weights_for_current_user', methods: ['GET'])]
     public function getWeightsForCurrentUser(GetWeightsForUserUseCase $useCase): Response
     {
         $weights = $useCase->execute($this->getCurrentUserId());
@@ -21,7 +21,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
     }
 
-    #[Route('/body-tracker/{userId}/weights', name: 'page_weights_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
+    #[Route('/body-tracker/{userId}/weights', name: 'page_player_weights_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
     public function getWeightsForGivenUser(int $userId, GetWeightsForUserUseCase $useCase): Response
     {
         $weights = $useCase->execute($userId);
@@ -29,7 +29,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
     }
 
-    #[Route('/body-tracker/weights/add', name: 'page_weight_add', methods: ['GET', 'POST'])]
+    #[Route('/body-tracker/weights/add', name: 'page_player_weight_add', methods: ['GET', 'POST'])]
     public function addWeight(
         Request $request,
         SaveWeightFormHandler $formHandler,
@@ -39,13 +39,13 @@ final class WeightController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_weights_for_current_user');
+            return $this->redirectToRoute('page_player_weights_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/body-tracker/weights/{weightId}/edit', name: 'page_weight_edit', requirements: ['weightId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/body-tracker/weights/{weightId}/edit', name: 'page_player_weight_edit', requirements: ['weightId' => '\d+'], methods: ['GET', 'POST'])]
     public function editWeight(
         Request $request,
         SaveWeightFormHandler $formHandler,
@@ -55,19 +55,19 @@ final class WeightController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_weights_for_current_user');
+            return $this->redirectToRoute('page_player_weights_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/body-tracker/weights/{weightId}/delete', name: 'page_weight_delete', requirements: ['weightId' => '\d+'], methods: ['GET'])]
+    #[Route('/body-tracker/weights/{weightId}/delete', name: 'page_player_weight_delete', requirements: ['weightId' => '\d+'], methods: ['GET'])]
     public function deleteWeight(
         int $weightId,
         DeleteWeightUseCase $useCase
     ): Response {
         $useCase->execute($weightId);
 
-        return $this->redirectToRoute('page_weights_for_current_user');
+        return $this->redirectToRoute('page_player_weights_for_current_user');
     }
 }

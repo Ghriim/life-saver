@@ -2,7 +2,7 @@
 
 {% block body %}
     <header id="main-menu-player" class="main-menu">
-        HEADER PLAYER
+        {% include 'player/components/_player_header.html.twig' %}
     </header>
 
     <main id="main-wrap">
@@ -11,6 +11,6 @@
     </main>
 
     <footer id="main-footer-player" class="main-footer">
-        FOOTER PLAYER
+        {% include 'player/components/_player_footer.html.twig' %}
     </footer>
 {% endblock %}

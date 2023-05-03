@@ -2,13 +2,13 @@
 
 {% block page_content %}
     <div>
-        <a href="{{ path('page_weight_add') }}" title="">Add new Weight</a>
+        <a href="{{ path('page_player_weight_add') }}" title="">Add new Weight</a>
     </div>
     {% for weight in weights %}
         <article>
             <ul>
                 <li>
-                    <a href="{{ path('page_weight_edit', {weightId: weight.id}) }}" title="">
+                    <a href="{{ path('page_player_weight_edit', {weightId: weight.id}) }}" title="">
                         Id: {{ weight.id }}</a>
                 </li>
                 <li>Weight: {{ weight.weight }}</li>
@@ -16,10 +16,10 @@
                 <li>
                     <ul>
                         <li>
-                            <a href="{{ path('page_weight_edit', {weightId: weight.id}) }}" title="">Edit</a>
+                            <a href="{{ path('page_player_weight_edit', {weightId: weight.id}) }}" title="">Edit</a>
                         </li>
                         <li>
-                            <a href="{{ path('page_weight_delete', {weightId: weight.id}) }}" title="">Delete</a>
+                            <a href="{{ path('page_player_weight_delete', {weightId: weight.id}) }}" title="">Delete</a>
                         </li>
                     </ul>
                 </li>

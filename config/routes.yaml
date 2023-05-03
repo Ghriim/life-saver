@@ -1,5 +1,12 @@
-controllers:
+public:
     resource:
-        path: ../src/Infrastructure/Controller/
-        namespace: App\Infrastructure\Controller
+        path: ../src/Infrastructure/Controller/Public
+        namespace: App\Infrastructure\Controller\Public
     type: attribute
+
+player:
+    resource:
+        path: ../src/Infrastructure/Controller/Player
+        namespace: App\Infrastructure\Controller\Player
+    type: attribute
+    prefix: /player

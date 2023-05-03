@@ -24,7 +24,6 @@ final class SleepListViewPresenter implements ViewPresenterInterface
             $model->inBed = DateTimeViewFormatter::toStringFormat($DTO->inBed);
             $model->outOfBed = null !== $DTO->outOfBed ? DateTimeViewFormatter::toStringFormat($DTO->outOfBed) : null;
             $model->duration = null !== $DTO->duration ? DurationViewFormatter::toHMFormat($DTO->duration) : null;
-            $model->userId = $DTO->userId;
 
             $models[] = $model;
         }

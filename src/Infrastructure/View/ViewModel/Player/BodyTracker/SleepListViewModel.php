@@ -10,5 +10,4 @@ final class SleepListViewModel implements ViewModelInterface
     public string $inBed;
     public ?string $outOfBed;
     public ?string $duration;
-    public ?int $userId;
 }

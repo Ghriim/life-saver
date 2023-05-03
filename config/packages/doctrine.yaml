@@ -11,6 +11,15 @@ doctrine:
                 driver: 'pdo_mysql'
                 server_version: '%env(resolve:MYSQL_VERSION)%'
                 charset:  UTF8
+            mind_tracker:
+                host:     '%env(resolve:MYSQL_MIND_TRACKER_HOST)%'
+                port:     '%env(resolve:MYSQL_PORT)%'
+                dbname:   '%env(resolve:MYSQL_MIND_TRACKER_DATABASE)%'
+                user:     '%env(resolve:MYSQL_USER)%'
+                password: '%env(resolve:MYSQL_PASSWORD)%'
+                driver: 'pdo_mysql'
+                server_version: '%env(resolve:MYSQL_VERSION)%'
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: true
         entity_managers:
@@ -22,6 +31,19 @@ doctrine:
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/BodyTracker'
                         prefix: 'App\Domain\DTO\BodyTracker'
+                    Common:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/Common'
+                        prefix: 'App\Domain\DTO'
+            mind_tracker:
+                connection: mind_tracker
+                mappings:
+                    MindTracker:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/MindTracker'
+                        prefix: 'App\Domain\DTO\MindTracker'
                     Common:
                         is_bundle: false
                         type: yml

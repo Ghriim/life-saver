@@ -8,7 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class WeightRepositoryProvider extends ServiceEntityRepository implements WeightDTOProviderGateway
+final class WeightRepository extends ServiceEntityRepository implements WeightDTOProviderGateway
 {
     public function __construct(ManagerRegistry $registry)
     {

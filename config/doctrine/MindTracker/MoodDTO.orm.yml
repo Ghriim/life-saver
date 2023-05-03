@@ -1,0 +1,24 @@
+App\Domain\DTO\MindTracker\MoodDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\MindTracker\MoodRepository
+  table: '`MOOD`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    level:
+      type: integer
+      nullable: false
+      unique: false
+    description:
+      type: text
+      nullable: true
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false

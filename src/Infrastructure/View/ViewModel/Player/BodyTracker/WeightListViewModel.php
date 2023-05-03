@@ -8,4 +8,5 @@ final class WeightListViewModel implements ViewModelInterface
 {
     public int $id;
     public string $weight;
+    public string $added;
 }

@@ -20,5 +20,5 @@
 ###< symfony/phpunit-bridge ###
 
 .idea/
-
 tests-report/
+docker-compose.yaml

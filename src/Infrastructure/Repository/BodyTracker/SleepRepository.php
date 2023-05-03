@@ -8,7 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class SleepRepositoryProvider extends ServiceEntityRepository implements SleepDTOProviderGateway
+final class SleepRepository extends ServiceEntityRepository implements SleepDTOProviderGateway
 {
     public function __construct(ManagerRegistry $registry)
     {

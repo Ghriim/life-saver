@@ -1,0 +1,21 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    {% for mood in moods %}
+        <article>
+            <ul>
+                <li>
+                    <a href="" title="">
+                        Id: {{ mood.id }}</a>
+                </li>
+                <li>Mood: {{ mood.level }}</li>
+                <li>Description: {{ mood.description }}</li>
+                <li>Added: {{ mood.added }}</li>
+                <li>
+                    <ul>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
+{% endblock %}

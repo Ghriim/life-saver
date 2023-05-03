@@ -1,0 +1,15 @@
+App\Domain\DTO\MindTracker\MoodDTO:
+  base_mood (template):
+    userId: 1    
+
+  user_1_mood_1 (extends base_mood):
+    createDate: "<(new DateTimeImmutable('2023-03-01 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-01 00:00:00'))>"
+    level: 8
+    description: 'Happy'
+
+  user_1_mood_2 (extends base_mood):
+    createDate: "<(new DateTimeImmutable('2023-03-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-02 00:00:00'))>"
+    level: 7
+    description: 'Happy but tired'

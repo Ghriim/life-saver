@@ -1,0 +1,20 @@
+App\Domain\DTO\BodyTracker\WeightDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\BodyTracker\WeightRepository
+  table: '`WEIGHT`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    weight:
+      type: integer
+      nullable: false
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false

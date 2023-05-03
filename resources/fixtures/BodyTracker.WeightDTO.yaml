@@ -1,0 +1,19 @@
+App\Domain\DTO\BodyTracker\WeightDTO:
+  base_weight (template):
+    userId: 1
+
+  user_1_weight_1 (extends base_weight):
+    createDate: "<(new DateTimeImmutable('2023-03-01 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-01 00:00:00'))>"
+    weight: 85000
+
+  user_1_weight_2 (extends base_weight):
+    createDate: "<(new DateTimeImmutable('2023-03-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-02 00:00:00'))>"
+    weight: 84600
+
+  user_3_weight_1 (extends base_weight):
+    createDate: "<(new DateTimeImmutable('2023-03-04 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-04 00:00:00'))>"
+    weight: 68500
+    userId: 2

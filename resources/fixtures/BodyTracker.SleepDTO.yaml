@@ -1,22 +1,21 @@
 App\Domain\DTO\BodyTracker\SleepDTO:
   base_sleep (template):
-    createDate: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-    updateDate: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-
-  quentin_sleep_1 (extends base_sleep):
-    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-    duration: 12800
+    createDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
     userId: 1
 
-  quentin_sleep_2 (extends base_sleep):
-    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+  user_1_sleep_1 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2023-04-02 22:00:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2023-04-03 07:00:00'))>"
     duration: 12800
-    userId: 1
 
-  quentin_sleep_3 (extends base_sleep):
-    inBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
-    outOfBed: "<(new DateTimeImmutable('2022-01-02 00:00:00'))>"
+  user_1_sleep_2 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2023-04-03 22:30:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2023-04-04 07:00:00'))>"
+    duration: 12800
+
+  user_2_sleep_1 (extends base_sleep):
+    inBed: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    outOfBed: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
     duration: 12800
     userId: 2

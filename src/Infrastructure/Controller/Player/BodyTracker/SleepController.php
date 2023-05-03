@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class SleepController extends AbstractPlayerController
 {
-    #[Route('/me/sleeps', name: 'page_sleeps_for_current_user', methods: ['GET'])]
+    #[Route('/me/body-tracker/sleeps', name: 'page_sleeps_for_current_user', methods: ['GET'])]
     public function getSleepsForCurrentUser(GetSleepsForUserUseCase $useCase): Response
     {
         $sleeps = $useCase->execute($this->getCurrentUserId());
@@ -21,7 +21,7 @@ final class SleepController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleeps' => $sleeps]);
     }
 
-    #[Route('/{userId}/sleeps', name: 'page_sleeps_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
+    #[Route('/body-tracker/{userId}/sleeps', name: 'page_sleeps_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
     public function getSleepsForGivenUser(int $userId, GetSleepsForUserUseCase $useCase): Response
     {
         $sleeps = $useCase->execute($userId);
@@ -29,7 +29,7 @@ final class SleepController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleeps' => $sleeps]);
     }
 
-    #[Route('/sleeps/add', name: 'page_sleep_add', methods: ['GET', 'POST'])]
+    #[Route('/body-tracker/sleeps/add', name: 'page_sleep_add', methods: ['GET', 'POST'])]
     public function addSleep(
         Request $request,
         SaveSleepFormHandler $formHandler,
@@ -45,7 +45,7 @@ final class SleepController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/sleep-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/sleeps/{sleepId}/edit', name: 'page_sleep_edit', requirements: ['sleepId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/body-tracker/sleeps/{sleepId}/edit', name: 'page_sleep_edit', requirements: ['sleepId' => '\d+'], methods: ['GET', 'POST'])]
     public function editSleep(
         Request $request,
         SaveSleepFormHandler $formHandler,
@@ -61,7 +61,7 @@ final class SleepController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/sleep-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/sleeps/{sleepId}/delete', name: 'page_sleep_delete', requirements: ['sleepId' => '\d+'], methods: ['GET'])]
+    #[Route('/body-tracker/sleeps/{sleepId}/delete', name: 'page_sleep_delete', requirements: ['sleepId' => '\d+'], methods: ['GET'])]
     public function deleteSleep(
         int $sleepId,
         DeleteSleepUseCase $useCase

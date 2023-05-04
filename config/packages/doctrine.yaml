@@ -20,6 +20,15 @@ doctrine:
                 driver: 'pdo_mysql'
                 server_version: '%env(resolve:MYSQL_VERSION)%'
                 charset:  UTF8
+            hydration_tracker:
+                host:     '%env(resolve:MYSQL_HYDRATION_TRACKER_HOST)%'
+                port:     '%env(resolve:MYSQL_PORT)%'
+                dbname:   '%env(resolve:MYSQL_HYDRATION_TRACKER_DATABASE)%'
+                user:     '%env(resolve:MYSQL_USER)%'
+                password: '%env(resolve:MYSQL_PASSWORD)%'
+                driver: 'pdo_mysql'
+                server_version: '%env(resolve:MYSQL_VERSION)%'
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: true
         entity_managers:
@@ -44,6 +53,19 @@ doctrine:
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/MindTracker'
                         prefix: 'App\Domain\DTO\MindTracker'
+                    Common:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/Common'
+                        prefix: 'App\Domain\DTO'
+            hydration_tracker:
+                connection: hydration_tracker
+                mappings:
+                    MindTracker:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/HydrationTracker'
+                        prefix: 'App\Domain\DTO\HydrationTracker'
                     Common:
                         is_bundle: false
                         type: yml

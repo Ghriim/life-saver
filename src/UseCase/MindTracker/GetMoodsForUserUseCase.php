@@ -9,7 +9,7 @@ use App\UseCase\UseCaseInterface;
 final class GetMoodsForUserUseCase implements UseCaseInterface
 {
     public function __construct(
-        private MoodDTOProviderGateway $sleepDTOGateway,
+        private MoodDTOProviderGateway $moodDTOGateway,
         private MoodListViewPresenter $presenter,
     ) {
 
@@ -17,8 +17,8 @@ final class GetMoodsForUserUseCase implements UseCaseInterface
 
     public function execute(int $userId): array
     {
-        $sleepDTOs = $this->sleepDTOGateway->getMoodsByUserId($userId);
+        $moodDTOs = $this->moodDTOGateway->getMoodsByUserId($userId);
 
-        return $this->presenter->present($sleepDTOs);
+        return $this->presenter->present($moodDTOs);
     }
 }

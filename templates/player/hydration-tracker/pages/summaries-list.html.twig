@@ -1,0 +1,23 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+    </div>
+    {% for summary in summaries %}
+        <article>
+            <ul>
+                <li>
+                        Id: {{ summary.id }}
+                </li>
+                <li>Goal: {{ summary.dailyGoal }}</li>
+                <li>Progress: {{ summary.dailyProgress }}</li>
+                <li>Completion: {{ summary.completion }}</li>
+                <li>Added: {{ summary.added }}</li>
+                <li>
+                    <ul>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
+{% endblock %}

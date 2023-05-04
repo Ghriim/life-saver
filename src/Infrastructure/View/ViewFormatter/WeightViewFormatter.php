@@ -4,7 +4,7 @@ namespace App\Infrastructure\View\ViewFormatter;
 
 final class WeightViewFormatter
 {
-    public static function toKGFormat(int $weightInGrams): string
+    public static function toKGStringFormat(int $weightInGrams): string
     {
         $weightInKg = $weightInGrams / 1000;
 

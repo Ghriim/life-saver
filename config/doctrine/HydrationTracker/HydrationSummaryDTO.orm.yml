@@ -1,0 +1,24 @@
+App\Domain\DTO\HydrationTracker\HydrationSummaryDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\HydrationTracker\HydrationSummaryRepository
+  table: '`HYDRATION_SUMMARY`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    dailyGoal:
+      type: integer
+      nullable: false
+      unique: false
+    dailyProgress:
+      type: integer
+      nullable: false
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false

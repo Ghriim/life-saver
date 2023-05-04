@@ -21,7 +21,7 @@ final class WeightListViewPresenter implements ViewPresenterInterface
         foreach ( $DTOs as $DTO) {
             $model = new WeightListViewModel();
             $model->id = $DTO->id;
-            $model->weight = WeightViewFormatter::toKGFormat($DTO->weight);
+            $model->weight = WeightViewFormatter::toKGStringFormat($DTO->weight);
             $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);
 
             $models[] = $model;

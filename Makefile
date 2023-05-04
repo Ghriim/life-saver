@@ -23,7 +23,7 @@ docker-compose.yaml: docker-compose.yaml.dist
 
 start: down up vendor create_dbs
 
-create_dbs: create_db_body_tracker create_db_mind_tracker load_fixtures
+create_dbs: create_db_body_tracker create_db_mind_tracker create_db_hydration_tracker load_fixtures
 
 create_db_body_tracker:
 	$(SF_CONSOLE) app:mysql-wait -c body_tracker --env=$(APP_ENV)
@@ -39,8 +39,16 @@ create_db_mind_tracker:
 	$(SF_CONSOLE) doctrine:schema:drop --env=dev --em=mind_tracker
 	$(SF_CONSOLE) doctrine:schema:update --env=dev --force --em=mind_tracker
 
+create_db_hydration_tracker:
+	$(SF_CONSOLE) app:mysql-wait -c hydration_tracker --env=$(APP_ENV)
+	$(SF_CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=hydration_tracker
+	$(SF_CONSOLE) doctrine:database:create --env=$(APP_ENV) --connection=hydration_tracker
+	$(SF_CONSOLE) doctrine:schema:drop --env=dev --em=hydration_tracker
+	$(SF_CONSOLE) doctrine:schema:update --env=dev --force --em=hydration_tracker
+
 load_fixtures:
 	$(SF_CONSOLE) hautelook:fixtures:load --manager=mind_tracker --no-interaction
+	$(SF_CONSOLE) hautelook:fixtures:load --manager=hydration_tracker --no-interaction
 	$(SF_CONSOLE) hautelook:fixtures:load --manager=body_tracker --no-interaction
 
 vendor: up
@@ -58,7 +66,10 @@ mysql.connect.body-tracker:
 mysql.connect.mind-tracker:
 	@$(DOCKER_EXEC) mysql-mind-tracker /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD'
 
+mysql.connect.hydration-tracker:
+	@$(DOCKER_EXEC) mysql-hydration-tracker /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD'
+
 
 unit_tests:
-	# @XDEBUG_MODE=coverage $(DOCKER_EXEC) php bin/phpunit --colors=never  --testsuite unit
+	@XDEBUG_MODE=coverage $(DOCKER_EXEC) php bin/phpunit --colors=never  --testsuite unit
 	sh ./export-report.sh

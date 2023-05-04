@@ -86,6 +86,24 @@ services:
       networks:
         - "life-saver"
 
+    mysql-hydration-tracker:
+      container_name: mysql-hydration-tracker-${PROJECT}
+      build:
+        context: ./.docker/mysql/${MYSQL_VERSION}
+      ports:
+        - ${MYSQL_PORT}
+      environment:
+        MYSQL_DATABASE: ${MYSQL_HYDRATION_TRACKER_DATABASE}
+        MYSQL_ROOT_USER: ${MYSQL_USER}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      volumes:
+        - ${PWD}:/var/www/html
+      working_dir: /var/www/html
+      networks:
+        - "life-saver"
+
 networks:
     life-saver:
         driver: bridge

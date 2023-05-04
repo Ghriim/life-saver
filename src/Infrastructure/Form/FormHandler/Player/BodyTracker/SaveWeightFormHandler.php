@@ -41,10 +41,7 @@ final class SaveWeightFormHandler implements FormHandlerInterface
     private function provideDTO(Request $request): WeightDTO
     {
         if (false === $request->attributes->has('weightId')) {
-            $weight = new WeightDTO();
-            $weight->inBed = new DateTimeImmutable();
-
-            return $weight;
+            return new WeightDTO();
         }
 
         $weight = $this->providerGateway->getWeightById($request->attributes->get('weightId'));

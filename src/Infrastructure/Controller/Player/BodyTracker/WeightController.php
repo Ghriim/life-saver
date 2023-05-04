@@ -21,7 +21,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
     }
 
-    #[Route('/body-tracker/{userId}/weights', name: 'page_player_weights_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
+    #[Route('/{userId}/body-tracker/weights', name: 'page_player_weights_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
     public function getWeightsForGivenUser(int $userId, GetWeightsForUserUseCase $useCase): Response
     {
         $weights = $useCase->execute($userId);
@@ -29,7 +29,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
     }
 
-    #[Route('/body-tracker/weights/add', name: 'page_player_weight_add', methods: ['GET', 'POST'])]
+    #[Route('/me/body-tracker/weights/add', name: 'page_player_weight_add', methods: ['GET', 'POST'])]
     public function addWeight(
         Request $request,
         SaveWeightFormHandler $formHandler,
@@ -45,7 +45,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/body-tracker/weights/{weightId}/edit', name: 'page_player_weight_edit', requirements: ['weightId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/me/body-tracker/weights/{weightId}/edit', name: 'page_player_weight_edit', requirements: ['weightId' => '\d+'], methods: ['GET', 'POST'])]
     public function editWeight(
         Request $request,
         SaveWeightFormHandler $formHandler,
@@ -61,7 +61,7 @@ final class WeightController extends AbstractPlayerController
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/body-tracker/weights/{weightId}/delete', name: 'page_player_weight_delete', requirements: ['weightId' => '\d+'], methods: ['GET'])]
+    #[Route('/me/body-tracker/weights/{weightId}/delete', name: 'page_player_weight_delete', requirements: ['weightId' => '\d+'], methods: ['GET'])]
     public function deleteWeight(
         int $weightId,
         DeleteWeightUseCase $useCase

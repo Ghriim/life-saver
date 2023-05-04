@@ -1,11 +1,14 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
+    <div>
+        <a href="{{ path('page_player_mood_add') }}" title="">Add new Mood</a>
+    </div>
     {% for mood in moods %}
         <article>
             <ul>
                 <li>
-                    <a href="" title="">
+                    <a href="{{ path('page_player_mood_edit', {moodId: mood.id}) }}" title="">
                         Id: {{ mood.id }}</a>
                 </li>
                 <li>Mood: {{ mood.level }}</li>
@@ -13,6 +16,12 @@
                 <li>Added: {{ mood.added }}</li>
                 <li>
                     <ul>
+                        <li>
+                            <a href="{{ path('page_player_mood_edit', {moodId: mood.id}) }}" title="">Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('page_player_mood_delete', {moodId: mood.id}) }}" title="">Delete</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

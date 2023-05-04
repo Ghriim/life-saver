@@ -14,10 +14,10 @@ final class SaveWeightUseCase implements UseCaseInterface
 
     }
 
-    public function execute(WeightDTO $sleepDTO, int $userId)
+    public function execute(WeightDTO $weightDTO, int $userId)
     {
-        $sleepDTO->userId = $userId;
+        $weightDTO->userId = $userId;
 
-        $this->persisterGateway->save($sleepDTO);
+        $this->persisterGateway->save($weightDTO);
     }
 }

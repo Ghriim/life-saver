@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Persister\BodyTracker;
 
 use App\Domain\DTO\BodyTracker\WeightDTO;
-use App\Domain\DTO\DTOInterface;
 use App\Domain\Gateway\Persister\BodyTracker\WeightDTOPersisterGateway;
 use App\Infrastructure\Persister\AbstractPersister;
 

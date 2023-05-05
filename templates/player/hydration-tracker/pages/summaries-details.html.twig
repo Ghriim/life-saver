@@ -1,0 +1,17 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <ul>
+            <li>Added: {{ summary.added }}</li>
+            <li>Goal: {{ summary.dailyGoal }}</li>
+            <li>Progress: {{ summary.dailyProgress }}</li>
+            <li>Completion: {{ summary.completion }}</li>
+            <li>
+                    <a href="{{ path('page_player_hydration_summary_edit', {date: summary.added}) }}" title="">
+                        Edit
+                    </a>
+            </li>
+        </ul>
+    </article>
+{% endblock %}

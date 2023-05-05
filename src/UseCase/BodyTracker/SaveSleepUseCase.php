@@ -14,7 +14,7 @@ final class SaveSleepUseCase implements UseCaseInterface
 
     }
 
-    public function execute(SleepDTO $sleepDTO, int $userId)
+    public function execute(SleepDTO $sleepDTO, int $userId): void
     {
         $sleepDTO->userId = $userId;
 

@@ -14,7 +14,7 @@ final class SaveWeightUseCase implements UseCaseInterface
 
     }
 
-    public function execute(WeightDTO $weightDTO, int $userId)
+    public function execute(WeightDTO $weightDTO, int $userId): void
     {
         $weightDTO->userId = $userId;
 

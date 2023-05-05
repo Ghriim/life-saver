@@ -4,7 +4,7 @@ namespace App\Infrastructure\Form\FormHandler\Player\BodyTracker;
 
 use App\Domain\DTO\BodyTracker\WeightDTO;
 use App\Domain\Gateway\Provider\BodyTracker\WeightDTOProviderGateway;
-use App\Infrastructure\Form\FormType\Player\BodyTracker\AddWeightFormType;
+use App\Infrastructure\Form\FormType\Player\BodyTracker\SaveWeightFormType;
 use App\Infrastructure\Form\FormHandler\FormWrapper;
 use App\Infrastructure\Form\FormHandler\FormHandlerInterface;
 use DateTimeImmutable;
@@ -25,7 +25,7 @@ final class SaveWeightFormHandler implements FormHandlerInterface
     {
         $weight = $this->provideDTO($request);
         $form = $this->formFactory->create(
-            AddWeightFormType::class,
+            SaveWeightFormType::class,
             $weight
         );
         $form->handleRequest($request);

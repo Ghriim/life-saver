@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class AddSleepFormType  extends AbstractType
+final class SaveSleepFormType  extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

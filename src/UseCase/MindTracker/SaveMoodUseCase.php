@@ -14,7 +14,7 @@ final class SaveMoodUseCase implements UseCaseInterface
 
     }
 
-    public function execute(MoodDTO $moodDTO, int $userId)
+    public function execute(MoodDTO $moodDTO, int $userId): void
     {
         $moodDTO->userId = $userId;
 

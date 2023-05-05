@@ -8,9 +8,9 @@ final class PercentageViewFormatter
     {
         $pctValue = ($a / $b) * 100;
         if (0 === $decimalsToDisplay) {
-            return (string) floor($pctValue);
+            return floor($pctValue).'%';
         }
 
-        return (string) round($pctValue, $decimalsToDisplay);
+        return round($pctValue, $decimalsToDisplay).'%';
     }
 }

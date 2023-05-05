@@ -4,7 +4,7 @@ namespace App\Infrastructure\Form\FormHandler\Player\BodyTracker;
 
 use App\Domain\DTO\BodyTracker\SleepDTO;
 use App\Domain\Gateway\Provider\BodyTracker\SleepDTOProviderGateway;
-use App\Infrastructure\Form\FormType\Player\BodyTracker\AddSleepFormType;
+use App\Infrastructure\Form\FormType\Player\BodyTracker\SaveSleepFormType;
 use App\Infrastructure\Form\FormHandler\FormWrapper;
 use App\Infrastructure\Form\FormHandler\FormHandlerInterface;
 use DateTimeImmutable;
@@ -25,7 +25,7 @@ final class SaveSleepFormHandler implements FormHandlerInterface
     {
         $sleep = $this->provideDTO($request);
         $form = $this->formFactory->create(
-            AddSleepFormType::class,
+            SaveSleepFormType::class,
             $sleep
         );
         $form->handleRequest($request);

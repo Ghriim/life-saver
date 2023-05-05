@@ -4,6 +4,7 @@ namespace App\Infrastructure\Repository\HydrationTracker;
 
 use App\Domain\DTO\HydrationTracker\HydrationSummaryDTO;
 use App\Domain\Gateway\Provider\HydrationTracker\HydrationSummaryDTOProviderGateway;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,4 +39,18 @@ final class HydrationSummaryRepository extends ServiceEntityRepository implement
                     ->getQuery()->getResult();
     }
 
+    public function getHydrationSummaryByUserIdAndDate(int $userId, DateTimeImmutable $date): ?HydrationSummaryDTO
+    {
+        $dateStart = $date->setTime(0,0,0);
+        $dateEnd = $date->setTime(23,59,59);
+
+        return $this->createQueryBuilder('summary')
+                    ->andWhere('summary.userId = :userId')
+                    ->setParameter('userId', $userId)
+                    ->andWhere('summary.createDate >= :dateStart')
+                    ->setParameter('dateStart', $dateStart)
+                    ->andWhere('summary.createDate <= :dateEnd')
+                    ->setParameter('dateEnd', $dateEnd)
+                    ->getQuery()->getOneOrNullResult();
+    }
 }

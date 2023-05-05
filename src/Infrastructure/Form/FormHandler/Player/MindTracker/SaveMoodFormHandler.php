@@ -4,10 +4,9 @@ namespace App\Infrastructure\Form\FormHandler\Player\MindTracker;
 
 use App\Domain\DTO\MindTracker\MoodDTO;
 use App\Domain\Gateway\Provider\MindTracker\MoodDTOProviderGateway;
-use App\Infrastructure\Form\FormType\Player\MindTracker\AddMoodFormType;
+use App\Infrastructure\Form\FormType\Player\MindTracker\SaveMoodFormType;
 use App\Infrastructure\Form\FormHandler\FormWrapper;
 use App\Infrastructure\Form\FormHandler\FormHandlerInterface;
-use DateTimeImmutable;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -25,7 +24,7 @@ final class SaveMoodFormHandler implements FormHandlerInterface
     {
         $mood = $this->provideDTO($request);
         $form = $this->formFactory->create(
-            AddMoodFormType::class,
+            SaveMoodFormType::class,
             $mood
         );
         $form->handleRequest($request);

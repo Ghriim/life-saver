@@ -1,0 +1,14 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+        <div>
+            Level
+            {{ form_widget(form.dailyGoal) }}
+        </div>
+        <div>
+            <a href="{{ path('page_player_current_user_hydration_summary_for_date', {date: date}) }}" class="button cancel-color">Cancel</a>
+            <button type="submit" class="button action-color">Save</button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

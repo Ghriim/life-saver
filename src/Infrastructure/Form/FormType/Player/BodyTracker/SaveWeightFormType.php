@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class AddWeightFormType  extends AbstractType
+final class SaveWeightFormType  extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

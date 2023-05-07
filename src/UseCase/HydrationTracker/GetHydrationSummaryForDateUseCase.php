@@ -3,6 +3,7 @@
 namespace App\UseCase\HydrationTracker;
 
 use App\Domain\DTO\HydrationTracker\HydrationSummaryDTO;
+use App\Domain\Gateway\Provider\HydrationTracker\HydrationIntakeDTOProviderGateway;
 use App\Domain\Gateway\Provider\HydrationTracker\HydrationSummaryDTOProviderGateway;
 use App\Infrastructure\View\ViewModel\Player\HydrationTracker\HydrationSummaryDetailsViewModel;
 use App\Infrastructure\View\ViewPresenter\Player\HydrationTracker\HydrationSummaryDetailsViewPresenter;
@@ -14,7 +15,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GetHydrationSummaryForDateUseCase implements UseCaseInterface
 {
     public function __construct(
-        private HydrationSummaryDTOProviderGateway $summaryDTOGateway,
+        private HydrationSummaryDTOProviderGateway $summaryProviderGateway,
+        private HydrationIntakeDTOProviderGateway $intakeProviderGateway,
         private HydrationSummaryDetailsViewPresenter $presenter,
     ) {
 
@@ -32,12 +34,14 @@ final class GetHydrationSummaryForDateUseCase implements UseCaseInterface
             throw new NotFoundHttpException();
         }
 
-        $summaryDTO = $this->summaryDTOGateway->getHydrationSummaryByUserIdAndDate($userId, $date);
-        if (null === $summaryDTO) {
-            $summaryDTO = new HydrationSummaryDTO();
-            $summaryDTO->userId = $userId;
+        $summary = $this->summaryProviderGateway->getHydrationSummaryByUserIdAndDate($userId, $date);
+        if (null === $summary) {
+            $summary = new HydrationSummaryDTO();
+            $summary->userId = $userId;
         }
 
-        return  $this->presenter->present($summaryDTO);
+        $intakes = $this->intakeProviderGateway->getHydrationIntakesBySummary($summary);
+
+        return  $this->presenter->present($summary, $intakes);
     }
 }

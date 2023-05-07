@@ -1,0 +1,18 @@
+App\Domain\DTO\HydrationTracker\HydrationIntakeDTO:
+  base_hydration_intake (template):
+    summary: '@user_1_hydration_summary_3'
+
+  user_1_hydration_intake_1 (extends base_hydration_intake):
+    createDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    volume: 300
+
+  user_1_hydration_intake_2 (extends base_hydration_intake):
+    createDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    volume: 250
+
+  user_1_hydration_intake_3 (extends base_hydration_intake):
+    createDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
+    volume: 300

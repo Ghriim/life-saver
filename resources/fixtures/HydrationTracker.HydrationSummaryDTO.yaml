@@ -18,4 +18,4 @@ App\Domain\DTO\HydrationTracker\HydrationSummaryDTO:
     createDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
     updateDate: "<(new DateTimeImmutable('2023-03-03 00:00:00'))>"
     dailyGoal: 2500
-    dailyProgress: 2200
+    dailyProgress: 850

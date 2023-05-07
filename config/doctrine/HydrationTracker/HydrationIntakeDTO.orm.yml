@@ -1,0 +1,23 @@
+App\Domain\DTO\HydrationTracker\HydrationIntakeDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\HydrationTracker\HydrationIntakeDTORepository
+  table: '`HYDRATION_INTAKE`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    volume:
+      type: integer
+      nullable: false
+      unique: false
+
+  manyToOne:
+    summary:
+      targetEntity: HydrationSummaryDTO
+      joinColumn:
+        name: summaryId
+        referencedColumnName: id

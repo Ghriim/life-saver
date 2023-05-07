@@ -1,9 +1,9 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
+    <h3>{{ summary.added }}</h3>
     <article>
         <ul>
-            <li>Added: {{ summary.added }}</li>
             <li>Goal: {{ summary.dailyGoal }}</li>
             <li>Progress: {{ summary.dailyProgress }}</li>
             <li>Completion: {{ summary.completion }}</li>
@@ -14,4 +14,18 @@
             </li>
         </ul>
     </article>
+
+    <h4>Intakes</h4>
+    {% for intake in summary.intakes %}
+        <article>
+            <ul>
+                <li>Volume: {{ intake.volume }}</li>
+                <li>
+                    <a href="{{ path('page_player_hydration_intake_delete', {date: summary.added, intakeId: intake.id}) }}" title="">
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
 {% endblock %}

@@ -21,7 +21,7 @@ final class HydrationSummaryListViewPresenter implements ViewPresenterInterface
         $models = [];
         foreach ( $DTOs as $DTO) {
             $model = new HydrationSummaryListViewModel();
-            $model->completion = PercentageViewFormatter::toStringFormat($DTO->dailyGoal, $DTO->dailyProgress);
+            $model->completion = PercentageViewFormatter::toStringFormat($DTO->dailyProgress, $DTO->dailyGoal);
             $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate, true);
 
             $models[] = $model;

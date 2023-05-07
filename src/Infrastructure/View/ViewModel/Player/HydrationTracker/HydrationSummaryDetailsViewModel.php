@@ -10,4 +10,9 @@ final class HydrationSummaryDetailsViewModel implements ViewModelInterface
     public int $dailyGoal;
     public int $dailyProgress;
     public string $completion;
+
+    /**
+     * @var HydrationIntakeInSummaryDetailsViewModel[]
+     */
+    public array $intakes;
 }

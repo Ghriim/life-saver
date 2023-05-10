@@ -16,6 +16,9 @@
     </article>
 
     <h4>Intakes</h4>
+    <ul>
+        <li><a href="{{ path('page_player_hydration_intake_add_for_date', {date: summary.added}) }}" title="">Add Water Intake</a></li>
+    </ul>
     {% for intake in summary.intakes %}
         <article>
             <ul>

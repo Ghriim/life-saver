@@ -18,6 +18,7 @@ App\Domain\DTO\HydrationTracker\HydrationIntakeDTO:
   manyToOne:
     summary:
       targetEntity: HydrationSummaryDTO
+      cascade: ['persist']
       joinColumn:
         name: summaryId
         referencedColumnName: id

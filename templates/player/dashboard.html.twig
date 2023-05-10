@@ -1,5 +1,7 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    DASHBOARD
+    <ul>
+        <li><a href="{{ path('page_player_hydration_intake_for_today') }}" title="">Add Water Intake</a></li>
+    </ul>
 {% endblock %}

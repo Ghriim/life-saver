@@ -14,17 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 final class WeightController extends AbstractPlayerController
 {
     #[Route('/me/body-tracker/weights', name: 'page_player_weights_for_current_user', methods: ['GET'])]
-    public function getWeightsForCurrentUser(GetWeightsForUserUseCase $useCase): Response
-    {
-        $weights = $useCase->execute($this->getCurrentUserId());
-
-        return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
-    }
-
     #[Route('/{userId}/body-tracker/weights', name: 'page_player_weights_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
-    public function getWeightsForGivenUser(int $userId, GetWeightsForUserUseCase $useCase): Response
+    public function getWeightsForGivenUser(?int $userId, GetWeightsForUserUseCase $useCase): Response
     {
-        $weights = $useCase->execute($userId);
+        $weights = $useCase->execute($userId ?? $this->getCurrentUserId());
 
         return $this->render('player/body-tracker/pages/weight-list.html.twig', ['weights' => $weights]);
     }

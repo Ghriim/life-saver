@@ -14,17 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 final class SleepController extends AbstractPlayerController
 {
     #[Route('/me/body-tracker/sleeps', name: 'page_player_sleeps_for_current_user', methods: ['GET'])]
-    public function getSleepsForCurrentUser(GetSleepsForUserUseCase $useCase): Response
-    {
-        $sleeps = $useCase->execute($this->getCurrentUserId());
-
-        return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleeps' => $sleeps]);
-    }
-
     #[Route('/{userId}/body-tracker/sleeps', name: 'page_player_sleeps_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
-    public function getSleepsForGivenUser(int $userId, GetSleepsForUserUseCase $useCase): Response
+    public function getSleepsForGivenUser(?int $userId, GetSleepsForUserUseCase $useCase): Response
     {
-        $sleeps = $useCase->execute($userId);
+        $sleeps = $useCase->execute($userId ?? $this->getCurrentUserId());
 
         return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleeps' => $sleeps]);
     }

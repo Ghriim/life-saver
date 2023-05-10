@@ -1,0 +1,15 @@
+App\Domain\DTO\ActivityTracker\ActivityDTO:
+  base_activity (template):
+    createDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    userId: 1
+
+  user_1_activity_1 (extends base_activity):
+    title: 'Sport'
+
+  user_1_activity_2 (extends base_activity):
+    title: 'Reading'
+
+  user_2_activity_1 (extends base_activity):
+    title: 'Reading'
+    userId: 2

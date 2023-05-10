@@ -21,7 +21,7 @@ final class HydrationSummaryController extends AbstractPlayerController
     {
         $summaries = $useCase->execute($userId ?? $this->getCurrentUserId());
 
-        return $this->render('player/hydration-tracker/pages/summaries-list.html.twig', ['summaries' => $summaries]);
+        return $this->render('player/hydration-tracker/pages/summary-list.html.twig', ['summaries' => $summaries]);
     }
 
     #[Route('/{userId}/hydration-tracker/summaries/{date}', name: 'page_player_hydration_summary_for_date', requirements: ['userId' => '\d+'], methods: ['GET'])]
@@ -34,7 +34,7 @@ final class HydrationSummaryController extends AbstractPlayerController
             $date ?? DateTimeViewFormatter::toStringFormat(new DateTimeImmutable(), true),
         );
 
-        return $this->render('player/hydration-tracker/pages/summaries-details.html.twig', ['summary' => $summary]);
+        return $this->render('player/hydration-tracker/pages/summary-details.html.twig', ['summary' => $summary]);
     }
 
     #[Route('/me/hydration-tracker/summaries/{date}/edit', name: 'page_player_hydration_summary_edit', methods: ['GET', 'POST'])]
@@ -53,6 +53,6 @@ final class HydrationSummaryController extends AbstractPlayerController
             return $this->redirectToRoute('page_player_current_user_hydration_summary_for_date', ['date' => $date]);
         }
 
-        return $this->render('player/hydration-tracker/pages/summaries-edit.html.twig', ['form' => $formHandler->getForm()->createView(), 'date' => $date]);
+        return $this->render('player/hydration-tracker/pages/summary-edit.html.twig', ['form' => $formHandler->getForm()->createView(), 'date' => $date]);
     }
 }

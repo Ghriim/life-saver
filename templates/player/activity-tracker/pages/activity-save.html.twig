@@ -1,0 +1,14 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+    <div>
+        Title
+        {{ form_widget(form.title) }}
+    </div>
+    <div>
+        <a href="{{ path('page_player_activities_for_current_user') }}" class="button cancel-color">Cancel</a>
+        <button type="submit" class="button action-color">Save</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

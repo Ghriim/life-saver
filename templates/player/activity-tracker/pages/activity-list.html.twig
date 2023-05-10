@@ -1,0 +1,29 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        <a href="{{ path('page_player_activity_add') }}" title="">Add Activity</a>
+    </div>
+    {% for activity in activities %}
+        <article>
+            <ul>
+                <li>
+                    <a href="{{ path('page_player_activity_edit', {activityId: activity.id}) }}" title="">
+                        Id: {{ activity.id }}</a>
+                </li>
+                <li>Title: {{ activity.title }}</li>
+                <li>Added: {{ activity.added }}</li>
+                <li>
+                    <ul>
+                        <li>
+                            <a href="{{ path('page_player_activity_edit', {activityId: activity.id}) }}" title="">Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('page_player_activity_delete', {activityId: activity.id}) }}" title="">Delete</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
+{% endblock %}

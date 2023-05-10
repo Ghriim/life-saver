@@ -32,7 +32,7 @@ final class HydrationIntakeController extends AbstractPlayerController
                 $this->getCurrentUserId()
             );
 
-            return $this->redirectToRoute('page_player_current_user_hydration_summary_for_date', ['date' => $date]);
+            return $this->redirectTo($request,'page_player_current_user_hydration_summary_for_date', ['date' => $date]);
         }
 
         return $this->render('player/hydration-tracker/pages/intake-add.html.twig', ['form' => $formHandler->getForm()->createView(), 'date' => $date]);

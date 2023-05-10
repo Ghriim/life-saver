@@ -5,6 +5,7 @@ namespace App\UseCase\MindTracker;
 use App\Domain\Gateway\Provider\MindTracker\MoodDTOProviderGateway;
 use App\Infrastructure\View\ViewPresenter\Player\MindTracker\MoodListViewPresenter;
 use App\UseCase\UseCaseInterface;
+use DateTimeImmutable;
 
 final class GetMoodsForUserUseCase implements UseCaseInterface
 {
@@ -15,10 +16,14 @@ final class GetMoodsForUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId): array
+    public function execute(int $userId, ?string $date): array
     {
-        $moodDTOs = $this->moodDTOGateway->getMoodsByUserId($userId);
+        if (null === $date) {
+            $moods = $this->moodDTOGateway->getMoodsByUserId($userId);
+        } else {
+            $moods = $this->moodDTOGateway->getMoodsByUserIdAndDate($userId, new DateTimeImmutable($date));
+        }
 
-        return $this->presenter->present($moodDTOs);
+        return $this->presenter->present($moods);
     }
 }

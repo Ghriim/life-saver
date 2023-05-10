@@ -25,7 +25,7 @@ final class ActivityRepository extends ServiceEntityRepository implements Activi
                              ->andWhere('activity.userId = :userId')
                              ->setParameter('userId', $userId);
 
-        return $this->addCriteriaDate($queryBuilder, $date)
+        return $this->addCriteriaDate($queryBuilder, $date, 'activity')
                     ->orderBy('activity.createDate', Criteria::DESC)
                     ->getQuery()->getResult();
     }

@@ -48,7 +48,7 @@ final class HydrationSummaryRepository extends ServiceEntityRepository implement
                                 ->andWhere('summary.userId = :userId')
                                 ->setParameter('userId', $userId);
 
-        return $this->addCriteriaDate($queryBuilder, $date)
+        return $this->addCriteriaDate($queryBuilder, $date, 'summary')
                     ->getQuery()->getOneOrNullResult();
     }
 }

@@ -21,7 +21,7 @@ final class ActivityListViewPresenter implements ViewPresenterInterface
             $model = new ActivityListViewModel();
             $model->id = $DTO->id;
             $model->title = $DTO->title;
-            $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate, true);
+            $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);
 
             $models[] = $model;
         }

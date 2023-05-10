@@ -15,9 +15,12 @@ final class MoodController extends AbstractPlayerController
 {
     #[Route('/me/mind-tracker/moods', name: 'page_player_moods_for_current_user', methods: ['GET'])]
     #[Route('/{userId}/mind-tracker/moods', name: 'page_player_moods_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
-    public function getMoodsForGivenUser(?int $userId, GetMoodsForUserUseCase $useCase): Response
+    public function getMoodsForGivenUser(?int $userId, Request $request, GetMoodsForUserUseCase $useCase): Response
     {
-        $moods = $useCase->execute($userId ?? $this->getCurrentUserId());
+        $moods = $useCase->execute(
+            $userId ?? $this->getCurrentUserId(),
+            $request->query->get('date')
+        );
 
         return $this->render('player/mind-tracker/pages/mood-list.html.twig', ['moods' => $moods]);
     }
@@ -32,7 +35,7 @@ final class MoodController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_moods_for_current_user');
+            return $this->redirectTo($request, 'page_player_moods_for_current_user');
         }
 
         return $this->render('player/mind-tracker/pages/mood-save.html.twig', ['form' => $formHandler->getForm()->createView()]);

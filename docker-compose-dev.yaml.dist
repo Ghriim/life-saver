@@ -50,68 +50,14 @@ services:
         networks:
           - "life-saver"
 
-    mysql-body-tracker:
-      container_name: mysql-body-tracker-${PROJECT}
+    mysql-life-saver:
+      container_name: mysql-life-saver-${PROJECT}
       build:
         context: ./.docker/mysql/${MYSQL_VERSION}
       ports:
         - ${MYSQL_PORT}
       environment:
-        MYSQL_DATABASE: ${MYSQL_BODY_TRACKER_DATABASE}
-        MYSQL_ROOT_USER: ${MYSQL_USER}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      volumes:
-        - ${PWD}:/var/www/html
-      working_dir: /var/www/html
-      networks:
-        - "life-saver"
-
-    mysql-mind-tracker:
-      container_name: mysql-mind-tracker-${PROJECT}
-      build:
-        context: ./.docker/mysql/${MYSQL_VERSION}
-      ports:
-        - ${MYSQL_PORT}
-      environment:
-        MYSQL_DATABASE: ${MYSQL_MIND_TRACKER_DATABASE}
-        MYSQL_ROOT_USER: ${MYSQL_USER}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      volumes:
-        - ${PWD}:/var/www/html
-      working_dir: /var/www/html
-      networks:
-        - "life-saver"
-
-    mysql-hydration-tracker:
-      container_name: mysql-hydration-tracker-${PROJECT}
-      build:
-        context: ./.docker/mysql/${MYSQL_VERSION}
-      ports:
-        - ${MYSQL_PORT}
-      environment:
-        MYSQL_DATABASE: ${MYSQL_HYDRATION_TRACKER_DATABASE}
-        MYSQL_ROOT_USER: ${MYSQL_USER}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      volumes:
-        - ${PWD}:/var/www/html
-      working_dir: /var/www/html
-      networks:
-        - "life-saver"
-
-    mysql-activity-tracker:
-      container_name: mysql-activity-tracker-${PROJECT}
-      build:
-        context: ./.docker/mysql/${MYSQL_VERSION}
-      ports:
-        - ${MYSQL_PORT}
-      environment:
-        MYSQL_DATABASE: ${MYSQL_ACTIVITY_TRACKER_DATABASE}
+        MYSQL_DATABASE: ${MYSQL_LIFE_SAVER_DATABASE}
         MYSQL_ROOT_USER: ${MYSQL_USER}
         MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
         MYSQL_USER: ${MYSQL_USER}

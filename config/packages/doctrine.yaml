@@ -1,38 +1,11 @@
 doctrine:
     dbal:
-        default_connection: body_tracker
+        default_connection: life_saver
         connections:
-            body_tracker:
-                host:     '%env(resolve:MYSQL_BODY_TRACKER_HOST)%'
+            life_saver:
+                host:     '%env(resolve:MYSQL_LIFE_SAVER_HOST)%'
                 port:     '%env(resolve:MYSQL_PORT)%'
-                dbname:   '%env(resolve:MYSQL_BODY_TRACKER_DATABASE)%'
-                user:     '%env(resolve:MYSQL_USER)%'
-                password: '%env(resolve:MYSQL_PASSWORD)%'
-                driver: 'pdo_mysql'
-                server_version: '%env(resolve:MYSQL_VERSION)%'
-                charset:  UTF8
-            mind_tracker:
-                host:     '%env(resolve:MYSQL_MIND_TRACKER_HOST)%'
-                port:     '%env(resolve:MYSQL_PORT)%'
-                dbname:   '%env(resolve:MYSQL_MIND_TRACKER_DATABASE)%'
-                user:     '%env(resolve:MYSQL_USER)%'
-                password: '%env(resolve:MYSQL_PASSWORD)%'
-                driver: 'pdo_mysql'
-                server_version: '%env(resolve:MYSQL_VERSION)%'
-                charset:  UTF8
-            hydration_tracker:
-                host:     '%env(resolve:MYSQL_HYDRATION_TRACKER_HOST)%'
-                port:     '%env(resolve:MYSQL_PORT)%'
-                dbname:   '%env(resolve:MYSQL_HYDRATION_TRACKER_DATABASE)%'
-                user:     '%env(resolve:MYSQL_USER)%'
-                password: '%env(resolve:MYSQL_PASSWORD)%'
-                driver: 'pdo_mysql'
-                server_version: '%env(resolve:MYSQL_VERSION)%'
-                charset:  UTF8
-            activity_tracker:
-                host:     '%env(resolve:MYSQL_ACTIVITY_TRACKER_HOST)%'
-                port:     '%env(resolve:MYSQL_PORT)%'
-                dbname:   '%env(resolve:MYSQL_ACTIVITY_TRACKER_DATABASE)%'
+                dbname:   '%env(resolve:MYSQL_LIFE_SAVER_DATABASE)%'
                 user:     '%env(resolve:MYSQL_USER)%'
                 password: '%env(resolve:MYSQL_PASSWORD)%'
                 driver: 'pdo_mysql'
@@ -41,48 +14,24 @@ doctrine:
     orm:
         auto_generate_proxy_classes: true
         entity_managers:
-            body_tracker:
-                connection: body_tracker
+            life_saver:
+                connection: life_saver
                 mappings:
                     BodyTracker:
                         is_bundle: false
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/BodyTracker'
                         prefix: 'App\Domain\DTO\BodyTracker'
-                    Common:
-                        is_bundle: false
-                        type: yml
-                        dir: '%kernel.project_dir%/config/doctrine/Common'
-                        prefix: 'App\Domain\DTO'
-            mind_tracker:
-                connection: mind_tracker
-                mappings:
                     MindTracker:
                         is_bundle: false
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/MindTracker'
                         prefix: 'App\Domain\DTO\MindTracker'
-                    Common:
-                        is_bundle: false
-                        type: yml
-                        dir: '%kernel.project_dir%/config/doctrine/Common'
-                        prefix: 'App\Domain\DTO'
-            hydration_tracker:
-                connection: hydration_tracker
-                mappings:
-                    MindTracker:
+                    HydrationTracker:
                         is_bundle: false
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/HydrationTracker'
                         prefix: 'App\Domain\DTO\HydrationTracker'
-                    Common:
-                        is_bundle: false
-                        type: yml
-                        dir: '%kernel.project_dir%/config/doctrine/Common'
-                        prefix: 'App\Domain\DTO'
-            activity_tracker:
-                connection: activity_tracker
-                mappings:
                     ActivityTracker:
                         is_bundle: false
                         type: yml

@@ -20,7 +20,7 @@ final class ActivityListViewPresenter implements ViewPresenterInterface
         foreach ($DTOs as $DTO) {
             $model = new ActivityListViewModel();
             $model->id = $DTO->id;
-            $model->title = $DTO->title;
+            $model->title = null === $DTO->activityType ? $DTO->title : $DTO->activityType->title;
             $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);
 
             $models[] = $model;

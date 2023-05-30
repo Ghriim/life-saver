@@ -12,12 +12,18 @@ ifeq ($(APP_ENV),test)
 	XDEBUG_MODE	:=coverage
 endif
 
-setup: .env.local docker-compose.yaml
+setup: .env.local docker-compose-${APP_ENV}.yaml
 
 .env.local:
 	@touch .env.local
 
-docker-compose.yaml: docker-compose.yaml.dist
+docker-compose-dev.yaml: docker-compose-dev.yaml.dist
+	@cp docker-compose-${APP_ENV}.yaml.dist docker-compose-${APP_ENV}.yaml
+	@sed -i "s/<DOCKER_USER_ID>/$(shell $(shell echo id -u ${USER}))/g" $@
+	@sed -i "s/<DOCKER_USER>/$(shell echo ${USER})/g" $@
+	@sed -i 's/<REMOTE_HOST>/$(shell hostname -I | grep -Eo "192\.168\.[0-9]{,2}\.[0-9]+" | head -1)/g' $@
+
+docker-compose-prod.yaml: docker-compose-prod.yaml.dist
 	@cp docker-compose-${APP_ENV}.yaml.dist docker-compose-${APP_ENV}.yaml
 	@sed -i "s/<DOCKER_USER_ID>/$(shell $(shell echo id -u ${USER}))/g" $@
 	@sed -i "s/<DOCKER_USER>/$(shell echo ${USER})/g" $@

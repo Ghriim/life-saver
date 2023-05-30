@@ -34,3 +34,7 @@ App\Domain\DTO\ActivityTracker\ActivityTypeDTO:
   activity_type_meeting (extends base_activity_type):
     title: 'in a meeting'
     activityCategory: '@activity_category_work'
+
+  activity_type_focussed (extends base_activity_type):
+    title: 'focussed on work !'
+    activityCategory: '@activity_category_work'

@@ -12,7 +12,7 @@ App\Domain\DTO\ActivityTracker\ActivityDTO:
   fields:
     title:
       type: text
-      nullable: false
+      nullable: true
       unique: false
     userId:
       type: integer

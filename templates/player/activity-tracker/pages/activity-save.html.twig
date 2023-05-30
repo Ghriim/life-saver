@@ -7,6 +7,10 @@
         {{ form_widget(form.title) }}
     </div>
     <div>
+        Type
+        {{ form_widget(form.activityType) }}
+    </div>
+    <div>
         <a href="{{ path('page_player_activities_for_current_user') }}" class="button cancel-color">Cancel</a>
         <button type="submit" class="button action-color">Save</button>
     </div>

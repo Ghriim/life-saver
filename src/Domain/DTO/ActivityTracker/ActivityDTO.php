@@ -6,9 +6,9 @@ use App\Domain\DTO\AbstractBaseDTO;
 
 class ActivityDTO extends AbstractBaseDTO
 {
-    public string $title;
+    public ?string $title = null;
 
     public int $userId;
 
-    public ActivityTypeDTO $activityType;
+    public ?ActivityTypeDTO $activityType = null;
 }

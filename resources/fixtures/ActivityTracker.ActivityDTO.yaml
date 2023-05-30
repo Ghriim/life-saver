@@ -5,10 +5,13 @@ App\Domain\DTO\ActivityTracker\ActivityDTO:
     userId: 1
 
   user_1_activity_1 (extends base_activity):
-    title: 'Sport'
+    activityType: '@activity_type_training'
 
   user_1_activity_2 (extends base_activity):
-    title: 'Reading'
+    activityType: '@activity_type_reading'
+
+  user_1_activity_3 (extends base_activity):
+    title: 'doing a random thing'
 
   user_2_activity_1 (extends base_activity):
     title: 'Reading'

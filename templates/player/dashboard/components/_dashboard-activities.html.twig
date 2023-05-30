@@ -1,0 +1,7 @@
+<h3>Activity</h3>
+<a href="{{ path('page_player_activity_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Activity</a>
+{% for activity in activities %}
+    <article>
+        {{ activity.title }}
+    </article>
+{% endfor %}

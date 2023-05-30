@@ -1,0 +1,7 @@
+<h3>Moods</h3>
+<a href="{{ path('page_player_mood_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Mood</a>
+{% for mood in moods %}
+    <article>
+        {{ mood.level }} - {{ mood.description }}
+    </article>
+{% endfor %}

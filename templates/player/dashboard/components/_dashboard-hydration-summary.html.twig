@@ -1,0 +1,11 @@
+<h3>Hydration</h3>
+<a href="{{ path('page_player_hydration_intake_for_today', {redirect: 'page_player_dashboard'}) }}" title="">Add Water Intake</a>
+<h4>
+    {{ hydrationSummary.dailyProgress }} / {{ hydrationSummary.dailyGoal }}L ({{ hydrationSummary.completion }})
+</h4>
+
+{% for intake in hydrationSummary.intakes %}
+    <article>
+        {{ intake.volume }}
+    </article>
+{% endfor %}

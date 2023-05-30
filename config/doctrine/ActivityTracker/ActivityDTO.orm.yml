@@ -18,3 +18,11 @@ App\Domain\DTO\ActivityTracker\ActivityDTO:
       type: integer
       nullable: false
       unique: false
+
+  manyToOne:
+    activityType:
+      targetEntity: ActivityTypeDTO
+      joinColumn:
+        name: typeId
+        referencedColumnName: id
+        nullable: true

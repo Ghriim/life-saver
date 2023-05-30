@@ -4,11 +4,7 @@ namespace App\Domain\DTO\ActivityTracker;
 
 use App\Domain\DTO\AbstractBaseDTO;
 
-class ActivityDTO extends AbstractBaseDTO
+class ActivityCategoryDTO extends AbstractBaseDTO
 {
     public string $title;
-
-    public int $userId;
-
-    public ActivityTypeDTO $activityType;
 }

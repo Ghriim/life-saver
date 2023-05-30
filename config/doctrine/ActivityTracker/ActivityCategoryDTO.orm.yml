@@ -1,0 +1,16 @@
+App\Domain\DTO\ActivityTracker\ActivityCategoryDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\ActivityTracker\ActivityCategoryRepository
+  table: '`ACTIVITY_CATEGORY`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    title:
+      type: text
+      nullable: false
+      unique: false

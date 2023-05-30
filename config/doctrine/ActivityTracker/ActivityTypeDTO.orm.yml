@@ -1,0 +1,23 @@
+App\Domain\DTO\ActivityTracker\ActivityTypeDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\ActivityTracker\ActivityTypeRepository
+  table: '`ACTIVITY_TYPE`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    title:
+      type: text
+      nullable: false
+      unique: false
+
+  manyToOne:
+    activityCategory:
+      targetEntity: ActivityCategoryDTO
+      joinColumn:
+        name: categotyId
+        referencedColumnName: id

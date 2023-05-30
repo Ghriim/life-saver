@@ -1,0 +1,19 @@
+App\Domain\DTO\ActivityTracker\ActivityCategoryDTO:
+  base_activity_category (template):
+    createDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+
+  activity_category_sport (extends base_activity_category):
+    title: 'Sport'
+
+  activity_category_art (extends base_activity_category):
+    title: 'Art'
+
+  activity_category_hobby (extends base_activity_category):
+    title: 'Hobby'
+
+  activity_category_social (extends base_activity_category):
+    title: 'Social'
+
+  activity_category_work (extends base_activity_category):
+    title: 'Work'

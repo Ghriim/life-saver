@@ -1,0 +1,36 @@
+App\Domain\DTO\ActivityTracker\ActivityTypeDTO:
+  base_activity_type (template):
+    createDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+    updateDate: "<(new DateTimeImmutable('2023-04-02 00:00:00'))>"
+
+  activity_type_running (extends base_activity_type):
+    title: 'running'
+    activityCategory: '@activity_category_sport'
+
+  activity_type_swimming (extends base_activity_type):
+    title: 'swimming'
+    activityCategory: '@activity_category_sport'
+
+  activity_type_training (extends base_activity_type):
+    title: 'training'
+    activityCategory: '@activity_category_sport'
+
+  activity_type_painting (extends base_activity_type):
+    title: 'painting'
+    activityCategory: '@activity_category_art'
+
+  activity_type_drawing (extends base_activity_type):
+    title: 'drawing'
+    activityCategory: '@activity_category_art'
+
+  activity_type_video_games (extends base_activity_type):
+    title: 'playing video games'
+    activityCategory: '@activity_category_hobby'
+
+  activity_type_reading (extends base_activity_type):
+    title: 'reading'
+    activityCategory: '@activity_category_hobby'
+
+  activity_type_meeting (extends base_activity_type):
+    title: 'in a meeting'
+    activityCategory: '@activity_category_work'

@@ -12,7 +12,7 @@ final class DashboardController extends AbstractPlayerController
     public function dashboard(DashboardUseCase $useCase): Response
     {
         return $this->render(
-            'player/dashboard.html.twig',
+            'player/dashboard/pages/dashboard.html.twig',
             $useCase->execute($this->getCurrentUserId())
         );
     }

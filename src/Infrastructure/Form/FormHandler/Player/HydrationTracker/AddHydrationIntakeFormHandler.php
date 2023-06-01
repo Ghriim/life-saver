@@ -26,7 +26,7 @@ final class AddHydrationIntakeFormHandler implements FormHandlerInterface
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($intake, $form);
+        $formWrapper = new FormWrapper($form, $intake);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

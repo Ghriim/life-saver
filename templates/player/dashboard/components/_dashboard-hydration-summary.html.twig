@@ -6,6 +6,6 @@
 
 {% for intake in hydrationSummary.intakes %}
     <article>
-        {{ intake.volume }}
+        {{ intake.volume }}mL <em>at {{ intake.added }}</em>
     </article>
 {% endfor %}

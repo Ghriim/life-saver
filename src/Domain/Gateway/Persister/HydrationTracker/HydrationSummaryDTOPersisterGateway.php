@@ -7,7 +7,7 @@ use App\Domain\DTO\DTOInterface;
 
 interface HydrationSummaryDTOPersisterGateway
 {
-    public function save(DTOInterface|HydrationSummaryDTO $dto, bool $flush = true): DTOInterface|HydrationSummaryDTO;
+    public function save(DTOInterface|HydrationSummaryDTO $dto, bool $flush = true): null|DTOInterface|HydrationSummaryDTO;
 
     public function remove(DTOInterface|HydrationSummaryDTO $dto, bool $flush = true): void;
 }

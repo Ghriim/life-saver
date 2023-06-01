@@ -1,0 +1,55 @@
+App\Domain\DTO\TheLibrarian\BookDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheLibrarian\BookRepository
+  table: '`BOOK`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    isbn10:
+      type: string
+      nullable: false
+      unique: true
+    isbn13:
+      type: string
+      nullable: false
+      unique: true
+    openLibraryId:
+      type: string
+      nullable: true
+      unique: true
+    title:
+      type: string
+      nullable: false
+      unique: false
+    description:
+      type: text
+      nullable: true
+      unique: false
+    numberOfPages:
+      type: integer
+      nullable: true
+      unique: false
+    publishedDate:
+      type: string
+      nullable: true
+      unique: false
+    status:
+      type: string
+      nullable: false
+      unique: false
+      options:
+        default: created
+
+  manyToMany:
+    authors:
+      targetEntity: BookAuthorDTO
+      joinTable:
+        name: BOOK_TO_AUTHOR
+      joinColumn:
+        name: authorId
+        referencedColumnName: id

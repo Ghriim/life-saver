@@ -9,4 +9,6 @@ final class HydrationIntakeInSummaryDetailsViewModel implements ViewModelInterfa
     public int $id;
 
     public string $volume;
+
+    public string $added;
 }

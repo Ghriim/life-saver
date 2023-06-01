@@ -1,0 +1,18 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <h3>{{ book.title }}</h3>
+        <h4>
+            {% for author in book.authors %}
+                {{ author.fullName }}
+            {% endfor %}
+        </h4>
+
+        <div>
+            <ul>
+                <li>Published: {{ book.publishedDate }}</li>
+            </ul>
+        </div>
+    </article>
+{% endblock %}

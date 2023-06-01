@@ -1,6 +1,9 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
+    <div>
+        <a href="{{ path('page_player_hydration_intake_for_today', {redirect: 'page_player_hydration_summaries_for_current_user'}) }}" title="">Add Water Intake</a>
+    </div>
     {% for summary in summaries %}
         <article>
             <ul>

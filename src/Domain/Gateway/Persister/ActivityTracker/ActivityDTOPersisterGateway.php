@@ -7,7 +7,7 @@ use App\Domain\DTO\DTOInterface;
 
 interface ActivityDTOPersisterGateway
 {
-    public function save(DTOInterface|ActivityDTO $dto, bool $flush = true): DTOInterface|ActivityDTO;
+    public function save(DTOInterface|ActivityDTO $dto, bool $flush = true): null|DTOInterface|ActivityDTO;
 
     public function remove(DTOInterface|ActivityDTO $dto, bool $flush = true): void;
 }

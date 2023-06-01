@@ -17,7 +17,7 @@ final class SleepDTOPersister extends AbstractPersister implements SleepDTOPersi
     /**
      * @param SleepDTO|DTOInterface $dto
      */
-    public function save(DTOInterface $dto, bool $flush = true): DTOInterface
+    public function save(DTOInterface $dto, bool $flush = true): ?DTOInterface
     {
         if (null !== $dto->outOfBed) {
             $dto->duration = $dto->outOfBed->getTimestamp() - $dto->inBed->getTimestamp();

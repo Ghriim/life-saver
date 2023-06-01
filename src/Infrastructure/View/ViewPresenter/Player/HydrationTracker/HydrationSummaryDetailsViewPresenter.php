@@ -36,6 +36,7 @@ final class HydrationSummaryDetailsViewPresenter implements ViewPresenterInterfa
             $model = new HydrationIntakeInSummaryDetailsViewModel();
             $model->id = $intake->id;
             $model->volume = $intake->volume;
+            $model->added = DateTimeViewFormatter::hourOfDateToString($intake->createDate, true);
 
             $models[] = $model;
         }

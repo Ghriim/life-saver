@@ -1,0 +1,31 @@
+App\Domain\DTO\TheLibrarian\BookReviewDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheLibrarian\BookReviewRepository
+  table: '`BOOK_REVIEW`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    evaluation:
+      type: integer
+      nullable: false
+      unique: false
+    review:
+      type: text
+      nullable: false
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false
+
+  manyToOne:
+    book:
+      targetEntity: BookDTO
+      joinColumn:
+        name: bookId
+        referencedColumnName: id

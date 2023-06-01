@@ -1,0 +1,41 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        {{ form_start(form) }}
+        <div>
+            ISBN
+            {{ form_widget(form.isbn) }}
+        </div>
+        <div>
+            Title
+            {{ form_widget(form.title) }}
+        </div>
+        <div>
+            Author
+            {{ form_widget(form.author) }}
+        </div>
+        <div>
+            <a href="{{ path('page_player_books') }}" class="button cancel-color">Cancel</a>
+            <button type="submit" class="button action-color">Search</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div>
+        {% if searchResultDisplayed == true %}
+            <h4>Search results: </h4>
+        {% endif %}
+        {% for book in books %}
+            <article>
+                <h3>
+                    <a href="{{ path('page_player_book', {'bookId': book.id}) }}" title="">{{ book.title }}</a>
+                </h3>
+                <h4>
+                    {% for author in book.authors %}
+                        {{ author.fullName }}
+                    {% endfor %}
+                </h4>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}

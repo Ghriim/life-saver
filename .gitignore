@@ -21,5 +21,4 @@
 
 .idea/
 tests-report/
-docker-compose-dev.yaml
-docker-compose-prod.yaml
+docker-compose.yaml

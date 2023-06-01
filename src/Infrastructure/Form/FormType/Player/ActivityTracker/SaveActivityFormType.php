@@ -4,6 +4,7 @@ namespace App\Infrastructure\Form\FormType\Player\ActivityTracker;
 
 use App\Domain\DTO\ActivityTracker\ActivityTypeDTO;
 use App\Infrastructure\Repository\ActivityTracker\ActivityTypeRepository;
+use App\Infrastructure\Repository\ActivityTracker\BookRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

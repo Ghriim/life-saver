@@ -29,7 +29,7 @@ final class SaveActivityFormHandler implements FormHandlerInterface
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($activity, $form);
+        $formWrapper = new FormWrapper($form, $activity);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

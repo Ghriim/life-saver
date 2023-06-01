@@ -24,14 +24,14 @@ final class EditHydrationSummaryFormHandler implements FormHandlerInterface
 
     public function handle(Request $request, ?string $context = null): FormWrapper
     {
-        $mood = $this->provideDTO($request);
+        $summary = $this->provideDTO($request);
         $form = $this->formFactory->create(
             EditHydrationSummaryFormType::class,
-            $mood
+            $summary
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($mood, $form);
+        $formWrapper = new FormWrapper($form, $summary);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

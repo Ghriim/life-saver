@@ -29,7 +29,7 @@ final class SaveMoodFormHandler implements FormHandlerInterface
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($mood, $form);
+        $formWrapper = new FormWrapper($form, $mood);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

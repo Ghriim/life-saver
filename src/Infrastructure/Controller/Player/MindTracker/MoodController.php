@@ -35,7 +35,7 @@ final class MoodController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectTo($request, 'page_player_moods_for_current_user');
+            return $this->redirectToRoute('page_player_moods_for_current_user');
         }
 
         return $this->render('player/mind-tracker/pages/mood-save.html.twig', ['form' => $formHandler->getForm()->createView()]);

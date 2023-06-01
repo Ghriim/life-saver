@@ -30,7 +30,7 @@ final class SaveWeightFormHandler implements FormHandlerInterface
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($weight, $form);
+        $formWrapper = new FormWrapper($form, $weight);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

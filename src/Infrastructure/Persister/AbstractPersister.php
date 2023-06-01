@@ -4,6 +4,7 @@ namespace App\Infrastructure\Persister;
 
 use App\Domain\DTO\DTOInterface;
 use DateTimeImmutable;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -26,7 +27,7 @@ abstract class AbstractPersister implements PersisterInterface
         }
     }
 
-    public function save(DTOInterface $dto, bool $flush = true): DTOInterface
+    public function save(DTOInterface $dto, bool $flush = true): ?DTOInterface
     {
         if (null === $dto->id) {
             $dto->createDate = new DateTimeImmutable();

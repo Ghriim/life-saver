@@ -7,7 +7,7 @@ use App\Domain\DTO\DTOInterface;
 
 interface WeightDTOPersisterGateway
 {
-    public function save(DTOInterface|WeightDTO $dto, bool $flush = true): DTOInterface|WeightDTO;
+    public function save(DTOInterface|WeightDTO $dto, bool $flush = true): null|DTOInterface|WeightDTO;
 
     public function remove(DTOInterface|WeightDTO $dto, bool $flush = true): void;
 }

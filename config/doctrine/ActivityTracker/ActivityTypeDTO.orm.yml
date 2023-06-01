@@ -11,7 +11,7 @@ App\Domain\DTO\ActivityTracker\ActivityTypeDTO:
 
   fields:
     title:
-      type: text
+      type: string
       nullable: false
       unique: false
 

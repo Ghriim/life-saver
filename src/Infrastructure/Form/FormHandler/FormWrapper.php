@@ -7,13 +7,13 @@ use Symfony\Component\Form\FormInterface;
 
 final class FormWrapper
 {
-    private AbstractBaseDTO $dto;
+    private ?AbstractBaseDTO $dto;
 
     private FormInterface $form;
 
     private bool $isHandledSuccessfully = false;
 
-    public function __construct(AbstractBaseDTO $dto, FormInterface $form)
+    public function __construct(FormInterface $form, ?AbstractBaseDTO $dto = null)
     {
         $this->dto = $dto;
         $this->form = $form;

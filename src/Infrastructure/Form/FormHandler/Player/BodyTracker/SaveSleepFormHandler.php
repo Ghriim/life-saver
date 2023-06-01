@@ -30,7 +30,7 @@ final class SaveSleepFormHandler implements FormHandlerInterface
         );
         $form->handleRequest($request);
 
-        $formWrapper = new FormWrapper($sleep, $form);
+        $formWrapper = new FormWrapper($form, $sleep);
         if ($form->isSubmitted() && $form->isValid()) {
             $formWrapper->setIsHandledSuccessfully(true);
         }

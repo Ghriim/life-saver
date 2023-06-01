@@ -37,6 +37,11 @@ doctrine:
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/ActivityTracker'
                         prefix: 'App\Domain\DTO\ActivityTracker'
+                    TheLibrarian:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/TheLibrarian'
+                        prefix: 'App\Domain\DTO\TheLibrarian'
                     Common:
                         is_bundle: false
                         type: yml

@@ -21,6 +21,7 @@ class BookDTO extends AbstractBaseDTO
     public string $status = BookStatusRegistry::STATUS_CREATED;
 
     private Collection $authors;
+    private Collection $bookOfUsers;
 
     public function __construct()
     {

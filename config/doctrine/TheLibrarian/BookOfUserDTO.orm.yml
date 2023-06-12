@@ -1,0 +1,51 @@
+App\Domain\DTO\TheLibrarian\BookOfUserDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheLibrarian\BookOfUserRepository
+  table: '`BOOK_OF_USER`'
+  indexes:
+    name_index:
+      columns: [ userId ]
+  uniqueConstraints:
+    search_idx:
+      columns: [ bookId, userId ]
+
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    isWhishList:
+      type: boolean
+      nullable: false
+      unique: false
+    isOwned:
+      type: boolean
+      nullable: false
+      unique: false
+    isReading:
+      type: boolean
+      nullable: false
+      unique: false
+    isRead:
+      type: boolean
+      nullable: false
+      unique: false
+    isLiked:
+      type: boolean
+      nullable: false
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false
+
+  manyToOne:
+    book:
+      targetEntity: BookDTO
+      inversedBy: bookOfUsers
+      joinColumn:
+        name: bookId
+        referencedColumnName: id

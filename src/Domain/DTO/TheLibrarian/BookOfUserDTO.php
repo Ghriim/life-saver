@@ -6,7 +6,7 @@ use App\Domain\DTO\AbstractBaseDTO;
 
 class BookOfUserDTO extends AbstractBaseDTO
 {
-    public bool $isWhishList = false;
+    public bool $isWishlist = false;
 
     public bool $isOwned = false;
 

@@ -11,7 +11,7 @@ interface BookDTOProviderGateway
      */
     public function getBooks(?int $authorId = null, ?string $title = null): array;
 
-    public function getBookById(int $bookId): ?BookDTO;
+    public function getBookByIdAndUserId(int $bookId, int $userId): ?BookDTO;
 
     public function getBookByISBN(string $isbn): ?BookDTO;
 }

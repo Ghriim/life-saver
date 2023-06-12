@@ -1,0 +1,19 @@
+<form method="post" action="{{ path('page_player_book_of_user_toggle_state', {bookId: book.id, state: 'wishlist'}) }}">
+    <input type="submit" value="wishlist"  {% if true == book.isWishlist %}style="background-color: green"{% endif %}>
+</form>
+
+<form method="post" action="{{ path('page_player_book_of_user_toggle_state', {bookId: book.id, state: 'owned'}) }}">
+    <input type="submit" value="owned"  {% if true == book.isOwned %}style="background-color: green"{% endif %}>
+</form>
+
+<form method="post" action="{{ path('page_player_book_of_user_toggle_state', {bookId: book.id, state: 'reading'}) }}">
+    <input type="submit" value="reading"  {% if true == book.isReading %}style="background-color: green"{% endif %}>
+</form>
+
+<form method="post" action="{{ path('page_player_book_of_user_toggle_state', {bookId: book.id, state: 'read'}) }}">
+    <input type="submit" value="read"  {% if true == book.isRead %}style="background-color: green"{% endif %}>
+</form>
+
+<form method="post" action="{{ path('page_player_book_of_user_toggle_state', {bookId: book.id, state: 'liked'}) }}">
+    <input type="submit" value="liked"  {% if true == book.isLiked %}style="background-color: green"{% endif %}>
+</form>

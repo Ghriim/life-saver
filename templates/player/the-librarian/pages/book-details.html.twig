@@ -9,6 +9,8 @@
             {% endfor %}
         </h4>
 
+        {% include 'player/the-librarian/components/_book-toggle-states.html.twig' with {book: book} %}
+
         <div>
             <ul>
                 <li>Published: {{ book.publishedDate }}</li>

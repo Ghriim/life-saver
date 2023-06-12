@@ -17,7 +17,7 @@ App\Domain\DTO\TheLibrarian\BookOfUserDTO:
         strategy: AUTO
 
   fields:
-    isWhishList:
+    isWishlist:
       type: boolean
       nullable: false
       unique: false
@@ -46,6 +46,7 @@ App\Domain\DTO\TheLibrarian\BookOfUserDTO:
     book:
       targetEntity: BookDTO
       inversedBy: bookOfUsers
+      nullable: false
       joinColumn:
         name: bookId
         referencedColumnName: id

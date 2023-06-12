@@ -43,4 +43,20 @@ class BookDTO extends AbstractBaseDTO
     {
         return $this->authors->toArray();
     }
+
+    public function addBookOfUser(BookOfUserDTO $bookOfUser)
+    {
+        $this->bookOfUsers->add($bookOfUser);
+    }
+
+    public function getBookOfUser(int $userId): ?BookOfUserDTO
+    {
+        foreach ($this->bookOfUsers as $bookOfUser) {
+            if ($userId === $bookOfUser->userId) {
+                return $bookOfUser;
+            }
+        }
+
+        return null;
+    }
 }

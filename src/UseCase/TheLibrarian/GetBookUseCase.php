@@ -15,13 +15,13 @@ final class GetBookUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $bookId)
+    public function execute(int $bookId, int $currentUserId)
     {
-        $book = $this->providerGateway->getBookById($bookId);
+        $book = $this->providerGateway->getBookByIdAndUserId($bookId, $currentUserId);
         if (null === $book) {
             throw new NotFoundHttpException();
         }
 
-        return $this->presenter->present($book);
+        return $this->presenter->present($book, $currentUserId);
     }
 }

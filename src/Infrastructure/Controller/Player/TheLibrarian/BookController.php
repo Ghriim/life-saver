@@ -49,7 +49,9 @@ final class BookController extends AbstractPlayerController
     ): Response {
         return $this->render(
             'player/the-librarian/pages/book-details.html.twig',
-            ['book' => $useCase->execute($bookId)]
+            [
+                'book' => $useCase->execute($bookId, $this->getCurrentUserId())
+            ]
         );
     }
 }

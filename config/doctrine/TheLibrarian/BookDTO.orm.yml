@@ -53,3 +53,9 @@ App\Domain\DTO\TheLibrarian\BookDTO:
       joinColumn:
         name: authorId
         referencedColumnName: id
+
+  oneToMany:
+    bookOfUsers:
+      targetEntity: BookOfUserDTO
+      mappedBy: book
+

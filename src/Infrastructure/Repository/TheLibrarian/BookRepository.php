@@ -5,6 +5,7 @@ namespace App\Infrastructure\Repository\TheLibrarian;
 use App\Domain\DTO\TheLibrarian\BookDTO;
 use App\Domain\Gateway\Provider\TheLibrarian\BookDTOProviderGateway;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,9 +32,11 @@ final class BookRepository extends ServiceEntityRepository implements BookDTOPro
                       ->getOneOrNullResult();
     }
 
-    public function getBookById(int $bookId): ?BookDTO
+    public function getBookByIdAndUserId(int $bookId, int $userId): ?BookDTO
     {
         return  $this->buildQueryBuilder()
+                     ->leftJoin('book.bookOfUsers', 'book_user', Expr\Join::WITH,'book_user.userId = :userId')
+                     ->setParameter('userId', $userId)
                      ->andWhere('book.id = :bookId')
                      ->setParameter('bookId', $bookId)
                      ->getQuery()

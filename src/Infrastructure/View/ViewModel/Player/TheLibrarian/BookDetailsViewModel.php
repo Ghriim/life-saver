@@ -20,4 +20,14 @@ final class BookDetailsViewModel implements ViewModelInterface
      * @var BookAuthorInBookViewModel[]
      */
     public array $authors;
+
+    public bool $isWishlist = false;
+
+    public bool $isOwned = false;
+
+    public bool $isReading = false;
+
+    public bool $isRead = false;
+
+    public bool $isLiked = false;
 }

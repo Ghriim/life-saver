@@ -50,6 +50,24 @@ services:
         networks:
           - "life-saver"
 
+
+    mysql-life-saver:
+        container_name: mysql-life-saver-${PROJECT}
+        build:
+            context: ./.docker/mysql/${MYSQL_VERSION}
+        ports:
+            - ${MYSQL_PORT}
+        environment:
+            MYSQL_DATABASE: ${MYSQL_LIFE_SAVER_DATABASE}
+            MYSQL_ROOT_USER: ${MYSQL_USER}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - ${PWD}/../data-storage/life-saver:/var/lib/mysql
+        networks:
+            - "life-saver"
+
 networks:
     life-saver:
         driver: bridge

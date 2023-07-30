@@ -10,4 +10,6 @@ interface EquipmentDTOProviderGateway
      * @return EquipmentDTO[]
      */
     public function getEquipments(?string $name): array;
+
+    public function getEquipmentById(int $equipmentId): ?EquipmentDTO;
 }

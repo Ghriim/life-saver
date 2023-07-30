@@ -24,4 +24,14 @@ class EquipmentDTORepository extends ServiceEntityRepository implements Equipmen
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function getEquipmentById(int $equipmentId): ?EquipmentDTO
+    {
+        $queryBuilder =  $this->createQueryBuilder('equipment')
+                              ->andWhere('equipment.id = :equipmentId')
+                              ->setParameter('equipmentId', $equipmentId);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }
+

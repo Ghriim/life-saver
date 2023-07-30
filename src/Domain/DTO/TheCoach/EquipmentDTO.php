@@ -8,5 +8,5 @@ class EquipmentDTO extends AbstractBaseDTO
 {
     public string $name;
 
-    public string $icon;
+    public string $icon = 'icon';
 }

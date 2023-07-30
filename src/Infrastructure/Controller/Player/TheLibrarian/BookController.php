@@ -3,9 +3,9 @@
 namespace App\Infrastructure\Controller\Player\TheLibrarian;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
-use App\Infrastructure\Form\FormHandler\Player\TheLibrarian\SearchBookFormHandler;
-use App\UseCase\TheLibrarian\GetBooksUseCase;
-use App\UseCase\TheLibrarian\GetBookUseCase;
+use App\Infrastructure\Form\FormHandler\Player\TheLibrarian\SearchBooksFormHandler;
+use App\UseCase\Player\TheLibrarian\GetBooksUseCase;
+use App\UseCase\Player\TheLibrarian\GetBookUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ final class BookController extends AbstractPlayerController
     #[Route('/the-librarian/books', name: 'page_player_books', methods: ['GET', 'POST'])]
     public function getBooks(
         Request $request,
-        SearchBookFormHandler $formHandler,
+        SearchBooksFormHandler $formHandler,
         GetBooksUseCase $useCase,
     ): Response {
         $formHandler = $formHandler->handle($request);

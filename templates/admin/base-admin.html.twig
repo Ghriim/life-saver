@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header id="main-menu-admin" class="main-menu">
+        {% include 'admin/components/_admin_header.html.twig' %}
+    </header>
+
+    <main id="main-wrap">
+        <div class="spacer"></div>
+        {% block page_content %}{% endblock %}
+    </main>
+
+    <footer id="main-footer-admin" class="main-footer">
+        {% include 'admin/components/_admin_footer.html.twig' %}
+    </footer>
+{% endblock %}

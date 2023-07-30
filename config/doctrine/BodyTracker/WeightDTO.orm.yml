@@ -1,6 +1,6 @@
 App\Domain\DTO\BodyTracker\WeightDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\BodyTracker\WeightRepository
+  repositoryClass: App\Infrastructure\Repository\BodyTracker\WeightDTORepository
   table: '`WEIGHT`'
 
   id:

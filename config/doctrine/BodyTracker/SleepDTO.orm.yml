@@ -1,6 +1,6 @@
 App\Domain\DTO\BodyTracker\SleepDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\BodyTracker\SleepRepository
+  repositoryClass: App\Infrastructure\Repository\BodyTracker\SleepDTORepository
   table: '`SLEEP`'
 
   id:

@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Controller\Player\TheLibrarian;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
-use App\UseCase\TheLibrarian\ToggleBookOfCurrentUserStateUseCase;
+use App\UseCase\Player\TheLibrarian\ToggleBookOfCurrentUserStateUseCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

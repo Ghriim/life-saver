@@ -1,0 +1,13 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+    <div>
+        Name
+        {{ form_widget(form.name) }}
+    </div>
+    <div>
+        <button type="submit" class="button action-color">Search</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

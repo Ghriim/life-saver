@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controller\Player;
 
-use App\UseCase\DashboardUseCase;
+use App\UseCase\Player\DashboardUseCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

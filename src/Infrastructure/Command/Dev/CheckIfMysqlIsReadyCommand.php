@@ -11,23 +11,21 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckIfMysqlIsReadyCommand extends Command
 {
-    protected static $defaultName = 'app:mysql-wait';
-    protected static $defaultDescription = 'Wait for database connection to be ready.';
-
     private const TIMEOUT_SECONDS = 30;
 
     public function __construct(private ManagerRegistry $doctrine)
     {
-        parent::__construct();
+        parent::__construct('app:mysql-wait');
     }
 
     protected function configure()
     {
         $this
-            ->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'Specific connection name');
+            ->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'Specific connection name')
+            ->setDescription('Wait for database connection to be ready.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $connectionName = $input->getOption('connection');
 

@@ -1,6 +1,6 @@
 App\Domain\DTO\ActivityTracker\ActivityDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\ActivityTracker\ActivityRepository
+  repositoryClass: App\Infrastructure\Repository\ActivityTracker\ActivityDTORepository
   table: '`ACTIVITY`'
 
   id:

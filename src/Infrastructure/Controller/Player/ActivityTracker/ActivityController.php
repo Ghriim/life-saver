@@ -4,9 +4,9 @@ namespace App\Infrastructure\Controller\Player\ActivityTracker;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\ActivityTracker\SaveActivityFormHandler;
-use App\UseCase\ActivityTracker\DeleteActivityUseCase;
-use App\UseCase\ActivityTracker\GetActivitiesForUserUseCase;
-use App\UseCase\ActivityTracker\SaveActivityUseCase;
+use App\UseCase\Player\ActivityTracker\DeleteActivityUseCase;
+use App\UseCase\Player\ActivityTracker\GetActivitiesForUserUseCase;
+use App\UseCase\Player\ActivityTracker\SaveActivityUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

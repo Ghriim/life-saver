@@ -1,6 +1,6 @@
 App\Domain\DTO\HydrationTracker\HydrationSummaryDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\HydrationTracker\HydrationSummaryRepository
+  repositoryClass: App\Infrastructure\Repository\HydrationTracker\HydrationSummaryDTORepository
   table: '`HYDRATION_SUMMARY`'
 
   id:

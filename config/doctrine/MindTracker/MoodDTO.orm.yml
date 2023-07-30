@@ -1,6 +1,6 @@
 App\Domain\DTO\MindTracker\MoodDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\MindTracker\MoodRepository
+  repositoryClass: App\Infrastructure\Repository\MindTracker\MoodDTORepository
   table: '`MOOD`'
 
   id:

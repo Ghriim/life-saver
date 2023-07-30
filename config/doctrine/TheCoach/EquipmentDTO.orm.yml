@@ -1,0 +1,20 @@
+App\Domain\DTO\TheCoach\EquipmentDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheCoach\EquipmentDTORepository
+  table: '`EQUIPMENT`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    name:
+      type: string
+      nullable: false
+      unique: true
+    icon:
+      type: string
+      nullable: false
+      unique: false

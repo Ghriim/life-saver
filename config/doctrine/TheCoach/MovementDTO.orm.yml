@@ -1,0 +1,29 @@
+App\Domain\DTO\TheCoach\MovementDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheCoach\MovementDTORepository
+  table: '`MOVEMENT`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    name:
+      type: string
+      nullable: false
+      unique: true
+    image:
+      type: string
+      nullable: false
+      unique: false
+
+  manyToMany:
+    equipments:
+      targetEntity: EquipmentDTO
+      joinTable:
+        name: MOVEMENT_TO_EQUIPMENT
+      joinColumn:
+        name: movementId
+        referencedColumnName: id

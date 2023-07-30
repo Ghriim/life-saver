@@ -4,9 +4,9 @@ namespace App\Infrastructure\Controller\Player\MindTracker;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\MindTracker\SaveMoodFormHandler;
-use App\UseCase\MindTracker\DeleteMoodUseCase;
-use App\UseCase\MindTracker\GetMoodsForUserUseCase;
-use App\UseCase\MindTracker\SaveMoodUseCase;
+use App\UseCase\Player\MindTracker\DeleteMoodUseCase;
+use App\UseCase\Player\MindTracker\GetMoodsForUserUseCase;
+use App\UseCase\Player\MindTracker\SaveMoodUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

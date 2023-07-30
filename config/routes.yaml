@@ -10,3 +10,11 @@ player:
         namespace: App\Infrastructure\Controller\Player
     type: attribute
     prefix: /player
+
+
+admin:
+    resource:
+        path: ../src/Infrastructure/Controller/Admin
+        namespace: App\Infrastructure\Controller\Admin
+    type: attribute
+    prefix: /admin

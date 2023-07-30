@@ -4,9 +4,9 @@ namespace App\Infrastructure\Controller\Player\BodyTracker;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\BodyTracker\SaveWeightFormHandler;
-use App\UseCase\BodyTracker\DeleteWeightUseCase;
-use App\UseCase\BodyTracker\GetWeightsForUserUseCase;
-use App\UseCase\BodyTracker\SaveWeightUseCase;
+use App\UseCase\Player\BodyTracker\DeleteWeightUseCase;
+use App\UseCase\Player\BodyTracker\GetWeightsForUserUseCase;
+use App\UseCase\Player\BodyTracker\SaveWeightUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

@@ -4,9 +4,9 @@ namespace App\Infrastructure\Controller\Player\BodyTracker;
 
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\BodyTracker\SaveSleepFormHandler;
-use App\UseCase\BodyTracker\DeleteSleepUseCase;
-use App\UseCase\BodyTracker\SaveSleepUseCase;
-use App\UseCase\BodyTracker\GetSleepsForUserUseCase;
+use App\UseCase\Player\BodyTracker\DeleteSleepUseCase;
+use App\UseCase\Player\BodyTracker\SaveSleepUseCase;
+use App\UseCase\Player\BodyTracker\GetSleepsForUserUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

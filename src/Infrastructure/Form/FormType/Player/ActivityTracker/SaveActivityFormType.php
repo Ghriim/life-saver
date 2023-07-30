@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Form\FormType\Player\ActivityTracker;
 
 use App\Domain\DTO\ActivityTracker\ActivityTypeDTO;
-use App\Infrastructure\Repository\ActivityTracker\ActivityTypeRepository;
+use App\Infrastructure\Repository\ActivityTracker\ActivityTypeDTORepository;
 use App\Infrastructure\Repository\ActivityTracker\BookRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -27,7 +27,7 @@ final class SaveActivityFormType extends AbstractType
                         'class' => ActivityTypeDTO::class,
                         'choice_label' => 'title',
                         'required' => false,
-                        'query_builder' => function (ActivityTypeRepository $repository) {
+                        'query_builder' => function (ActivityTypeDTORepository $repository) {
                             return $repository->createQueryBuilder('type')
                                       ->orderBy('type.title', 'ASC');
                         },

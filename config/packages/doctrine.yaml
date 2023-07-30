@@ -42,6 +42,11 @@ doctrine:
                         type: yml
                         dir: '%kernel.project_dir%/config/doctrine/TheLibrarian'
                         prefix: 'App\Domain\DTO\TheLibrarian'
+                    TheCoach:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/doctrine/TheCoach'
+                        prefix: 'App\Domain\DTO\TheCoach'
                     Common:
                         is_bundle: false
                         type: yml

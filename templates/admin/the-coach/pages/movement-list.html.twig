@@ -8,31 +8,31 @@
             {{ form_widget(form.name) }}
         </div>
         <div>
-            <a href="{{ path('page_admin_equipments') }}" class="button cancel-color">Cancel</a>
+            <a href="{{ path('page_admin_movements') }}" class="button cancel-color">Cancel</a>
             <button type="submit" class="button action-color">Search</button>
         </div>
         {{ form_end(form) }}
     </div>
 
     <div>
-        <a href="{{ path('page_admin_equipment_add') }}" title="">Add new Equipment</a>
+        <a href="{{ path('page_admin_movement_add') }}" title="">Add new Movement</a>
     </div>
 
 
-    {% for equipment in equipments %}
+    {% for movement in movements %}
         <article>
             <ul>
                 <li>
-                    <a href="{{ path('page_admin_equipment_edit', {equipmentId: equipment.id}) }}" title="">{{ equipment.name }}</a>
+                    <a href="{{ path('page_admin_movement_edit', {movementId: movement.id}) }}" title="">{{ movement.name }}</a>
                 </li>
-                <li>Added: {{ equipment.added }}</li>
+                <li>Added: {{ movement.added }}</li>
                 <li>
                     <ul>
                         <li>
-                            <a href="{{ path('page_admin_equipment_edit', {equipmentId: equipment.id}) }}" title="">Edit</a>
+                            <a href="{{ path('page_admin_movement_edit', {movementId: movement.id}) }}" title="">Edit</a>
                         </li>
                         <li>
-                            <a href="{{ path('page_admin_equipment_delete', {equipmentId: equipment.id}) }}" title="">Delete</a>
+                            <a href="{{ path('page_admin_movement_delete', {movementId: movement.id}) }}" title="">Delete</a>
                         </li>
                     </ul>
                 </li>

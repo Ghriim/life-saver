@@ -15,7 +15,8 @@ class EquipmentDTORepository extends ServiceEntityRepository implements Equipmen
     }
     public function getEquipments(?string $name): array
     {
-        $queryBuilder =  $this->createQueryBuilder('equipment');
+        $queryBuilder =  $this->createQueryBuilder('equipment')
+                              ->addOrderBy('equipment.name');
 
         if (null !== $name) {
             $queryBuilder->andWhere('equipment.name LIKE :name')

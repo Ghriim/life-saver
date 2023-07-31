@@ -15,7 +15,8 @@ class MovementDTORepository extends ServiceEntityRepository implements MovementD
     }
     public function getMovements(?string $name): array
     {
-        $queryBuilder =  $this->createQueryBuilder('movement');
+        $queryBuilder =  $this->createQueryBuilder('movement')
+                              ->addOrderBy('movement.name');
 
         if (null !== $name) {
             $queryBuilder->andWhere('movement.name LIKE :name')

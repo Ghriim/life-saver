@@ -20,7 +20,22 @@
 
     {% for equipment in equipments %}
         <article>
-            <h3>{{ equipment.name }}</h3>
+            <ul>
+                <li>
+                    <a href="{{ path('page_admin_equipment_edit', {equipmentId: equipment.id}) }}" title="">{{ equipment.name }}</a>
+                </li>
+                <li>Added: {{ equipment.added }}</li>
+                <li>
+                    <ul>
+                        <li>
+                            <a href="{{ path('page_admin_equipment_edit', {equipmentId: equipment.id}) }}" title="">Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('page_admin_equipment_delete', {equipmentId: equipment.id}) }}" title="">Delete</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </article>
     {% endfor %}
 {% endblock %}

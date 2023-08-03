@@ -21,7 +21,7 @@ final class MovementListViewPresenter implements ViewPresenterInterface
             $model = new MovementListViewModel();
             $model->id = $DTO->id;
             $model->name = $DTO->name;
-            $model->iamge = $DTO->image;
+            $model->image = $DTO->image;
             $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);
 
             $models[] = $model;

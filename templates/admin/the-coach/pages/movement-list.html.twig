@@ -23,13 +23,13 @@
         <article>
             <ul>
                 <li>
-                    <a href="{{ path('page_admin_movement_edit', {movementId: movement.id}) }}" title="">{{ movement.name }}</a>
+                    <a href="{{ path('page_admin_movement_details', {movementId: movement.id}) }}" title="">{{ movement.name }}</a>
                 </li>
                 <li>Added: {{ movement.added }}</li>
                 <li>
                     <ul>
                         <li>
-                            <a href="{{ path('page_admin_movement_edit', {movementId: movement.id}) }}" title="">Edit</a>
+                            <a href="{{ path('page_admin_movement_details', {movementId: movement.id}) }}" title="">Details</a>
                         </li>
                         <li>
                             <a href="{{ path('page_admin_movement_delete', {movementId: movement.id}) }}" title="">Delete</a>

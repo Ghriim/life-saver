@@ -43,12 +43,12 @@ final class SaveEquipmentFormHandler implements FormHandlerInterface
             return new EquipmentDTO();
         }
 
-        $requipment = $this->providerGateway->getEquipmentById($request->attributes->get('equipmentId'));
-        if (null === $requipment) {
+        $equipment = $this->providerGateway->getEquipmentById($request->attributes->get('equipmentId'));
+        if (null === $equipment) {
             throw new NotFoundHttpException();
         }
 
-        return $requipment;
+        return $equipment;
     }
 }
 

@@ -18,11 +18,17 @@ class MovementDTO extends AbstractBaseDTO
         $this->equipments = new ArrayCollection();
     }
 
-    public function setEquipments(array $equipments)
+    public function addEquipment(EquipmentDTO $equipmentDTO): void
     {
-        $this->equipments->clear();
-        foreach ($equipments as $author) {
-            $this->equipments->add($author);
+        $this->equipments->add($equipmentDTO);
+    }
+
+    public function removeEquipment(int $equipmentId): void
+    {
+        foreach ($this->getEquipments() as $equipment) {
+            if ($equipmentId === $equipment->id) {
+                $this->equipments->removeElement($equipment);
+            }
         }
     }
 

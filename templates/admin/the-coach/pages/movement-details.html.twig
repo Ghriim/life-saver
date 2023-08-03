@@ -1,0 +1,37 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <header>
+            <h3>{{ movement.name }}</h3>
+        </header>
+        <div>
+            Added: {{ movement.added }}
+        </div>
+        <ul>
+            <li>
+                <ul>
+                    <li>
+                        <a href="{{ path('page_admin_movement_edit', {movementId: movement.id}) }}" title="">Edit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('page_admin_movement_delete', {movementId: movement.id}) }}" title="">Delete</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+    <aside>
+        <header>
+            <h4>Equipments</h4>
+            <a href="{{ path('page_admin_movement_add_equipment', {movementId: movement.id}) }}">Add equipment</a>
+        </header>
+        <div>
+            <ul>
+                {% for equipment in movement.equipments %}
+                    <li>{{ equipment.name }} <a href="{{ path('page_admin_movement_remove_equipment', {movementId: movement.id, equipmentId: equipment.id}) }}" title="Remove equipment from movement">Remove</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+        <div>
+            Equipment
+            {{ form_widget(form.equipment) }}
+        </div>
+        <div>
+            <a href="{{ path('page_admin_movement_details', {movementId: 1}) }}" class="button cancel-color">Cancel</a>
+            <button type="submit" class="button action-color">Add</button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

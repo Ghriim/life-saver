@@ -29,6 +29,8 @@ class MovementDTORepository extends ServiceEntityRepository implements MovementD
     public function getMovementById(int $movementId): ?MovementDTO
     {
         $queryBuilder =  $this->createQueryBuilder('movement')
+                              ->leftJoin('movement.equipments', 'movement_equipment')
+                              ->addSelect('movement_equipment')
                               ->andWhere('movement.id = :movementId')
                               ->setParameter('movementId', $movementId);
 

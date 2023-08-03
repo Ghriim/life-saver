@@ -3,10 +3,14 @@
 namespace App\Infrastructure\Controller\Admin\TheCoach;
 
 use App\Infrastructure\Controller\Player\AbstractAdminController;
+use App\Infrastructure\Form\FormHandler\Admin\TheCoach\AddEquipmentToMovementFormHandler;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\SaveMovementFormHandler;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\SearchMovementsFormHandler;
+use App\UseCase\Admin\TheCoach\AddEquipmentInMovementUseCase;
 use App\UseCase\Admin\TheCoach\DeleteMovementUseCase;
 use App\UseCase\Admin\TheCoach\GetMovementsUseCase;
+use App\UseCase\Admin\TheCoach\GetMovementUseCase;
+use App\UseCase\Admin\TheCoach\RemoveEquipmentFromMovementUseCase;
 use App\UseCase\Admin\TheCoach\SaveMovementUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +38,19 @@ final class MovementController extends AbstractAdminController
             [
                 'form' => $formHandler->getForm()->createView(),
                 'movements' => $movements
+            ]
+        );
+    }
+
+    #[Route('/the-coach/movements/{movementId}', name: 'page_admin_movement_details', methods: ['GET'])]
+    public function getMovement(
+        int $movementId,
+        GetMovementUseCase $useCase
+    ): Response {
+        return $this->render(
+            'admin/the-coach/pages/movement-details.html.twig',
+            [
+                'movement' => $useCase->execute($movementId)
             ]
         );
     }
@@ -78,5 +95,39 @@ final class MovementController extends AbstractAdminController
         $useCase->execute($movementId);
 
         return $this->redirectToRoute('page_admin_movements');
+    }
+
+    #[Route('/the-coach/movements/{movementId}/add-equipment', name: 'page_admin_movement_add_equipment', requirements: ['movementId' => '\d+'], methods: ['GET', 'POST'])]
+    public function addEquipment(
+        int $movementId,
+        Request $request,
+        AddEquipmentToMovementFormHandler $formHandler,
+        AddEquipmentInMovementUseCase $useCase
+    ): Response {
+        $formHandler = $formHandler->handle($request);
+        if (true === $formHandler->isHandledSuccessfully()) {
+            $useCase->execute($movementId, $formHandler->getForm()->getData());
+
+            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movementId]);
+        }
+
+        return $this->render(
+            'admin/the-coach/pages/movement-add-equipment.html.twig',
+            [
+                'movementId' => $movementId,
+                'form' => $formHandler->getForm()->createView(),
+            ]
+        );
+    }
+
+    #[Route('/the-coach/movements/{movementId}/remove-equipment/{equipmentId}', name: 'page_admin_movement_remove_equipment', requirements: ['movementId' => '\d+', 'equipmentId' => '\d+'], methods: ['GET'])]
+    public function removeEquipment(
+        int $movementId,
+        int $equipmentId,
+        RemoveEquipmentFromMovementUseCase $useCase
+    ): Response {
+        $useCase->execute($movementId, $equipmentId);
+
+        return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movementId]);
     }
 }

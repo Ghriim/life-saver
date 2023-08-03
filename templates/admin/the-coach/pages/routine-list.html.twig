@@ -1,0 +1,42 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block page_content %}
+    <div>
+        {{ form_start(form) }}
+        <div>
+            Title
+            {{ form_widget(form.title) }}
+        </div>
+        <div>
+            <a href="{{ path('page_admin_routines') }}" class="button cancel-color">Cancel</a>
+            <button type="submit" class="button action-color">Search</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <div>
+        <a href="{{ path('page_admin_routine_add') }}" title="">Add new Routine</a>
+    </div>
+
+
+    {% for routine in routines %}
+        <article>
+            <ul>
+                <li>
+                    <a href="{{ path('page_admin_routine_edit', {routineId: routine.id}) }}" title="">{{ routine.title }}</a>
+                </li>
+                <li>Added: {{ routine.added }}</li>
+                <li>
+                    <ul>
+                        <li>
+                            <a href="{{ path('page_admin_routine_edit', {routineId: routine.id}) }}" title="">Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('page_admin_routine_delete', {routineId: routine.id}) }}" title="">Delete</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    {% endfor %}
+{% endblock %}

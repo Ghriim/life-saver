@@ -15,11 +15,7 @@ App\Domain\DTO\TheCoach\RoutineDTO:
       nullable: false
       unique: true
 
-  manyToMany:
+  oneToMany:
     movements:
-      targetEntity: MovementDTO
-      joinTable:
-        name: ROUTINE_TO_MOVEMENT
-      joinColumn:
-        name: routineId
-        referencedColumnName: id
+      targetEntity: RoutineToMovementDTO
+      mappedBy: routine

@@ -14,9 +14,11 @@ final class SaveRoutineUseCase implements UseCaseInterface
 
     }
 
-    public function execute(RoutineDTO $routineDTO, int $adminId)
+    public function execute(RoutineDTO $routineDTO, int $adminId): RoutineDTO
     {
         $this->persisterGateway->save($routineDTO);
+
+        return $routineDTO;
     }
 }
 

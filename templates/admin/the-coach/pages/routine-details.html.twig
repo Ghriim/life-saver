@@ -1,0 +1,60 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <header>
+            <h3>{{ routine.title }}</h3>
+        </header>
+        <div>
+            Added: {{ routine.added }}
+        </div>
+        <ul>
+            <li>
+                <ul>
+                    <li>
+                        <a href="{{ path('page_admin_routine_edit', {routineId: routine.id}) }}" title="">Edit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('page_admin_routine_delete', {routineId: routine.id}) }}" title="">Delete</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+    <aside>
+        <header>
+            <h4>Equipments</h4>
+            <a href="{{ path('page_admin_routine_add_movement', {routineId: routine.id}) }}">Add movement</a>
+        </header>
+        <div>
+            <ul>
+                {% for movement in routine.movements %}
+                    <article>
+                        <header>{{ movement.name }}</header>
+                        <div>
+                            <ul>
+                                {% for data in ['targetReps', 'targetWeight', 'targetDuration', 'targetDistance'] %}
+                                    {% set dataValue = attribute(movement, data) %}
+                                    {% if null != dataValue %}
+                                        <li>{{ data }}: {{ dataValue }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                                <li>
+                                    rest: {{ movement.targetRest }}
+                                </li>
+                                <li>
+                                    warmup generation: {{ movement.generateWarmup }}
+                                </li>
+                            </ul>
+                        </div>
+                        <footer>
+                            <ul>
+                                <li><a href="{{ path('page_admin_routine_remove_movement', {routineId: routine.id, routineToMovementId: movement.id}) }}" title="Remove movement from routine">Remove</a></li>
+                            </ul>
+                        </footer>
+                    </article>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+{% endblock %}

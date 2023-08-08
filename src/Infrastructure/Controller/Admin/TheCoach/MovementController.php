@@ -6,7 +6,7 @@ use App\Infrastructure\Controller\Player\AbstractAdminController;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\AddEquipmentToMovementFormHandler;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\SaveMovementFormHandler;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\SearchMovementsFormHandler;
-use App\UseCase\Admin\TheCoach\AddEquipmentInMovementUseCase;
+use App\UseCase\Admin\TheCoach\AddEquipmentToMovementUseCase;
 use App\UseCase\Admin\TheCoach\DeleteMovementUseCase;
 use App\UseCase\Admin\TheCoach\GetMovementsUseCase;
 use App\UseCase\Admin\TheCoach\GetMovementUseCase;
@@ -63,9 +63,9 @@ final class MovementController extends AbstractAdminController
     ): Response {
         $formHandler = $formHandler->handle($request);
         if (true === $formHandler->isHandledSuccessfully()) {
-            $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
+            $movement = $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
 
-            return $this->redirectToRoute('page_admin_movements');
+            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movement->id]);
         }
 
         return $this->render('admin/the-coach/pages/movement-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -79,9 +79,9 @@ final class MovementController extends AbstractAdminController
     ): Response {
         $formHandler = $formHandler->handle($request);
         if (true === $formHandler->isHandledSuccessfully()) {
-            $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
+            $movement = $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
 
-            return $this->redirectToRoute('page_admin_movements');
+            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movement->id]);
         }
 
         return $this->render('admin/the-coach/pages/movement-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -102,7 +102,7 @@ final class MovementController extends AbstractAdminController
         int $movementId,
         Request $request,
         AddEquipmentToMovementFormHandler $formHandler,
-        AddEquipmentInMovementUseCase $useCase
+        AddEquipmentToMovementUseCase $useCase
     ): Response {
         $formHandler = $formHandler->handle($request);
         if (true === $formHandler->isHandledSuccessfully()) {

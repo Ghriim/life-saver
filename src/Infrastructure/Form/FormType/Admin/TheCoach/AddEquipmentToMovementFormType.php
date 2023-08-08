@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Form\FormType\Admin\TheCoach;
 
 use App\Domain\DTO\TheCoach\EquipmentDTO;
-use App\Domain\Gateway\Provider\TheCoach\EquipmentDTOProviderGateway;
 use App\Infrastructure\Repository\TheCoach\EquipmentDTORepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

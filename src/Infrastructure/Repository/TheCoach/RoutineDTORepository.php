@@ -13,6 +13,7 @@ class RoutineDTORepository extends ServiceEntityRepository implements RoutineDTO
     {
         parent::__construct($registry, RoutineDTO::class);
     }
+
     public function getRoutines(?string $title): array
     {
         $queryBuilder =  $this->createQueryBuilder('routine')
@@ -29,6 +30,10 @@ class RoutineDTORepository extends ServiceEntityRepository implements RoutineDTO
     public function getRoutineById(int $routineId): ?RoutineDTO
     {
         $queryBuilder =  $this->createQueryBuilder('routine')
+                              ->leftJoin('routine.movements', 'routine_movement')
+                              ->addSelect('routine_movement')
+                              ->leftJoin('routine_movement.movement', 'movement')
+                              ->addSelect('movement')
                               ->andWhere('routine.id = :routineId')
                               ->setParameter('routineId', $routineId);
 

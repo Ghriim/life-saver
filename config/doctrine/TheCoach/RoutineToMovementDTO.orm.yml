@@ -1,0 +1,51 @@
+App\Domain\DTO\TheCoach\RoutineToMovementDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheCoach\RoutineDTORepository
+  table: '`ROUTINE_TO_MOVEMENT`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    targetReps:
+      type: integer
+      nullable: true
+      unique: false
+    targetWeight:
+      type: integer
+      nullable: true
+      unique: false
+    targetDuration:
+      type: integer
+      nullable: true
+      unique: false
+    targetDistance:
+      type: integer
+      nullable: true
+      unique: false
+    targetRest:
+      type: integer
+      nullable: true
+      unique: false
+    generateWarmup:
+      type: boolean
+      nullable: true
+      unique: false
+
+  manyToOne:
+    routine:
+      targetEntity: RoutineDTO
+      inversedBy: movements
+      joinColumn:
+        name: routineId
+        referencedColumnName: id
+        nullable: false
+    movement:
+      targetEntity: MovementDTO
+      joinColumn:
+        name: movementId
+        referencedColumnName: id
+        nullable: false

@@ -14,9 +14,11 @@ final class SaveMovementUseCase implements UseCaseInterface
 
     }
 
-    public function execute(MovementDTO $movementDTO, int $adminId)
+    public function execute(MovementDTO $movementDTO, int $adminId): MovementDTO
     {
         $this->persisterGateway->save($movementDTO);
+
+        return $movementDTO;
     }
 }
 

@@ -17,13 +17,13 @@ class RoutineDTO extends AbstractBaseDTO
         $this->movements = new ArrayCollection();
     }
 
-    public function addMovement(MovementDTO $movementDTO)
+    public function addMovement(RoutineToMovementDTO $movement)
     {
-        $this->movements->add($movementDTO);
+        $this->movements->add($movement);
     }
 
     /**
-     * @return MovementDTO[]
+     * @return RoutineToMovementDTO[]
      */
     public function getMovements(): array
     {

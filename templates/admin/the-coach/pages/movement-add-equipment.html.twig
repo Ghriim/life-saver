@@ -7,7 +7,7 @@
             {{ form_widget(form.equipment) }}
         </div>
         <div>
-            <a href="{{ path('page_admin_movement_details', {movementId: 1}) }}" class="button cancel-color">Cancel</a>
+            <a href="{{ path('page_admin_movement_details', {movementId: movementId}) }}" class="button cancel-color">Cancel</a>
             <button type="submit" class="button action-color">Add</button>
         </div>
     {{ form_end(form) }}

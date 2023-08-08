@@ -23,13 +23,13 @@
         <article>
             <ul>
                 <li>
-                    <a href="{{ path('page_admin_routine_edit', {routineId: routine.id}) }}" title="">{{ routine.title }}</a>
+                    <a href="{{ path('page_admin_routine_details', {routineId: routine.id}) }}" title="">{{ routine.title }}</a>
                 </li>
                 <li>Added: {{ routine.added }}</li>
                 <li>
                     <ul>
                         <li>
-                            <a href="{{ path('page_admin_routine_edit', {routineId: routine.id}) }}" title="">Edit</a>
+                            <a href="{{ path('page_admin_routine_details', {routineId: routine.id}) }}" title="">Details</a>
                         </li>
                         <li>
                             <a href="{{ path('page_admin_routine_delete', {routineId: routine.id}) }}" title="">Delete</a>

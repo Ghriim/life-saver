@@ -23,7 +23,7 @@
     </article>
     <aside>
         <header>
-            <h4>Equipments</h4>
+            <h4>Movements</h4>
             <a href="{{ path('page_admin_routine_add_movement', {routineId: routine.id}) }}">Add movement</a>
         </header>
         <div>
@@ -48,7 +48,7 @@
                             </ul>
                         </div>
                         <footer>
-                            <ul>
+                            <ul><li><a href="{{ path('page_admin_routine_edit_movement', {routineId: routine.id, routineToMovementId: movement.id}) }}" title="Edit movement int routine">Edit</a></li>
                                 <li><a href="{{ path('page_admin_routine_remove_movement', {routineId: routine.id, routineToMovementId: movement.id}) }}" title="Remove movement from routine">Remove</a></li>
                             </ul>
                         </footer>

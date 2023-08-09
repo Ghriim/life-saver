@@ -3,16 +3,19 @@
 namespace App\Infrastructure\Form\FormHandler\Admin\TheCoach;
 
 use App\Domain\DTO\TheCoach\RoutineToMovementDTO;
+use App\Domain\Gateway\Provider\TheCoach\RoutineToMovementDTOProviderGateway;
 use App\Infrastructure\Form\FormHandler\FormHandlerInterface;
 use App\Infrastructure\Form\FormHandler\FormWrapper;
 use App\Infrastructure\Form\FormType\Admin\TheCoach\AddMovementToRoutineFormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class AddMovementToRoutineFormHandler implements FormHandlerInterface
 {
     public function __construct(
         private FormFactoryInterface $formFactory,
+        private RoutineToMovementDTOProviderGateway $providerGateway,
     ) {
 
     }
@@ -37,6 +40,15 @@ final class AddMovementToRoutineFormHandler implements FormHandlerInterface
 
     private function provideDTO(Request $request): RoutineToMovementDTO
     {
-        return new RoutineToMovementDTO();
+        if (false === $request->attributes->has('routineToMovementId')) {
+            return new RoutineToMovementDTO();
+        }
+
+        $routineToMovement = $this->providerGateway->getRoutineToMovementById($request->attributes->get('routineToMovementId'));
+        if (null === $routineToMovement) {
+            throw new NotFoundHttpException();
+        }
+
+        return $routineToMovement;
     }
 }

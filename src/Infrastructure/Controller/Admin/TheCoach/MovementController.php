@@ -42,7 +42,7 @@ final class MovementController extends AbstractAdminController
         );
     }
 
-    #[Route('/the-coach/movements/{movementId}', name: 'page_admin_movement_details', methods: ['GET'])]
+    #[Route('/the-coach/movements/{movementId}', name: 'page_admin_movement_details', requirements: ['movementId' => '\d+'], methods: ['GET'])]
     public function getMovement(
         int $movementId,
         GetMovementUseCase $useCase
@@ -56,21 +56,6 @@ final class MovementController extends AbstractAdminController
     }
 
     #[Route('/the-coach/movements/add', name: 'page_admin_movement_add', methods: ['GET', 'POST'])]
-    public function addMovement(
-        Request $request,
-        SaveMovementFormHandler $formHandler,
-        SaveMovementUseCase $useCase
-    ): Response {
-        $formHandler = $formHandler->handle($request);
-        if (true === $formHandler->isHandledSuccessfully()) {
-            $movement = $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
-
-            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movement->id]);
-        }
-
-        return $this->render('admin/the-coach/pages/movement-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
-    }
-
     #[Route('/the-coach/movements/{movementId}/edit', name: 'page_admin_movement_edit', requirements: ['movementId' => '\d+'], methods: ['GET', 'POST'])]
     public function editMovement(
         Request $request,

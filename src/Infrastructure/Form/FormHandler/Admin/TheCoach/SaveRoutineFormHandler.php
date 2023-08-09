@@ -43,12 +43,12 @@ final class SaveRoutineFormHandler implements FormHandlerInterface
             return new RoutineDTO();
         }
 
-        $rroutine = $this->providerGateway->getRoutineById($request->attributes->get('routineId'));
-        if (null === $rroutine) {
+        $routine = $this->providerGateway->getRoutineById($request->attributes->get('routineId'));
+        if (null === $routine) {
             throw new NotFoundHttpException();
         }
 
-        return $rroutine;
+        return $routine;
     }
 }
 

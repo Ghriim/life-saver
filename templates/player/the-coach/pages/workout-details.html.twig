@@ -1,0 +1,17 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <header>
+            {{ workout.title }}
+        </header>
+        <div>
+
+        </div>
+        {% if workout.routineId is not null %}
+            <aside>
+                    Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
+            </aside>
+        {% endif %}
+    </article>
+{% endblock %}

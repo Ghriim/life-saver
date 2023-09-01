@@ -1,7 +1,7 @@
-App\Domain\DTO\TheCoach\RoutineToMovementDTO:
+App\Domain\DTO\TheCoach\ExerciseDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\TheCoach\RoutineToMovementDTORepository
-  table: '`ROUTINE_TO_MOVEMENT`'
+  repositoryClass: App\Infrastructure\Repository\TheCoach\ExerciseDTORepository
+  table: '`EXERCISE`'
 
   id:
     id:
@@ -26,21 +26,35 @@ App\Domain\DTO\TheCoach\RoutineToMovementDTO:
       type: integer
       nullable: true
       unique: false
-    targetRest:
+
+    completedReps:
       type: integer
       nullable: true
       unique: false
-    generateWarmup:
-      type: boolean
+    completedWeight:
+      type: integer
+      nullable: true
+      unique: false
+    completedDuration:
+      type: integer
+      nullable: true
+      unique: false
+    completedDistance:
+      type: integer
+      nullable: true
+      unique: false
+
+    restDuration:
+      type: integer
       nullable: true
       unique: false
 
   manyToOne:
-    routine:
-      targetEntity: RoutineDTO
-      inversedBy: movements
+    workout:
+      targetEntity: WorkoutDTO
+      inversedBy: exercises
       joinColumn:
-        name: routineId
+        name: workoutId
         referencedColumnName: id
         nullable: false
     movement:

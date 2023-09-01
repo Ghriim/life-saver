@@ -13,7 +13,7 @@ App\Domain\DTO\TheCoach\RoutineDTO:
     title:
       type: string
       nullable: false
-      unique: true
+      unique: false
 
   oneToMany:
     movements:

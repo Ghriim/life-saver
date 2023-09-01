@@ -1,0 +1,43 @@
+App\Domain\DTO\TheCoach\WorkoutDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheCoach\WorkoutDTORepository
+  table: '`WORKOUT`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    title:
+      type: string
+      nullable: false
+      unique: false
+    plannedDate:
+      type: datetime_immutable
+      nullable: true
+      unique: false
+    startedDate:
+      type: datetime_immutable
+      nullable: true
+      unique: false
+    completedDate:
+      type: datetime_immutable
+      nullable: true
+      unique: false
+    userId:
+      type: integer
+      nullable: false
+      unique: false
+
+  oneToMany:
+    exercises:
+      targetEntity: ExerciseDTO
+      mappedBy: workout
+
+  manyToOne:
+    routine:
+      targetEntity: RoutineDTO
+      mappedBy: routine
+      nullable: true

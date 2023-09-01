@@ -1,0 +1,18 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        <header>
+            {% include 'player/the-coach/components/_dashboard_header.html.twig' %}
+        </header>
+    </div>
+
+    <div>
+        <h3>
+            Planned workouts
+        </h3>
+        {% for workout in workouts %}
+            {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: 'planned'} %}
+        {% endfor %}
+    </div>
+{% endblock %}

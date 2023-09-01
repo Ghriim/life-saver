@@ -1,0 +1,36 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        <header>
+            {% include 'player/the-coach/components/_dashboard_header.html.twig' %}
+        </header>
+
+        <div>
+            {% for routine in routines %}
+                <article>
+                    <header>
+                        <h3>{{ routine.title }}</h3>
+                    </header>
+                    <div>
+
+                    </div>
+                    <footer>
+                        <ul>
+                            <li>
+                                <form action="{{ path('page_player_workout_plan_from_routine', {routineId: routine.id}) }}" method="get">
+                                    <input type="submit" value="Plan">
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ path('page_player_workout_start_from_routine', {routineId: routine.id}) }}" method="post">
+                                    <input type="submit" value="Start">
+                                </form>
+                            </li>
+                        </ul>
+                    </footer>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

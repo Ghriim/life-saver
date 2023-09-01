@@ -1,0 +1,17 @@
+<article>
+    <header>
+        <h3>{{ workout.title }}</h3>
+    </header>
+    <div>
+
+    </div>
+    <footer>
+        <ul>
+            {% if context == 'planned' %}
+                <li>Start</li>
+            {% endif %}
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </footer>
+</article>

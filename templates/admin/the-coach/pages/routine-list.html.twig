@@ -21,22 +21,24 @@
 
     {% for routine in routines %}
         <article>
-            <ul>
-                <li>
+            <header>
                     <a href="{{ path('page_admin_routine_details', {routineId: routine.id}) }}" title="">{{ routine.title }}</a>
-                </li>
-                <li>Added: {{ routine.added }}</li>
-                <li>
-                    <ul>
-                        <li>
-                            <a href="{{ path('page_admin_routine_details', {routineId: routine.id}) }}" title="">Details</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('page_admin_routine_delete', {routineId: routine.id}) }}" title="">Delete</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            </header>
+            <div>
+                <ul>
+                    <li>Added: {{ routine.added }}</li>
+                    <li>
+                        <ul>
+                            <li>
+                                <a href="{{ path('page_admin_routine_details', {routineId: routine.id}) }}" title="">Details</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('page_admin_routine_delete', {routineId: routine.id}) }}" title="">Delete</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </article>
     {% endfor %}
 {% endblock %}

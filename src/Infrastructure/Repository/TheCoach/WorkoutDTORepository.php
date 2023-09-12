@@ -18,6 +18,10 @@ final class WorkoutDTORepository extends ServiceEntityRepository implements Work
     public function getWorkoutById(int $workoutId): ?WorkoutDTO
     {
         return $this->createQueryBuilder('workout')
+                    ->leftJoin('workout.exercises', 'workout_exercise')
+                    ->addSelect('workout_exercise')
+                    ->leftJoin('workout.routine', 'workout_routine')
+                    ->addSelect('workout_routine')
                     ->andWhere('workout.id = :workoutId')
                     ->setParameter('workoutId', $workoutId)
                     ->getQuery()

@@ -4,26 +4,24 @@ namespace App\Infrastructure\View\ViewPresenter\Admin\TheCoach;
 
 use App\Domain\DTO\TheCoach\RoutineDTO;
 use App\Infrastructure\View\ViewFormatter\DateTimeViewFormatter;
-use App\Infrastructure\View\ViewModel\Admin\TheCoach\RoutineListViewModel;
+use App\Infrastructure\View\ViewModel\Admin\TheCoach\AdminRoutineListViewModel;
+use App\Infrastructure\View\ViewPresenter\Common\TheCoach\AbstractRoutineListViewPresenter;
 use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
 
-final class RoutineListViewPresenter implements ViewPresenterInterface
+final class AdminRoutineListViewPresenter extends AbstractRoutineListViewPresenter
 {
     /**
      * @param RoutineDTO[] $DTOs
      *
-     * @return RoutineListViewModel[]
+     * @return AdminRoutineListViewModel[]
      */
     public function present(array $DTOs): array
     {
         $models = [];
         foreach ($DTOs as $DTO) {
-            $model = new RoutineListViewModel();
-            $model->id = $DTO->id;
-            $model->title = $DTO->title;
-            $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);
+            $model = new AdminRoutineListViewModel();
 
-            $models[] = $model;
+            $models[] = $this->presentCommonFields($DTO, $model);
         }
 
         return $models;

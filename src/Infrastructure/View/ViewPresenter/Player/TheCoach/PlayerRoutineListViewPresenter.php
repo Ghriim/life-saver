@@ -3,25 +3,25 @@
 namespace App\Infrastructure\View\ViewPresenter\Player\TheCoach;
 
 use App\Domain\DTO\TheCoach\RoutineDTO;
+use App\Infrastructure\View\ViewModel\Player\TheCoach\PlayerRoutineListViewModel;
 use App\Infrastructure\View\ViewModel\Player\TheCoach\RoutineListViewModel;
+use App\Infrastructure\View\ViewPresenter\Common\TheCoach\AbstractRoutineListViewPresenter;
 use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
 
-final class RoutineListViewPresenter implements ViewPresenterInterface
+final class PlayerRoutineListViewPresenter extends AbstractRoutineListViewPresenter
 {
     /**
      * @param RoutineDTO[] $DTOs
      *
-     * @return RoutineListViewModel[]
+     * @return PlayerRoutineListViewModel[]
      */
     public function present(array $DTOs): array
     {
         $models = [];
         foreach ($DTOs as $DTO) {
-            $model = new RoutineListViewModel();
-            $model->id = $DTO->id;
-            $model->title = $DTO->title;
+            $model = new PlayerRoutineListViewModel();
 
-            $models[] = $model;
+            $models[] = $this->presentCommonFields($DTO, $model);
         }
 
         return $models;

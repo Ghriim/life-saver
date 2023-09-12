@@ -35,6 +35,7 @@ App\Domain\DTO\TheCoach\WorkoutDTO:
     exercises:
       targetEntity: ExerciseDTO
       mappedBy: workout
+      cascade: ['persist', 'remove']
 
   manyToOne:
     routine:

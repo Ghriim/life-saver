@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\View\ViewModel\Admin\TheCoach;
+namespace App\Infrastructure\View\ViewModel\Common\TheCoach;
 
 use App\Infrastructure\View\ViewModel\ViewModelInterface;
 
-final class MovementInRoutineListViewModel implements ViewModelInterface
+abstract class AbstractMovementInRoutineListViewModel implements ViewModelInterface
 {
     public int $id;
     public string $name;

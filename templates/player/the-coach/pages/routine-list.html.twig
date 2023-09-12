@@ -10,7 +10,11 @@
             {% for routine in routines %}
                 <article>
                     <header>
-                        <h3>{{ routine.title }}</h3>
+                        <h3>
+                            <a href="{{ path('page_player_coach_routine', {'routineId': routine.id}) }}" title="">
+                                {{ routine.title }}
+                            </a>
+                        </h3>
                     </header>
                     <div>
 

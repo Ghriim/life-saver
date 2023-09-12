@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\View\ViewModel\Admin\TheCoach;
+namespace App\Infrastructure\View\ViewModel\Common\TheCoach;
 
 use App\Infrastructure\View\ViewModel\ViewModelInterface;
 
-final class RoutineListViewModel implements ViewModelInterface
+abstract class AbstractRoutineListViewModel implements ViewModelInterface
 {
     public int $id;
     public string $title;

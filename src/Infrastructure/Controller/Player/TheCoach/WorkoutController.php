@@ -25,7 +25,7 @@ final class WorkoutController extends AbstractPlayerController
         );
     }
 
-    #[Route('/the-coach/workouts/plan/{routineId}', name: 'page_player_workout_plan_from_routine', methods: ['GET', 'POST'])]
+    #[Route('/the-coach/workouts/plan/{routineId}', name: 'page_player_workout_plan_from_routine', requirements: ['routineId' => '\d+'], methods: ['GET', 'POST'])]
     public function planWorkoutFromRoutine(
         Request $request,
         PlanWorkoutFormHandler $formHandler,
@@ -41,7 +41,7 @@ final class WorkoutController extends AbstractPlayerController
         return $this->render('player/the-coach/pages/workout-plan.html.twig', ['form' => $formHandler->getForm()->createView()]);
     }
 
-    #[Route('/the-coach/workouts/start/{routineId}', name: 'page_player_workout_start_from_routine', methods: ['POST'])]
+    #[Route('/the-coach/workouts/start/{routineId}', name: 'page_player_workout_start_from_routine', requirements: ['routineId' => '\d+'], methods: ['POST'])]
     public function startWorkoutFromRoutine(
         int $routineId,
         StartWorkoutFromRoutineUseCase $useCase
@@ -51,7 +51,7 @@ final class WorkoutController extends AbstractPlayerController
         return $this->redirectToRoute('page_player_workout_details', ['workoutId' => $workout->id]);
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/complete', name: 'page_player_workout_start', methods: ['POST'])]
+    #[Route('/the-coach/workouts/{workoutId}/complete', name: 'page_player_workout_start', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
     public function completeWorkout(Request $request): Response
     {
     }

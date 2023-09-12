@@ -1,0 +1,53 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <div>
+        <header>
+            {% include 'player/the-coach/components/_dashboard_header.html.twig' %}
+        </header>
+
+        <div>
+            <header>
+                <h2>{{ routine.title }}</h2>
+
+                <ul>
+                    <li>
+                        <form action="{{ path('page_player_workout_plan_from_routine', {routineId: routine.id}) }}" method="get">
+                            <input type="submit" value="Plan">
+                        </form>
+                    </li>
+                    <li>
+                        <form action="{{ path('page_player_workout_start_from_routine', {routineId: routine.id}) }}" method="post">
+                            <input type="submit" value="Start">
+                        </form>
+                    </li>
+                </ul>
+            </header>
+
+            <div>
+                {% for movement in routine.movements %}
+                    <article>
+                        <header>
+                            <h3>{{ movement.name }}</h3>
+                        </header>
+                    </article>
+                {% endfor %}
+            </div>
+
+            <footer>
+                <ul>
+                    <li>
+                        <form action="{{ path('page_player_workout_plan_from_routine', {routineId: routine.id}) }}" method="get">
+                            <input type="submit" value="Plan">
+                        </form>
+                    </li>
+                    <li>
+                        <form action="{{ path('page_player_workout_start_from_routine', {routineId: routine.id}) }}" method="post">
+                            <input type="submit" value="Start">
+                        </form>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+{% endblock %}

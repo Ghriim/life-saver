@@ -4,6 +4,7 @@ namespace App\Domain\DTO\TheCoach;
 
 use App\Domain\DTO\AbstractBaseDTO;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class WorkoutDTO extends AbstractBaseDTO
@@ -20,4 +21,21 @@ class WorkoutDTO extends AbstractBaseDTO
 
     public ?RoutineDTO $routine = null;
 
+    public function __construct()
+    {
+        $this->exercises = new ArrayCollection();
+    }
+
+    public function addExercise(ExerciseDTO $exercise)
+    {
+        $this->exercises->add($exercise);
+    }
+
+    /**
+     * @return ExerciseDTO[]
+     */
+    public function getExercises(): array
+    {
+        return $this->exercises->toArray();
+    }
 }

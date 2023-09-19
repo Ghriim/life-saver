@@ -5,6 +5,8 @@ namespace App\Infrastructure\Controller\Player\TheCoach;
 use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\TheCoach\PlanWorkoutFormHandler;
+use App\UseCase\Player\TheCoach\DeleteWorkoutUseCase;
+use App\UseCase\Player\TheCoach\GetWorkoutsForUserUseCase;
 use App\UseCase\Player\TheCoach\PlanWorkoutFromRoutineUseCase;
 use App\UseCase\Player\TheCoach\GetWorkoutUseCase;
 use App\UseCase\Player\TheCoach\StartWorkoutFromRoutineUseCase;
@@ -25,6 +27,44 @@ final class WorkoutController extends AbstractPlayerController
         );
     }
 
+    #[Route('/me/the-coach/workouts/history', name: 'page_player_coach_history', methods: ['GET'])]
+    public function historyWorkouts(
+        Request $request,
+        GetWorkoutsForUserUseCase $useCase
+    ): Response {
+        $date = $request->query->get('date');
+
+        $workouts = $useCase->execute(
+            $this->getCurrentUserId(),
+            GetWorkoutsForUserUseCase::CONTEXT_HISTORY,
+            $date,
+        );
+
+        return $this->render(
+            'player/the-coach/pages/workouts-history.html.twig',
+            ['workouts' => $workouts]
+        );
+    }
+
+    #[Route('/me/the-coach/workouts/planned', name: 'page_player_coach_planned_workouts', methods: ['GET'])]
+    public function plannedWorkouts(
+        Request $request,
+        GetWorkoutsForUserUseCase $useCase
+    ): Response {
+        $date = $request->query->get('date');
+
+        $workouts = $useCase->execute(
+            $this->getCurrentUserId(),
+            GetWorkoutsForUserUseCase::CONTEXT_PLANNED,
+            $date
+        );
+
+        return $this->render(
+            'player/the-coach/pages/workouts-planned.html.twig',
+            ['workouts' => $workouts]
+        );
+    }
+
     #[Route('/the-coach/workouts/plan/{routineId}', name: 'page_player_workout_plan_from_routine', requirements: ['routineId' => '\d+'], methods: ['GET', 'POST'])]
     public function planWorkoutFromRoutine(
         Request $request,
@@ -35,7 +75,7 @@ final class WorkoutController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $workout = $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_workout_details', ['workoutId' => $workout->id]);
+            return $this->redirectTo($request,  'page_player_workout_details', ['workoutId' => $workout->id]);
         }
 
         return $this->render('player/the-coach/pages/workout-plan.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -44,11 +84,12 @@ final class WorkoutController extends AbstractPlayerController
     #[Route('/the-coach/workouts/start/{routineId}', name: 'page_player_workout_start_from_routine', requirements: ['routineId' => '\d+'], methods: ['POST'])]
     public function startWorkoutFromRoutine(
         int $routineId,
+        Request $request,
         StartWorkoutFromRoutineUseCase $useCase
     ): Response {
         $workout = $useCase->execute($routineId, $this->getCurrentUserId());
 
-        return $this->redirectToRoute('page_player_workout_details', ['workoutId' => $workout->id]);
+        return $this->redirectTo($request,  'page_player_workout_details', ['workoutId' => $workout->id]);
     }
 
     #[Route('/the-coach/workouts/{workoutId}/complete', name: 'page_player_workout_start', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
@@ -56,8 +97,14 @@ final class WorkoutController extends AbstractPlayerController
     {
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_start',  requirements: ['workoutId' => '\d+'], methods: ['GET', 'POST'])]
-    public function deleteWorkout(int $workoutId): Response
+    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_delete',  requirements: ['workoutId' => '\d+'], methods: ['GET', 'POST'])]
+    public function deleteWorkout(
+        int $workoutId,
+        Request $request,
+        DeleteWorkoutUseCase $useCase): Response
     {
+        $useCase->execute($workoutId);
+
+        return $this->redirectTo($request,'page_player_workout_plan_from_routine');
     }
 }

@@ -50,7 +50,7 @@ final class HydrationSummaryController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto());
 
-            return $this->redirectToRoute('page_player_current_user_hydration_summary_for_date', ['date' => $date]);
+            return $this->redirectTo($request,  'page_player_current_user_hydration_summary_for_date', ['date' => $date]);
         }
 
         return $this->render('player/hydration-tracker/pages/summary-edit.html.twig', ['form' => $formHandler->getForm()->createView(), 'date' => $date]);

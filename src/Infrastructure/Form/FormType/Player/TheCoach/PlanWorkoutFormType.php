@@ -17,6 +17,7 @@ final class PlanWorkoutFormType extends AbstractType
             DateTimeType::class,
             [
                 'input' => 'datetime_immutable',
+                'data' => new \DateTimeImmutable()
             ]
         );
     }

@@ -7,7 +7,7 @@ use App\Domain\Gateway\Provider\TheCoach\MovementDTOProviderGateway;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class RemoveEquipmentFromMovementUseCase implements UseCaseInterface
+final class DeleteEquipmentFromMovementUseCase implements UseCaseInterface
 {
     public function __construct(
         private MovementDTOProviderGateway $providerGateway,

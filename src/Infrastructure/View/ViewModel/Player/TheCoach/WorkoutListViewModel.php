@@ -8,5 +8,6 @@ final class WorkoutListViewModel implements ViewModelInterface
 {
     public int $id;
     public string $title;
+    public ?string $completedDate;
 }
 

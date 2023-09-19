@@ -1,0 +1,7 @@
+<h3>Workouts</h3>
+{% for workout in workouts %}
+    {% set context = workout.completedDate is null ? 'planned' : 'history' %}
+    <article>
+        {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: context} %}
+    </article>
+{% endfor %}

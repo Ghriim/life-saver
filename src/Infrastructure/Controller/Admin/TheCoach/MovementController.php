@@ -10,7 +10,7 @@ use App\UseCase\Admin\TheCoach\AddEquipmentToMovementUseCase;
 use App\UseCase\Admin\TheCoach\DeleteMovementUseCase;
 use App\UseCase\Admin\TheCoach\GetMovementsUseCase;
 use App\UseCase\Admin\TheCoach\GetMovementUseCase;
-use App\UseCase\Admin\TheCoach\RemoveEquipmentFromMovementUseCase;
+use App\UseCase\Admin\TheCoach\DeleteEquipmentFromMovementUseCase;
 use App\UseCase\Admin\TheCoach\SaveMovementUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,7 +66,7 @@ final class MovementController extends AbstractAdminController
         if (true === $formHandler->isHandledSuccessfully()) {
             $movement = $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
 
-            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movement->id]);
+            return $this->redirectTo($request,  'page_admin_movement_details', ['movementId' => $movement->id]);
         }
 
         return $this->render('admin/the-coach/pages/movement-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -75,11 +75,12 @@ final class MovementController extends AbstractAdminController
     #[Route('/the-coach/movements/{movementId}/delete', name: 'page_admin_movement_delete', requirements: ['movementId' => '\d+'], methods: ['GET'])]
     public function deleteMovement(
         int $movementId,
+        Request $request,
         DeleteMovementUseCase $useCase
     ): Response {
         $useCase->execute($movementId);
 
-        return $this->redirectToRoute('page_admin_movements');
+        return $this->redirectTo($request,  'page_admin_movements');
     }
 
     #[Route('/the-coach/movements/{movementId}/add-equipment', name: 'page_admin_movement_add_equipment', requirements: ['movementId' => '\d+'], methods: ['GET', 'POST'])]
@@ -93,7 +94,7 @@ final class MovementController extends AbstractAdminController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($movementId, $formHandler->getForm()->getData());
 
-            return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movementId]);
+            return $this->redirectTo($request,  'page_admin_movement_details', ['movementId' => $movementId]);
         }
 
         return $this->render(
@@ -105,14 +106,15 @@ final class MovementController extends AbstractAdminController
         );
     }
 
-    #[Route('/the-coach/movements/{movementId}/remove-equipment/{equipmentId}', name: 'page_admin_movement_remove_equipment', requirements: ['movementId' => '\d+', 'equipmentId' => '\d+'], methods: ['GET'])]
-    public function removeEquipment(
+    #[Route('/the-coach/movements/{movementId}/delete-equipment/{equipmentId}', name: 'page_admin_movement_delete_equipment', requirements: ['movementId' => '\d+', 'equipmentId' => '\d+'], methods: ['GET'])]
+    public function deleteEquipment(
         int $movementId,
         int $equipmentId,
-        RemoveEquipmentFromMovementUseCase $useCase
+        Request $request,
+        DeleteEquipmentFromMovementUseCase $useCase
     ): Response {
         $useCase->execute($movementId, $equipmentId);
 
-        return $this->redirectToRoute('page_admin_movement_details', ['movementId' => $movementId]);
+        return $this->redirectTo($request,  'page_admin_movement_details', ['movementId' => $movementId]);
     }
 }

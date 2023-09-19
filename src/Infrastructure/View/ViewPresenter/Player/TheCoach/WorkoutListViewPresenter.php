@@ -3,6 +3,7 @@
 namespace App\Infrastructure\View\ViewPresenter\Player\TheCoach;
 
 use App\Domain\DTO\TheCoach\WorkoutDTO;
+use App\Infrastructure\View\ViewFormatter\DateTimeViewFormatter;
 use App\Infrastructure\View\ViewModel\Player\TheCoach\WorkoutListViewModel;
 use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
 
@@ -20,6 +21,7 @@ final class WorkoutListViewPresenter implements ViewPresenterInterface
             $model = new WorkoutListViewModel();
             $model->id = $DTO->id;
             $model->title = $DTO->title;
+            $model->completedDate = DateTimeViewFormatter::toStringFormat($DTO->completedDate);
 
             $models[] = $model;
         }

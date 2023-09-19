@@ -1,17 +1,55 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
+
     <article>
         <header>
-            {{ workout.title }}
+            <h3>
+                {{ workout.title }}
+            </h3>
+            <ul>
+                {% if workout.startedDate is null %}
+                    <li>Start</li>
+                {% endif %}
+                <li>Edit</li>
+                <li>
+                    <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_coach_planned_workouts'}) }}" title="">
+                        Delete
+                    </a>
+                </li>
+            </ul>
         </header>
-        <div>
 
+        <div>
+            <h4>
+                Exercises
+            </h4>
         </div>
-        {% if workout.routineId is not null %}
-            <aside>
-                    Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
-            </aside>
-        {% endif %}
+        <div>
+            {% for exercise in workout.exercises %}
+                <div>
+                    <h5>{{ exercise.movementName }}</h5>
+                    <ul>
+                        <li>Completed: {{ exercise.completedWeight }} x {{ exercise.completedReps }}</li>
+                        <li>Planned: {{ exercise.targetWeight }} x {{ exercise.targetReps }}</li>
+                    </ul>
+                </div>
+            {% else %}
+                No exercises in this workout!
+            {% endfor %}
+        </div>
     </article>
+        <aside>
+            <div>
+                <ul>
+                    <li>Planned: {{ workout.plannedDate ?? 'not yet!' }}</li>
+                    <li>Completed: {{ workout.completedDate ?? 'not yet!' }}</li>
+                </ul>
+            </div>
+        {% if workout.routineId is not null %}
+            <div>
+                    Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
+            </div>
+        {% endif %}
+        </aside>
 {% endblock %}

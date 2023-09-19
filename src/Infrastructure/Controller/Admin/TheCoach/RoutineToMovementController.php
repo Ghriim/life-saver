@@ -5,7 +5,7 @@ namespace App\Infrastructure\Controller\Admin\TheCoach;
 use App\Infrastructure\Controller\Player\AbstractAdminController;
 use App\Infrastructure\Form\FormHandler\Admin\TheCoach\AddMovementToRoutineFormHandler;
 use App\UseCase\Admin\TheCoach\AddMovementToRoutineUseCase;
-use App\UseCase\Admin\TheCoach\RemoveMovementFromRoutineUseCase;
+use App\UseCase\Admin\TheCoach\DeleteMovementFromRoutineUseCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +24,7 @@ final class RoutineToMovementController extends AbstractAdminController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($routineId, $formHandler->getDTO());
 
-            return $this->redirectToRoute('page_admin_routine_details', ['routineId' => $routineId]);
+            return $this->redirectTo($request,  'page_admin_routine_details', ['routineId' => $routineId]);
         }
 
         return $this->render(
@@ -36,14 +36,15 @@ final class RoutineToMovementController extends AbstractAdminController
         );
     }
 
-    #[Route('/the-coach/routines/{routineId}/remove-movement/{routineToMovementId}', name: 'page_admin_routine_remove_movement', requirements: ['routineId' => '\d+', 'routineToMovementId' => '\d+'], methods: ['GET'])]
-    public function removeMovement(
+    #[Route('/the-coach/routines/{routineId}/delete-movement/{routineToMovementId}', name: 'page_admin_routine_remove_movement', requirements: ['routineId' => '\d+', 'routineToMovementId' => '\d+'], methods: ['GET'])]
+    public function deleteMovement(
         int $routineId,
         int $routineToMovementId,
-        RemoveMovementFromRoutineUseCase $useCase
+        Request $request,
+        DeleteMovementFromRoutineUseCase $useCase
     ): Response {
         $useCase->execute($routineToMovementId);
 
-        return $this->redirectToRoute('page_admin_routine_details', ['routineId' => $routineId]);
+        return $this->redirectTo($request,  'page_admin_routine_details', ['routineId' => $routineId]);
     }
 }

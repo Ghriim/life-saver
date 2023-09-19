@@ -1,6 +1,10 @@
 <article>
     <header>
-        <h3>{{ workout.title }}</h3>
+        <h3>
+            <a href="{{ path('page_player_workout_details', {workoutId: workout.id}) }}" title="">
+                {{ workout.title }}
+            </a>
+        </h3>
     </header>
     <div>
 
@@ -11,7 +15,11 @@
                 <li>Start</li>
             {% endif %}
             <li>Edit</li>
-            <li>Delete</li>
+            <li>
+                <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: app.request.get('_route')}) }}" title="">
+                    Delete
+                </a>
+            </li>
         </ul>
     </footer>
 </article>

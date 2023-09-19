@@ -63,7 +63,7 @@ final class RoutineController extends AbstractAdminController
         if (true === $formHandler->isHandledSuccessfully()) {
             $routine = $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
 
-            return $this->redirectToRoute('page_admin_routine_details', ['routineId' => $routine->id]);
+            return $this->redirectTo($request,  'page_admin_routine_details', ['routineId' => $routine->id]);
         }
 
         return $this->render('admin/the-coach/pages/routine-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -76,6 +76,6 @@ final class RoutineController extends AbstractAdminController
     ): Response {
         $useCase->execute($routineId);
 
-        return $this->redirectToRoute('page_admin_routines');
+        return $this->redirectTo($request,  'page_admin_routines');
     }
 }

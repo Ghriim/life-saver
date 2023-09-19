@@ -19,7 +19,7 @@ final class GetWorkoutUseCase implements UseCaseInterface
 
     public function execute(int $workoutId): WorkoutDetailsViewModel
     {
-        $workout = $this->workoutDTOProviderGateway->getWorkoutById($workoutId);
+        $workout = $this->workoutDTOProviderGateway->getWorkoutByIdForDetails($workoutId);
         if (null === $workout) {
             throw new NotFoundHttpException();
         }

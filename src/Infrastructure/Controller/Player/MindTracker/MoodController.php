@@ -35,7 +35,7 @@ final class MoodController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_moods_for_current_user');
+            return $this->redirectTo($request, 'page_player_moods_for_current_user');
         }
 
         return $this->render('player/mind-tracker/pages/mood-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -51,7 +51,7 @@ final class MoodController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_moods_for_current_user');
+            return $this->redirectTo($request, 'page_player_moods_for_current_user');
         }
 
         return $this->render('player/mind-tracker/pages/mood-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -60,10 +60,11 @@ final class MoodController extends AbstractPlayerController
     #[Route('/me/mind-tracker/moods/{moodId}/delete', name: 'page_player_mood_delete', requirements: ['moodId' => '\d+'], methods: ['GET'])]
     public function deleteMood(
         int $moodId,
+        Request $request,
         DeleteMoodUseCase $useCase
     ): Response {
         $useCase->execute($moodId);
 
-        return $this->redirectToRoute('page_player_moods_for_current_user');
+        return $this->redirectTo($request,  'page_player_moods_for_current_user');
     }
 }

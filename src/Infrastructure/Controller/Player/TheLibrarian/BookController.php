@@ -29,7 +29,7 @@ final class BookController extends AbstractPlayerController
 
         $books = $useCase->execute($searchParameters);
         if (1 === sizeof($books)) {
-            return $this->redirectToRoute('page_player_book', ['bookId' => $books[0]->id]);
+            return $this->redirectTo($request,  'page_player_book', ['bookId' => $books[0]->id]);
         }
 
         return $this->render(

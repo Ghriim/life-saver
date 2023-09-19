@@ -8,13 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractBaseController extends AbstractController
 {
-    protected function redirectTo(Request $request, string $routeName, array $parameters = []): RedirectResponse
+    protected function redirectTo(Request $request, string $defaultRouteName, array $parameters = []): RedirectResponse
     {
-        $redirect = $request->query->get('redirect');
-        if (null === $redirect) {
-            return $this->redirectToRoute($routeName, ['date' => $parameters]);
-        }
+        $redirect = $request->query->get('redirect', $defaultRouteName);
 
-        return $this->redirectToRoute($redirect);
+        return $this->redirectToRoute($redirect, $parameters);
     }
 }

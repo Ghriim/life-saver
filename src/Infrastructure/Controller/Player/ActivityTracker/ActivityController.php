@@ -35,7 +35,7 @@ final class ActivityController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute( 'page_player_activities_for_current_user');
+            return $this->redirectTo($request,   'page_player_activities_for_current_user');
         }
 
         return $this->render('player/activity-tracker/pages/activity-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -51,7 +51,7 @@ final class ActivityController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_activities_for_current_user');
+            return $this->redirectTo($request,  'page_player_activities_for_current_user');
         }
 
         return $this->render('player/activity-tracker/pages/activity-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -60,10 +60,11 @@ final class ActivityController extends AbstractPlayerController
     #[Route('/me/activity-tracker/activities/{activityId}/delete', name: 'page_player_activity_delete', requirements: ['activityId' => '\d+'], methods: ['GET'])]
     public function deleteActivity(
         int $activityId,
+        Request $request,
         DeleteActivityUseCase $useCase
     ): Response {
         $useCase->execute($activityId);
 
-        return $this->redirectToRoute('page_player_activities_for_current_user');
+        return $this->redirectTo($request,  'page_player_activities_for_current_user');
     }
 }

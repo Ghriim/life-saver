@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class GetWorkoutsForUserUseCase implements UseCaseInterface
 {
+    public const CONTEXT_SPECIFIC_DATE = 'specific-date';
     public const CONTEXT_HISTORY = 'history';
     public const CONTEXT_PLANNED = 'planned';
 
@@ -28,7 +29,9 @@ final class GetWorkoutsForUserUseCase implements UseCaseInterface
             throw new BadRequestHttpException('Invalid "date" requested');
         }
 
-        if (self::CONTEXT_HISTORY === $context) {
+        if (self::CONTEXT_SPECIFIC_DATE === $context) {
+            $workouts = $this->workoutDTOGateway->getWorkoutsByUserIdForDate($userId, $date);
+        } elseif (self::CONTEXT_HISTORY === $context) {
             $workouts = $this->workoutDTOGateway->getWorkoutsHistoryByUserIdAndDate($userId, $date);
         } elseif (self::CONTEXT_PLANNED === $context) {
             $workouts = $this->workoutDTOGateway->getWorkoutsPlannedByUserIdAndDate($userId, $date);

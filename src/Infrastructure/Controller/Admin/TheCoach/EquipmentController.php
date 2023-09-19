@@ -49,7 +49,7 @@ final class EquipmentController extends AbstractAdminController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentAdminId());
 
-            return $this->redirectToRoute('page_admin_equipments');
+            return $this->redirectTo($request,  'page_admin_equipments');
         }
 
         return $this->render('admin/the-coach/pages/equipment-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -58,10 +58,11 @@ final class EquipmentController extends AbstractAdminController
     #[Route('/the-coach/equipments/{equipmentId}/delete', name: 'page_admin_equipment_delete', requirements: ['equipmentId' => '\d+'], methods: ['GET'])]
     public function deleteEquipment(
         int $equipmentId,
+        Request $request,
         DeleteEquipmentUseCase $useCase
     ): Response {
         $useCase->execute($equipmentId);
 
-        return $this->redirectToRoute('page_admin_equipments');
+        return $this->redirectTo($request,  'page_admin_equipments');
     }
 }

@@ -32,18 +32,23 @@ final class HydrationIntakeController extends AbstractPlayerController
                 $this->getCurrentUserId()
             );
 
-            return $this->redirectToRoute('page_player_current_user_hydration_summary_for_date', ['date' => $date]);
+            return $this->redirectTo($request,  'page_player_current_user_hydration_summary_for_date', ['date' => $date]);
         }
 
         return $this->render('player/hydration-tracker/pages/intake-add.html.twig', ['form' => $formHandler->getForm()->createView(), 'date' => $date]);
     }
 
     #[Route('/me/hydration-tracker/summaries/{date}/intakes/{intakeId}/delete', name: 'page_player_hydration_intake_delete', requirements: ['intakeId' => '\d+'], methods: ['GET'])]
-    public function deleteHydrationIntake(string $date, int $intakeId, DeleteHydrationIntakeUseCase $useCase): Response
+    public function deleteHydrationIntake(
+        string $date,
+        int $intakeId,
+        Request $request,
+        DeleteHydrationIntakeUseCase $useCase): Response
     {
         $useCase->execute($this->getCurrentUserId(), $intakeId);
 
-        return $this->redirectToRoute(
+        return $this->redirectTo(
+            $request,
             'page_player_current_user_hydration_summary_for_date',
             ['date' => $date]
         );

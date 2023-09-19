@@ -4,7 +4,6 @@ namespace App\Infrastructure\View\ViewPresenter\Player\TheCoach;
 
 use App\Domain\DTO\TheCoach\RoutineDTO;
 use App\Domain\DTO\TheCoach\RoutineToMovementDTO;
-use App\Infrastructure\View\ViewModel\Admin\TheCoach\AdminMovementInRoutineListViewModel;
 use App\Infrastructure\View\ViewModel\Player\TheCoach\PlayerMovementInRoutineListViewModel;
 use App\Infrastructure\View\ViewModel\Player\TheCoach\PlayerRoutineDetailsViewModel;
 use App\Infrastructure\View\ViewPresenter\Common\TheCoach\AbstractRoutineDetailsViewPresenter;

@@ -32,7 +32,7 @@ final class WeightController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_weights_for_current_user');
+            return $this->redirectTo($request,  'page_player_weights_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -48,7 +48,7 @@ final class WeightController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_weights_for_current_user');
+            return $this->redirectTo($request,  'page_player_weights_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/weight-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -57,10 +57,11 @@ final class WeightController extends AbstractPlayerController
     #[Route('/me/body-tracker/weights/{weightId}/delete', name: 'page_player_weight_delete', requirements: ['weightId' => '\d+'], methods: ['GET'])]
     public function deleteWeight(
         int $weightId,
+        Request $request,
         DeleteWeightUseCase $useCase
     ): Response {
         $useCase->execute($weightId);
 
-        return $this->redirectToRoute('page_player_weights_for_current_user');
+        return $this->redirectTo($request,  'page_player_weights_for_current_user');
     }
 }

@@ -32,7 +32,7 @@ final class SleepController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_sleeps_for_current_user');
+            return $this->redirectTo($request,  'page_player_sleeps_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/sleep-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -48,7 +48,7 @@ final class SleepController extends AbstractPlayerController
         if (true === $formHandler->isHandledSuccessfully()) {
             $useCase->execute($formHandler->getDto(), $this->getCurrentUserId());
 
-            return $this->redirectToRoute('page_player_sleeps_for_current_user');
+            return $this->redirectTo($request,  'page_player_sleeps_for_current_user');
         }
 
         return $this->render('player/body-tracker/pages/sleep-save.html.twig', ['form' => $formHandler->getForm()->createView()]);
@@ -57,10 +57,11 @@ final class SleepController extends AbstractPlayerController
     #[Route('/me/body-tracker/sleeps/{sleepId}/delete', name: 'page_player_sleep_delete', requirements: ['sleepId' => '\d+'], methods: ['GET'])]
     public function deleteSleep(
         int $sleepId,
+        Request $request,
         DeleteSleepUseCase $useCase
     ): Response {
         $useCase->execute($sleepId);
 
-        return $this->redirectToRoute('page_player_sleeps_for_current_user');
+        return $this->redirectTo($request,  'page_player_sleeps_for_current_user');
     }
 }

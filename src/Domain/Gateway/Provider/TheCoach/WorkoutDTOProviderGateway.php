@@ -9,10 +9,17 @@ interface WorkoutDTOProviderGateway
 {
     public function getWorkoutById(int $workoutId): ?WorkoutDTO;
 
+    public function getWorkoutByIdForDetails(int $workoutId): ?WorkoutDTO;
+
     /**
      * @return WorkoutDTO[]
      */
     public function getWorkoutsByUserId(int $userId): array;
+
+    /**
+     * @return WorkoutDTO[]
+     */
+    public function getWorkoutsByUserIdForDate(int $userId, DateTimeImmutable $date): array;
 
     /**
      * @return WorkoutDTO[]

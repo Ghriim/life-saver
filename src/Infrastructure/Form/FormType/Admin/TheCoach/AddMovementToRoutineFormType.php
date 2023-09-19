@@ -8,7 +8,6 @@ use App\Infrastructure\Repository\TheCoach\MovementDTORepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -67,6 +66,13 @@ final class AddMovementToRoutineFormType extends AbstractType
                     IntegerType::class,
                     [
                         'required' => false,
+                        'attr' => ['min' => 1]
+                    ]
+                )
+                ->add(
+                    'numberOfSets',
+                    IntegerType::class,
+                    [
                         'attr' => ['min' => 1]
                     ]
                 )

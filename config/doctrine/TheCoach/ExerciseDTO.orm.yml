@@ -49,6 +49,15 @@ App\Domain\DTO\TheCoach\ExerciseDTO:
       nullable: true
       unique: false
 
+    batchId:
+      type: string
+      nullable: false
+      unique: false
+    setType:
+      type: string
+      nullable: false
+      unique: false
+
   manyToOne:
     workout:
       targetEntity: WorkoutDTO

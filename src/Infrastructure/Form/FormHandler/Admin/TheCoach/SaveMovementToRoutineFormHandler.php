@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class AddMovementToRoutineFormHandler implements FormHandlerInterface
+final class SaveMovementToRoutineFormHandler implements FormHandlerInterface
 {
     public function __construct(
         private FormFactoryInterface $formFactory,

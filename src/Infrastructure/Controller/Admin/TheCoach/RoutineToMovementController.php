@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Controller\Admin\TheCoach;
 
 use App\Infrastructure\Controller\Player\AbstractAdminController;
-use App\Infrastructure\Form\FormHandler\Admin\TheCoach\AddMovementToRoutineFormHandler;
+use App\Infrastructure\Form\FormHandler\Admin\TheCoach\SaveMovementToRoutineFormHandler;
 use App\UseCase\Admin\TheCoach\AddMovementToRoutineUseCase;
 use App\UseCase\Admin\TheCoach\DeleteMovementFromRoutineUseCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ final class RoutineToMovementController extends AbstractAdminController
     public function saveMovement(
         int $routineId,
         Request $request,
-        AddMovementToRoutineFormHandler $formHandler,
+        SaveMovementToRoutineFormHandler $formHandler,
         AddMovementToRoutineUseCase $useCase
     ): Response {
         $formHandler = $formHandler->handle($request);

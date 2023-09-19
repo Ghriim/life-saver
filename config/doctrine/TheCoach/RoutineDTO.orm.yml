@@ -19,3 +19,4 @@ App\Domain\DTO\TheCoach\RoutineDTO:
     movements:
       targetEntity: RoutineToMovementDTO
       mappedBy: routine
+      cascade: ['persist', 'remove']

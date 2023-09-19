@@ -30,6 +30,10 @@ App\Domain\DTO\TheCoach\RoutineToMovementDTO:
       type: integer
       nullable: true
       unique: false
+    numberOfSets:
+      type: integer
+      nullable: false
+      unique: false
     generateWarmup:
       type: boolean
       nullable: true

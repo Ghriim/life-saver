@@ -72,6 +72,7 @@ final class RoutineController extends AbstractAdminController
     #[Route('/the-coach/routines/{routineId}/delete', name: 'page_admin_routine_delete', requirements: ['routineId' => '\d+'], methods: ['GET'])]
     public function deleteRoutine(
         int $routineId,
+        Request $request,
         DeleteRoutineUseCase $useCase
     ): Response {
         $useCase->execute($routineId);

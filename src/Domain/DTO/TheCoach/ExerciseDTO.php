@@ -3,6 +3,7 @@
 namespace App\Domain\DTO\TheCoach;
 
 use App\Domain\DTO\AbstractBaseDTO;
+use App\Domain\Registry\TheCoach\ExerciseSetTypeRegistry;
 
 class ExerciseDTO extends AbstractBaseDTO
 {
@@ -17,6 +18,9 @@ class ExerciseDTO extends AbstractBaseDTO
     public ?int $completedDistance;
 
     public ?int $restDuration;
+
+    public string $batchId;
+    public string $setType = ExerciseSetTypeRegistry::SET_TYPE_WORK;
 
     public MovementDTO $movement;
     public WorkoutDTO $workout;

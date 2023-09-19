@@ -21,6 +21,7 @@ abstract class AbstractMovementInRoutineListPresenter implements ViewPresenterIn
         $model->targetDistance = $DTO->targetDistance ? $DTO->targetDistance.'m' : null;
 
         $model->targetRest = $DTO->targetRest ? $DTO->targetRest.'sec' : 'No rest';
+        $model->numberOfSets = $DTO->numberOfSets;
         $model->generateWarmup = $DTO->generateWarmup ? 'Auto generated' : 'Not generated';
 
         $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate);

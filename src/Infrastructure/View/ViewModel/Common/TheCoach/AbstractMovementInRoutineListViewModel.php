@@ -17,5 +17,6 @@ abstract class AbstractMovementInRoutineListViewModel implements ViewModelInterf
     public ?string $targetDistance;
 
     public string $targetRest;
+    public string $numberOfSets;
     public string $generateWarmup;
 }

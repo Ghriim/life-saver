@@ -1,0 +1,89 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    {{ form_start(form) }}
+    <div>
+        Movement
+        {{ form_widget(form.movement) }}
+    </div>
+
+    <br />
+
+    {% if form.targetReps is defined %}
+        <div>
+            Target Reps
+            {{ form_widget(form.targetReps) }}
+        </div>
+    {% endif %}
+
+    {% if form.targetWeight is defined %}
+        <div>
+            Target Weight
+            {{ form_widget(form.targetWeight) }}
+        </div>
+    {% endif %}
+
+    {% if form.targetDuration is defined %}
+        <div>
+            Target Duration
+            {{ form_widget(form.targetDuration) }}
+        </div>
+    {% endif %}
+
+    {% if form.targetDistance is defined %}
+        <div>
+            Target Distance
+            {{ form_widget(form.targetDistance) }}
+        </div>
+    {% endif %}
+
+    {% if form.completedReps is defined %}
+        <div>
+            Completed Reps
+            {{ form_widget(form.completedReps) }}
+        </div>
+    {% endif %}
+
+    {% if form.completedWeight is defined %}
+        <div>
+            Completed Weight
+            {{ form_widget(form.completedWeight) }}
+        </div>
+    {% endif %}
+
+    {% if form.completedDuration is defined %}
+        <div>
+            Completed Duration
+            {{ form_widget(form.completedDuration) }}
+        </div>
+    {% endif %}
+
+    {% if form.completedDistance is defined %}
+        <div>
+            Completed Distance
+            {{ form_widget(form.completedDistance) }}
+        </div>
+    {% endif %}
+
+    <br />
+
+    <div>
+        Rest
+        {{ form_widget(form.restDuration) }}
+    </div>
+
+    <div>
+        Set type
+        {{ form_widget(form.setType) }}
+    </div>
+
+    <br />
+
+    <div>
+        <div>
+            <a href="{{ path('page_player_workout_details', {workoutId: workoutId}) }}" class="button cancel-color">Cancel</a>
+            <button type="submit" class="button action-color">Save</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

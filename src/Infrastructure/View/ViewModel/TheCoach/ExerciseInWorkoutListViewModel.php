@@ -19,7 +19,7 @@ final class ExerciseInWorkoutListViewModel implements ViewModelInterface
     public ?string $completedDuration;
     public ?string $completedDistance;
 
-    public ?int $restDuration;
+    public ?string $restDuration;
 
     public string $setType;
 

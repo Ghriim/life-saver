@@ -30,7 +30,11 @@
                 <div>
                     <h5>{{ batch.movementName }}</h5>
                     <ul>
-                        <li>Delete</li>
+                        <li>
+                            <a href="{{ path('page_player_exercise_delete_batch', {workoutId: workout.id, batchId: batch.batchId}) }}">
+                                Delete
+                            </a>
+                        </li>
                     </ul>
                     <table>
                         <thead>
@@ -38,6 +42,7 @@
                                 <th>Type</th>
                                 <th>Planned</th>
                                 <th>Completed</th>
+                                <th>Rest</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -51,8 +56,9 @@
                                 </td>
                                 <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
                                 <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
+                                <td>{{ exercise.restDuration }}</td>
                                 <td>
-                                    <a href="#">Edit</a>
+                                    <a href="{{ path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id}) }}">Edit</a>
                                     <a href="{{ path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id}) }}">Delete</a>
                                 </td>
                             </tr>
@@ -70,6 +76,12 @@
             {% else %}
                 No exercises in this workout!
             {% endfor %}
+
+            <br />
+
+            <div>
+                <a href="{{ path('page_player_exercise_add', {workoutId: workout.id}) }}">Add Exercise</a>
+            </div>
         </div>
     </article>
     <aside>

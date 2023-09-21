@@ -19,7 +19,7 @@ final class ExerciseInWorkoutListPresenter implements ViewPresenterInterface
         $model->movementName = $DTO->movement->name;
 
         $model->setType = $DTO->setType;
-
+        $model->restDuration = ($DTO->restDuration ?? 0).'sec';
         $model->batchId = $DTO->batchId;
 
         $model->targetReps = ($DTO->targetReps ?? 0).'reps';

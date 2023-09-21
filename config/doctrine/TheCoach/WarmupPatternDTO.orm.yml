@@ -1,0 +1,16 @@
+App\Domain\DTO\TheCoach\WarmupPatternDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\TheCoach\WarmupPatternDTORepository
+  table: '`WARMUP_PATTERN`'
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    pattern:
+      type: string
+      nullable: false
+      unique: true

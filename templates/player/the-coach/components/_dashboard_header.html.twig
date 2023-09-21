@@ -1,12 +1,12 @@
 {% set current_path = app.request.get('_route') %}
-{% set history_path = 'page_player_coach_history' %}
-{% set planned_workouts_path = 'page_player_coach_planned_workouts' %}
+{% set history_path = 'page_player_workouts_history' %}
+{% set planned_workouts_path = 'page_player_workouts_planned' %}
 
 <ul>
     <li>
-        <a href="{{ path('page_player_coach_history') }}" title="">History {% if current_path == history_path %}#{% endif %}</a>
+        <a href="{{ path('page_player_workouts_history') }}" title="">History {% if current_path == history_path %}#{% endif %}</a>
     </li>
     <li>
-        <a href="{{ path('page_player_coach_planned_workouts') }}" title="">Planned workout(s){% if current_path == planned_workouts_path %}#{% endif %}</a>
+        <a href="{{ path('page_player_workouts_planned') }}" title="">Planned workout(s){% if current_path == planned_workouts_path %}#{% endif %}</a>
     </li>
 </ul>

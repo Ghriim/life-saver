@@ -2,7 +2,7 @@
     <header>
         <h3>
             <a href="{{ path('page_player_workout_details', {workoutId: workout.id}) }}" title="">
-                {{ workout.title }}
+                {{ workout.title }} <span>[{{ workout.status }}]</span>
             </a>
         </h3>
     </header>

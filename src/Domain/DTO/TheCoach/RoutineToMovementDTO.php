@@ -16,8 +16,8 @@ class RoutineToMovementDTO extends AbstractBaseDTO
     public int $numberOfSets = self::DEFAULT_NUMBER_OF_SETS;
 
     public ?int $targetRest;
-    public bool $generateWarmup = false;
 
     public RoutineDTO $routine;
     public MovementDTO $movement;
+    public ?WarmupPatternDTO $warmupPattern;
 }

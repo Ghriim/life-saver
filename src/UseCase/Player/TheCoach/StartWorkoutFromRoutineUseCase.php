@@ -5,6 +5,7 @@ namespace App\UseCase\Player\TheCoach;
 use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Domain\Gateway\Persister\TheCoach\WorkoutDTOPersisterGateway;
 use App\Domain\Gateway\Provider\TheCoach\RoutineDTOProviderGateway;
+use App\Domain\Registry\TheCoach\WorkoutStatusRegistry;
 use App\Infrastructure\Factory\DTOFactory\TheCoach\WorkoutDTOFactory;
 use App\UseCase\Player\TheCoach\Traits\CreateWorkoutTrait;
 use App\UseCase\UseCaseInterface;
@@ -30,6 +31,7 @@ final class StartWorkoutFromRoutineUseCase implements UseCaseInterface
         }
 
         $workout = $this->workoutDTOFactory->buildFromRoutine($routine);
+        $workout->status = WorkoutStatusRegistry::STATUS_IN_PROGRESS;
         $workout->startedDate = new \DateTimeImmutable();
 
         return $this->createWorkout($workout, $userId);

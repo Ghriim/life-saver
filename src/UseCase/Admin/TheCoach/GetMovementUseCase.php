@@ -3,8 +3,8 @@
 namespace App\UseCase\Admin\TheCoach;
 
 use App\Domain\Gateway\Provider\TheCoach\MovementDTOProviderGateway;
-use App\Infrastructure\View\ViewModel\Admin\TheCoach\MovementDetailsViewModel;
-use App\Infrastructure\View\ViewPresenter\Admin\TheCoach\MovementDetailsViewPresenter;
+use App\Infrastructure\View\ViewModel\TheCoach\MovementDetailsViewModel;
+use App\Infrastructure\View\ViewPresenter\TheCoach\MovementDetailsViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

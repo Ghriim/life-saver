@@ -75,14 +75,14 @@ final class AddMovementToRoutineFormType extends AbstractType
                     [
                         'attr' => ['min' => 1]
                     ]
-                )
-                ->add(
+                );
+                /*->add(
                     'generateWarmup',
                     CheckboxType::class,
                     [
                         'required' => false,
                     ]
-                );
+                )*/
     }
 
     public function configureOptions(OptionsResolver $resolver): void

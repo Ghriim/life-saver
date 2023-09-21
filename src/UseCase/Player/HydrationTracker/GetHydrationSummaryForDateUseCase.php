@@ -6,8 +6,8 @@ use App\Domain\DTO\HydrationTracker\HydrationSummaryDTO;
 use App\Domain\Gateway\Persister\HydrationTracker\HydrationSummaryDTOPersisterGateway;
 use App\Domain\Gateway\Provider\HydrationTracker\HydrationIntakeDTOProviderGateway;
 use App\Domain\Gateway\Provider\HydrationTracker\HydrationSummaryDTOProviderGateway;
-use App\Infrastructure\View\ViewModel\Player\HydrationTracker\HydrationSummaryDetailsViewModel;
-use App\Infrastructure\View\ViewPresenter\Player\HydrationTracker\HydrationSummaryDetailsViewPresenter;
+use App\Infrastructure\View\ViewModel\HydrationTracker\HydrationSummaryDetailsViewModel;
+use App\Infrastructure\View\ViewPresenter\HydrationTracker\HydrationSummaryDetailsViewPresenter;
 use App\UseCase\Player\HydrationTracker\Traits\ProvideHydrationSummaryTrait;
 use App\UseCase\UseCaseInterface;
 

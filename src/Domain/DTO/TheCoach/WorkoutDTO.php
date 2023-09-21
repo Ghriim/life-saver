@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 class WorkoutDTO extends AbstractBaseDTO
 {
     public string $title;
+    public string $status;
 
     public ?DateTimeImmutable $plannedDate = null;
     public ?DateTimeImmutable $startedDate = null;

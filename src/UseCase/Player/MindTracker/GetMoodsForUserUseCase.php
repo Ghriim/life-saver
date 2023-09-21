@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\MindTracker;
 
 use App\Domain\Gateway\Provider\MindTracker\MoodDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\MindTracker\MoodListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\MindTracker\MoodListViewPresenter;
 use App\UseCase\UseCaseInterface;
 use DateTimeImmutable;
 

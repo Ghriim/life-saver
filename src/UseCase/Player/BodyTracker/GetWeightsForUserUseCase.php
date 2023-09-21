@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\BodyTracker;
 
 use App\Domain\Gateway\Provider\BodyTracker\WeightDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\BodyTracker\WeightListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\BodyTracker\WeightListViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetWeightsForUserUseCase implements UseCaseInterface

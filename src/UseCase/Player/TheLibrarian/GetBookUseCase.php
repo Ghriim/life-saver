@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\TheLibrarian;
 
 use App\Domain\Gateway\Provider\TheLibrarian\BookDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\TheLibrarian\BookDetailsViewPresenter;
+use App\Infrastructure\View\ViewPresenter\TheLibrarian\BookDetailsViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

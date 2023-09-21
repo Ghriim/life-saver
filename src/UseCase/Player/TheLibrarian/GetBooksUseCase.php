@@ -6,7 +6,7 @@ use App\Domain\DTO\TheLibrarian\BookDTO;
 use App\Domain\Gateway\Persister\TheLibrarian\BookAuthorDTOPersisterGateway;
 use App\Domain\Gateway\Persister\TheLibrarian\BookDTOPersisterGateway;
 use App\Domain\Gateway\Provider\TheLibrarian\BookDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\TheLibrarian\BookListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\TheLibrarian\BookListViewPresenter;
 use App\UseCase\UseCaseInterface;
 use App\Infrastructure\HttpClient\OpenLibraryHttpClient;
 

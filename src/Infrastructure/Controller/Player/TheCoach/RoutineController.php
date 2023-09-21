@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class RoutineController extends AbstractPlayerController
 {
-    #[Route('/the-coach/routines', name: 'page_player_coach_routines', methods: ['GET'])]
+    #[Route('/the-coach/routines', name: 'page_player_routines', methods: ['GET'])]
     public function getRoutines(
         GetRoutinesUseCase $useCase
     ): Response {
@@ -22,7 +22,7 @@ final class RoutineController extends AbstractPlayerController
         );
     }
 
-    #[Route('/the-coach/routines/{routineId}', name: 'page_player_coach_routine', requirements: ['routineId' => '\d+'], methods: ['GET'])]
+    #[Route('/the-coach/routines/{routineId}', name: 'page_player_routine', requirements: ['routineId' => '\d+'], methods: ['GET'])]
     public function getRoutine(
         int $routineId,
         GetRoutineUseCase $useCase

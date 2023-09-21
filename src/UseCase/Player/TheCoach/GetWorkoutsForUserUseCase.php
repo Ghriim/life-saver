@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\TheCoach;
 
 use App\Domain\Gateway\Provider\TheCoach\WorkoutDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\TheCoach\WorkoutListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\TheCoach\WorkoutListViewPresenter;
 use App\UseCase\UseCaseInterface;
 use \DateTimeImmutable;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;

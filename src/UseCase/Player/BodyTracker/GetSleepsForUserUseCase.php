@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\BodyTracker;
 
 use App\Domain\Gateway\Provider\BodyTracker\SleepDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\BodyTracker\SleepListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\BodyTracker\SleepListViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetSleepsForUserUseCase implements UseCaseInterface

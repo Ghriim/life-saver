@@ -26,11 +26,32 @@
 
             <div>
                 {% for movement in routine.movements %}
-                    <article>
-                        <header>
-                            <h3>{{ movement.name }}</h3>
-                        </header>
-                    </article>
+                <article>
+                    <header>
+                        {{ movement.name }}
+                    </header>
+                    <div>
+                        <ul>
+                            {% for data in ['targetReps', 'targetWeight', 'targetDuration', 'targetDistance'] %}
+                                {% set dataValue = attribute(movement, data) %}
+                                {% if null != dataValue %}
+                                    <li>{{ data }}: {{ dataValue }}</li>
+                                {% endif %}
+                            {% endfor %}
+                            <li>
+                                rest: {{ movement.targetRest }}
+                            </li>
+                            <li>
+                                Number of Sets: {{ movement.numberOfSets }}
+                            </li>
+                            <li>
+                                Warmup: {{ movement.warmupPattern }}
+                            </li>
+                        </ul>
+                    </div>
+                    <footer>
+                    </footer>
+                </article>
                 {% endfor %}
             </div>
 

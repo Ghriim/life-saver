@@ -3,7 +3,7 @@
 namespace App\UseCase\Admin\TheCoach;
 
 use App\Domain\Gateway\Provider\TheCoach\MovementDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Admin\TheCoach\AdminMovementListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\TheCoach\AdminMovementListViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetMovementsUseCase implements UseCaseInterface

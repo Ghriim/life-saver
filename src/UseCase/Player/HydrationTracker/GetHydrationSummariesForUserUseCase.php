@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\HydrationTracker;
 
 use App\Domain\Gateway\Provider\HydrationTracker\HydrationSummaryDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\HydrationTracker\HydrationSummaryListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\HydrationTracker\HydrationSummaryListViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetHydrationSummariesForUserUseCase implements UseCaseInterface

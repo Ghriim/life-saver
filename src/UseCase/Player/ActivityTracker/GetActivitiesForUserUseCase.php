@@ -3,7 +3,7 @@
 namespace App\UseCase\Player\ActivityTracker;
 
 use App\Domain\Gateway\Provider\ActivityTracker\ActivityDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Player\ActivityTracker\ActivityListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\ActivityTracker\ActivityListViewPresenter;
 use App\UseCase\UseCaseInterface;
 use DateTimeImmutable;
 

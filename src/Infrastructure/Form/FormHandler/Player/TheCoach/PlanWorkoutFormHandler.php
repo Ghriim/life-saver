@@ -5,6 +5,7 @@ namespace App\Infrastructure\Form\FormHandler\Player\TheCoach;
 use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Domain\Gateway\Provider\TheCoach\RoutineDTOProviderGateway;
 use App\Domain\Gateway\Provider\TheCoach\WorkoutDTOProviderGateway;
+use App\Domain\Registry\TheCoach\WorkoutStatusRegistry;
 use App\Infrastructure\Factory\DTOFactory\TheCoach\WorkoutDTOFactory;
 use App\Infrastructure\Form\FormHandler\FormHandlerInterface;
 use App\Infrastructure\Form\FormHandler\FormWrapper;
@@ -49,7 +50,10 @@ final class PlanWorkoutFormHandler implements FormHandlerInterface
                 throw new NotFoundHttpException();
             }
 
-            return $this->factory->buildFromRoutine($routine);
+            $workout = $this->factory->buildFromRoutine($routine);
+            $workout->status = WorkoutStatusRegistry::STATUS_PLANNED;
+
+            return $workout;
         }
 
         $workout = $this->workoutDTOProviderGateway->getWorkoutById($request->attributes->get('workoutId'));

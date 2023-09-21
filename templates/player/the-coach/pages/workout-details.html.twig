@@ -13,7 +13,7 @@
                 {% endif %}
                 <li>Edit</li>
                 <li>
-                    <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_coach_planned_workouts'}) }}" title="">
+                    <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" title="">
                         Delete
                     </a>
                 </li>
@@ -26,30 +26,63 @@
             </h4>
         </div>
         <div>
-            {% for exercise in workout.exercises %}
+            {% for batch in workout.batches %}
                 <div>
-                    <h5>{{ exercise.movementName }}</h5>
+                    <h5>{{ batch.movementName }}</h5>
                     <ul>
-                        <li>Completed: {{ exercise.completedWeight }} x {{ exercise.completedReps }}</li>
-                        <li>Planned: {{ exercise.targetWeight }} x {{ exercise.targetReps }}</li>
+                        <li>Delete</li>
                     </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Planned</th>
+                                <th>Completed</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% set lastExerciseId = null %}
+                        {% for exercise in batch.exercises %}
+                            {% set lastExerciseId = exercise.id %}
+                            <tr>
+                                <td>
+                                    {{ exercise.setType }}
+                                </td>
+                                <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
+                                <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                    <a href="{{ path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id}) }}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <td colspan="4">
+                                    <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId}) }}">
+                                        Add set
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             {% else %}
                 No exercises in this workout!
             {% endfor %}
         </div>
     </article>
-        <aside>
-            <div>
-                <ul>
-                    <li>Planned: {{ workout.plannedDate ?? 'not yet!' }}</li>
-                    <li>Completed: {{ workout.completedDate ?? 'not yet!' }}</li>
-                </ul>
-            </div>
-        {% if workout.routineId is not null %}
-            <div>
-                    Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
-            </div>
-        {% endif %}
-        </aside>
+    <aside>
+        <div>
+            <ul>
+                <li>Planned: {{ workout.plannedDate ?? 'not yet!' }}</li>
+                <li>Completed: {{ workout.completedDate ?? 'not yet!' }}</li>
+            </ul>
+        </div>
+    {% if workout.routineId is not null %}
+        <div>
+                Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
+        </div>
+    {% endif %}
+    </aside>
 {% endblock %}

@@ -27,7 +27,7 @@ final class WorkoutController extends AbstractPlayerController
         );
     }
 
-    #[Route('/me/the-coach/workouts/history', name: 'page_player_coach_history', methods: ['GET'])]
+    #[Route('/me/the-coach/workouts/history', name: 'page_player_workouts_history', methods: ['GET'])]
     public function historyWorkouts(
         Request $request,
         GetWorkoutsForUserUseCase $useCase
@@ -46,7 +46,7 @@ final class WorkoutController extends AbstractPlayerController
         );
     }
 
-    #[Route('/me/the-coach/workouts/planned', name: 'page_player_coach_planned_workouts', methods: ['GET'])]
+    #[Route('/me/the-coach/workouts/planned', name: 'page_player_workouts_planned', methods: ['GET'])]
     public function plannedWorkouts(
         Request $request,
         GetWorkoutsForUserUseCase $useCase

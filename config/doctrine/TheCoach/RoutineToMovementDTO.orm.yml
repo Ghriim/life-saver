@@ -34,10 +34,6 @@ App\Domain\DTO\TheCoach\RoutineToMovementDTO:
       type: integer
       nullable: false
       unique: false
-    generateWarmup:
-      type: boolean
-      nullable: true
-      unique: false
 
   manyToOne:
     routine:
@@ -53,3 +49,9 @@ App\Domain\DTO\TheCoach\RoutineToMovementDTO:
         name: movementId
         referencedColumnName: id
         nullable: false
+    warmupPattern:
+      targetEntity: WarmupPatternDTO
+      joinColumn:
+        name: warmupPatternId
+        referencedColumnName: id
+        nullable: true

@@ -3,7 +3,7 @@
 namespace App\UseCase\Admin\TheCoach;
 
 use App\Domain\Gateway\Provider\TheCoach\EquipmentDTOProviderGateway;
-use App\Infrastructure\View\ViewPresenter\Admin\TheCoach\EquipmentListViewPresenter;
+use App\Infrastructure\View\ViewPresenter\TheCoach\EquipmentListViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetEquipmentsUseCase implements UseCaseInterface

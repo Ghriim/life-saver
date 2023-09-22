@@ -1,0 +1,21 @@
+{% extends 'player/base-player.html.twig' %}
+
+{% block page_content %}
+    <article>
+        <header>
+            <h3>
+                {{ workout.title }}
+            </h3>
+            <ul>
+                <li>Edit</li>
+                <li>
+                    <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" title="">
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, currentBatchId: currentBatchId} %}
+    </article>
+{% endblock %}

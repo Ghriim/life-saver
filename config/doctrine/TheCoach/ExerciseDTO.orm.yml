@@ -57,6 +57,12 @@ App\Domain\DTO\TheCoach\ExerciseDTO:
       type: string
       nullable: false
       unique: false
+    isCompleted:
+      type: boolean
+      nullable: false
+      unique: false
+      options:
+        default: false
 
   manyToOne:
     workout:

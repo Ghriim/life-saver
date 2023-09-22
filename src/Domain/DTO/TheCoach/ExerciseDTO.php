@@ -21,6 +21,7 @@ class ExerciseDTO extends AbstractBaseDTO
 
     public string $batchId;
     public string $setType = ExerciseSetTypeRegistry::SET_TYPE_WORK;
+    public bool $isCompleted = false;
 
     public MovementDTO $movement;
     public WorkoutDTO $workout;

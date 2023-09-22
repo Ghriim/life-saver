@@ -31,6 +31,7 @@ final class StartWorkoutFromRoutineUseCase implements UseCaseInterface
         }
 
         $workout = $this->workoutDTOFactory->buildFromRoutine($routine);
+
         $workout->status = WorkoutStatusRegistry::STATUS_IN_PROGRESS;
         $workout->startedDate = new \DateTimeImmutable();
 

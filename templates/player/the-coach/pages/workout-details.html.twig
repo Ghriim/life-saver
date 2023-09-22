@@ -1,7 +1,6 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-
     <article>
         <header>
             <h3>
@@ -20,69 +19,7 @@
             </ul>
         </header>
 
-        <div>
-            <h4>
-                Exercises
-            </h4>
-        </div>
-        <div>
-            {% for batch in workout.batches %}
-                <div>
-                    <h5>{{ batch.movementName }}</h5>
-                    <ul>
-                        <li>
-                            <a href="{{ path('page_player_exercise_delete_batch', {workoutId: workout.id, batchId: batch.batchId}) }}">
-                                Delete
-                            </a>
-                        </li>
-                    </ul>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Planned</th>
-                                <th>Completed</th>
-                                <th>Rest</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% set lastExerciseId = null %}
-                        {% for exercise in batch.exercises %}
-                            {% set lastExerciseId = exercise.id %}
-                            <tr>
-                                <td>
-                                    {{ exercise.setType }}
-                                </td>
-                                <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
-                                <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
-                                <td>{{ exercise.restDuration }}</td>
-                                <td>
-                                    <a href="{{ path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id}) }}">Edit</a>
-                                    <a href="{{ path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id}) }}">Delete</a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                            <tr>
-                                <td colspan="4">
-                                    <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId}) }}">
-                                        Add set
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            {% else %}
-                No exercises in this workout!
-            {% endfor %}
-
-            <br />
-
-            <div>
-                <a href="{{ path('page_player_exercise_add', {workoutId: workout.id}) }}">Add Exercise</a>
-            </div>
-        </div>
+        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout} %}
     </article>
     <aside>
         <div>

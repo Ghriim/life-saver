@@ -39,20 +39,23 @@
                                 {{ exercise.setType }}
                                 {% if currentExerciseId is defined and currentExerciseId == exercise.id%}
                                     <span>[CURRENT]</span>
+                                {% elseif exercise.isCompleted %}
+                                    <span>[completed]</span>
                                 {% endif %}
                             </td>
                             <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
                             <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
                             <td>{{ exercise.restDuration }}</td>
                             <td>
-                                <a href="{{ path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id}) }}">Edit</a>
-                                <a href="{{ path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id}) }}">Delete</a>
+                                <a href="{{ path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) }}">Edit</a>
+                                <a href="{{ path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) }}">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}
+
                     <tr>
                         <td colspan="4">
-                            <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId}) }}">
+                            <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId, redirect: redirectPostAction}) }}">
                                 Add set
                             </a>
                         </td>
@@ -67,7 +70,7 @@
         <br />
 
         <div>
-            <a href="{{ path('page_player_exercise_add', {workoutId: workout.id}) }}">Add Exercise</a>
+            <a href="{{ path('page_player_exercise_add', {workoutId: workout.id, redirect: redirectPostAction}) }}">Add Exercise</a>
         </div>
     </div>
 </div>

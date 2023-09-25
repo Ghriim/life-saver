@@ -8,6 +8,6 @@ final class WorkoutTrainViewModel implements ViewModelInterface
 {
     public WorkoutDetailsViewModel $workout;
 
-    public string $currentBatchId;
-    public int $currentExerciseId;
+    public ?string $currentBatchId;
+    public ?int $currentExerciseId;
 }

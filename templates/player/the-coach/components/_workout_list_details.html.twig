@@ -20,7 +20,11 @@
                 </li>
             {% endif %}
             {% if workout.status == constant('App\\Domain\\Registry\\TheCoach\\WorkoutStatusRegistry::STATUS_IN_PROGRESS') %}
-                <li>Resume</li>
+                <li>
+                    <a href="{{ path('page_player_workout_train', {workoutId: workout.id}) }}" title="">
+                        Resume
+                    </a>
+                </li>
             {% endif %}
             <li>Edit</li>
             <li>

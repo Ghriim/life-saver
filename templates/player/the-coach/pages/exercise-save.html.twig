@@ -9,61 +9,41 @@
 
     <br />
 
-    {% if form.targetReps is defined %}
-        <div>
-            Target Reps
-            {{ form_widget(form.targetReps) }}
-        </div>
-    {% endif %}
+    <div>
+        Target Reps
+        {{ form_widget(form.targetReps) }}
+    </div>
+    <div>
+        Target Weight
+        {{ form_widget(form.targetWeight) }}
+    </div>
+    <div>
+        Target Duration
+        {{ form_widget(form.targetDuration) }}
+    </div>
+    <div>
+        Target Distance
+        {{ form_widget(form.targetDistance) }}
+    </div>
 
-    {% if form.targetWeight is defined %}
-        <div>
-            Target Weight
-            {{ form_widget(form.targetWeight) }}
-        </div>
-    {% endif %}
+    <br />
 
-    {% if form.targetDuration is defined %}
-        <div>
-            Target Duration
-            {{ form_widget(form.targetDuration) }}
-        </div>
-    {% endif %}
-
-    {% if form.targetDistance is defined %}
-        <div>
-            Target Distance
-            {{ form_widget(form.targetDistance) }}
-        </div>
-    {% endif %}
-
-    {% if form.completedReps is defined %}
-        <div>
-            Completed Reps
-            {{ form_widget(form.completedReps) }}
-        </div>
-    {% endif %}
-
-    {% if form.completedWeight is defined %}
-        <div>
-            Completed Weight
-            {{ form_widget(form.completedWeight) }}
-        </div>
-    {% endif %}
-
-    {% if form.completedDuration is defined %}
-        <div>
-            Completed Duration
-            {{ form_widget(form.completedDuration) }}
-        </div>
-    {% endif %}
-
-    {% if form.completedDistance is defined %}
-        <div>
-            Completed Distance
-            {{ form_widget(form.completedDistance) }}
-        </div>
-    {% endif %}
+    <div>
+        Completed Reps
+        {{ form_widget(form.completedReps) }}
+    </div>
+    <div>
+        Completed Weight
+        {{ form_widget(form.completedWeight) }}
+    </div>
+    <div>
+        Completed Duration
+        {{ form_widget(form.completedDuration) }}
+    </div>
+    <div>
+        Completed Distance
+        {{ form_widget(form.completedDistance) }}
+    </div>
 
     <br />
 
@@ -81,7 +61,7 @@
 
     <div>
         <div>
-            <a href="{{ path('page_player_workout_details', {workoutId: workoutId}) }}" class="button cancel-color">Cancel</a>
+            <a href="{{ path('page_player_workout_details', {workoutId: workoutId, redirect: redirect}) }}" class="button cancel-color">Cancel</a>
             <button type="submit" class="button action-color">Save</button>
         </div>
     </div>

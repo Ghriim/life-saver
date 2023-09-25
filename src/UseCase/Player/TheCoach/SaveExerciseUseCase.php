@@ -21,6 +21,13 @@ final class SaveExerciseUseCase implements UseCaseInterface
             throw new AccessDeniedHttpException();
         }
 
+        if (null !== $exerciseDTO->completedWeight
+            || null !== $exerciseDTO->completedReps
+            || null !== $exerciseDTO->completedDistance
+            || null !== $exerciseDTO->completedDuration) {
+            $exerciseDTO->isCompleted = true;
+        }
+
         $this->persisterGateway->save($exerciseDTO);
 
         return $exerciseDTO;

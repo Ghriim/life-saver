@@ -27,4 +27,6 @@ final class ExerciseInWorkoutListViewModel implements ViewModelInterface
     public string $movementName;
 
     public string $batchId;
+
+    public bool $isCompleted;
 }

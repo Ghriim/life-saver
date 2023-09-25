@@ -36,55 +36,55 @@ final class SaveExerciseFormType extends AbstractType
             ]
         );
 
-        if (true === in_array($exercise->workout->status, WorkoutStatusRegistry::TARGET_DATA_EDITABLE)) {
-            $builder->add(
-                'targetReps',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'targetWeight',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'targetDuration',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'targetDistance',
-                IntegerType::class,
-                ['required' => false]
-            );
-        }
+        $targetEditable = (true === in_array($exercise->workout->status, WorkoutStatusRegistry::TARGET_DATA_EDITABLE));
+        $builder->add(
+            'targetReps',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$targetEditable]
+        )->add(
+            'targetWeight',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$targetEditable]
+        )->add(
+            'targetDuration',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$targetEditable]
+        )->add(
+            'targetDistance',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$targetEditable]
+        );
 
-        if (true === in_array($exercise->workout->status, WorkoutStatusRegistry::COMPLETED_DATA_EDITABLE)) {
-            $builder->add(
-                'completedReps',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'completedWeight',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'completedDuration',
-                IntegerType::class,
-                ['required' => false]
-            )->add(
-                'completedDistance',
-                IntegerType::class,
-                ['required' => false]
-            );
-        }
+        $completedEditable = (true === in_array($exercise->workout->status, WorkoutStatusRegistry::COMPLETED_DATA_EDITABLE));
+        $builder->add(
+            'completedReps',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$completedEditable]
+        )->add(
+            'completedWeight',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$completedEditable]
+        )->add(
+            'completedDuration',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$completedEditable]
+        )->add(
+            'completedDistance',
+            IntegerType::class,
+            ['required' => false, 'disabled' => !$completedEditable]
+        );
 
+        $isEditable = true === $targetEditable || true === $completedEditable;
         $builder->add(
             'restDuration',
             IntegerType::class,
-            ['required' => false]
+            ['required' => false, 'disabled' => !$isEditable]
         )->add(
             'setType',
             ChoiceType::class,
             [
                 'required' => true,
+                'disabled' => !$isEditable,
                 'choices' => [
                     ExerciseSetTypeRegistry::SET_TYPE_WORK => ExerciseSetTypeRegistry::SET_TYPE_WORK,
                     ExerciseSetTypeRegistry::SET_TYPE_WARMUP => ExerciseSetTypeRegistry::SET_TYPE_WARMUP,

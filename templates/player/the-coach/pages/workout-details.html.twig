@@ -4,11 +4,17 @@
     <article>
         <header>
             <h3>
-                {{ workout.title }}
+                {{ workout.title }}<span>[{{ workout.status }}]</span>
             </h3>
             <ul>
                 {% if workout.startedDate is null %}
-                    <li>Start</li>
+                    <li>
+                        <form action="{{ path('page_player_workout_start', {workoutId: workout.id}) }}" method="POST">
+                            <form action="{{ path('page_player_workout_start', {workoutId: workout.id}) }}" method="POST">
+                                <input type="submit" value="Start">
+                            </form>
+                        </form>
+                    </li>
                 {% endif %}
                 <li>Edit</li>
                 <li>
@@ -19,7 +25,7 @@
             </ul>
         </header>
 
-        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout} %}
+        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, redirectPostAction: 'page_player_workouts_details'} %}
     </article>
     <aside>
         <div>

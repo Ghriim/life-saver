@@ -15,12 +15,12 @@ final class WorkoutTrainViewPresenter implements ViewPresenterInterface
 
     }
 
-    public function present(WorkoutDTO $workoutDTO, ExerciseDTO $currentExercise): WorkoutTrainViewModel
+    public function present(WorkoutDTO $workoutDTO, ?ExerciseDTO $currentExercise): WorkoutTrainViewModel
     {
         $model = new WorkoutTrainViewModel();
         $model->workout = $this->workoutDetailsViewPresenter->present($workoutDTO);
-        $model->currentBatchId = $currentExercise->batchId;
-        $model->currentExerciseId = $currentExercise->id;
+        $model->currentBatchId = $currentExercise?->batchId;
+        $model->currentExerciseId = $currentExercise?->id;
 
         return $model;
     }

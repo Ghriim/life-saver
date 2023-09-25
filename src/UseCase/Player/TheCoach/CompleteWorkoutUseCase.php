@@ -2,14 +2,13 @@
 
 namespace App\UseCase\Player\TheCoach;
 
-use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Domain\Gateway\Persister\TheCoach\WorkoutDTOPersisterGateway;
 use App\Domain\Gateway\Provider\TheCoach\WorkoutDTOProviderGateway;
 use App\Domain\Registry\TheCoach\WorkoutStatusRegistry;
 use App\UseCase\Player\TheCoach\Traits\FetchWorkoutForAlterationTrait;
 use App\UseCase\UseCaseInterface;
 
-final class StartWorkoutUseCase implements UseCaseInterface
+final class CompleteWorkoutUseCase implements UseCaseInterface
 {
     use FetchWorkoutForAlterationTrait;
 
@@ -23,8 +22,8 @@ final class StartWorkoutUseCase implements UseCaseInterface
     {
         $workout = $this->fetchWorkout($workoutId, $userId);
 
-        $workout->status = WorkoutStatusRegistry::STATUS_IN_PROGRESS;
-        $workout->startedDate = new \DateTimeImmutable();
+        $workout->status = WorkoutStatusRegistry::STATUS_COMPLETED;
+        $workout->completedDate = new \DateTimeImmutable();
 
         $this->workoutDTOPersisterGateway->save($workout);
     }

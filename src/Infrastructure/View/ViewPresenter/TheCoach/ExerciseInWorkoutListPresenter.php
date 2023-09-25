@@ -28,6 +28,8 @@ final class ExerciseInWorkoutListPresenter implements ViewPresenterInterface
         $model->completedReps = ($DTO->completedReps ?? 0).'reps';
         $model->completedWeight = WeightViewFormatter::toKGStringFormat($DTO->completedWeight);
 
+        $model->isCompleted = $DTO->isCompleted;
+
         return $model;
     }
 }

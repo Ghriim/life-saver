@@ -9,6 +9,7 @@ final class WorkoutDetailsViewModel implements ViewModelInterface
 {
     public int $id;
     public string $title;
+    public string $status;
 
     public ?string $plannedDate;
     public ?string $startedDate;

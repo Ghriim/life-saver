@@ -32,6 +32,7 @@ final class ExerciseController extends AbstractPlayerController
         return $this->render(
             'player/the-coach/pages/exercise-save.html.twig',
             [
+                'redirect' => $request->get('redirect'),
                 'workoutId' => $workoutId,
                 'form' => $formHandler->getForm()->createView()
             ]

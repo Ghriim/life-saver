@@ -5,6 +5,7 @@ namespace App\Infrastructure\Controller\Player\TheCoach;
 use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\TheCoach\PlanWorkoutFormHandler;
+use App\UseCase\Player\TheCoach\CompleteWorkoutUseCase;
 use App\UseCase\Player\TheCoach\DeleteWorkoutUseCase;
 use App\UseCase\Player\TheCoach\GetWorkoutsForUserUseCase;
 use App\UseCase\Player\TheCoach\PlanWorkoutFromRoutineUseCase;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class WorkoutController extends AbstractPlayerController
 {
-    #[Route('/the-coach/workouts/{workoutId}', name: 'page_player_workout_details', requirements: ['workoutId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/the-coach/workouts/{workoutId}', name: 'page_player_workout_details', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
     public function getWorkout(
         int $workoutId,
         GetWorkoutUseCase $useCase
@@ -73,15 +74,14 @@ final class WorkoutController extends AbstractPlayerController
         Request $request,
         StartWorkoutUseCase $useCase,
     ): Response {
-        $workout = $useCase->execute($workoutId, $this->getCurrentUserId());
+        $useCase->execute($workoutId, $this->getCurrentUserId());
 
-        return $this->redirectTo($request,  'page_player_workout_train', ['workoutId' => $workout->id]);
+        return $this->redirectTo($request,  'page_player_workout_train', ['workoutId' => $workoutId]);
     }
 
     #[Route('/the-coach/workouts/{workoutId}/train', name: 'page_player_workout_train', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
     public function trainWorkout(
         int $workoutId,
-        Request $request,
         TrainWorkoutUseCase $useCase,
     ): Response {
         $model = $useCase->execute($workoutId, $this->getCurrentUserId());
@@ -99,12 +99,15 @@ final class WorkoutController extends AbstractPlayerController
     #[Route('/the-coach/workouts/{workoutId}/complete', name: 'page_player_workout_complete', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
     public function completeWorkout(
         int $workoutId,
-        Request $request
+        Request $request,
+        CompleteWorkoutUseCase $useCase,
     ): Response {
+        $useCase->execute($workoutId, $this->getCurrentUserId());
 
+        return $this->redirectTo($request,'page_player_workout_details', ['workoutId' => $workoutId]);
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_delete',  requirements: ['workoutId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_delete',  requirements: ['workoutId' => '\d+'], methods: ['POST'])]
     public function deleteWorkout(
         int $workoutId,
         Request $request,

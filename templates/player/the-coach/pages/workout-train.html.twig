@@ -9,13 +9,19 @@
             <ul>
                 <li>Edit</li>
                 <li>
-                    <a href="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" title="">
-                        Delete
-                    </a>
+                    <form action="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
                 </li>
             </ul>
         </header>
 
-        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, currentBatchId: currentBatchId} %}
+        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, currentBatchId: currentBatchId, redirectPostAction: 'page_player_workout_train'} %}
+
+        <div>
+            <form action="{{ path('page_player_workout_complete', {workoutId: workout.id}) }}" method="POST">
+                <input type="submit" value="Complete">
+            </form>
+        </div>
     </article>
 {% endblock %}

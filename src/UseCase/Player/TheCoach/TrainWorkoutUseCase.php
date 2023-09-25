@@ -24,7 +24,7 @@ final class TrainWorkoutUseCase implements UseCaseInterface
     {
         $workout = $this->fetchWorkout($workoutId, $userId);
 
-        $currentExercise = true === empty($workout->getExercises()) ?: $workout->getExercises()[0];
+        $currentExercise = null;
         foreach ($workout->getExercises() as $exercise) {
             if (false === $exercise->isCompleted) {
                 $currentExercise = $exercise;

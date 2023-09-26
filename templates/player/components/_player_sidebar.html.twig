@@ -1,0 +1,69 @@
+<div id="main-menu-player" class="bg-dark col-auto col-md-2 min-vh-100">
+    <nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
+        <div class="navbar-vertical-content scrollbar">
+            <ul class="navbar-nav flex-column mb-3 components">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('page_player_dashboard') }}" title="">
+                        <i class="fa-solid fa-display"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('page_player_activities_for_current_user') }}" title="">
+                        <i class="fa-solid fa-newspaper"></i> Activities
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="" title="">
+                        <i class="fa-solid fa-chart-line"></i> Tracker
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_moods_for_current_user') }}" title="">
+                                <i class="fa-solid fa-face-smile"></i> Mood
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_hydration_summaries_for_current_user') }}" title="">
+                                <i class="fa-solid fa-bottle-water"></i> Hydration
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_sleeps_for_current_user') }}" title="">
+                                <i class="fa-solid fa-moon"></i> Sleep
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_weights_for_current_user') }}" title="">
+                                <i class="fa-solid fa-weight-scale"></i> Weight
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="" title="">
+                        <i class="fa-solid fa-dumbbell"></i> The Coach
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_workouts_planned') }}" title="">Workouts</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_routines') }}" title="">Routines</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="" title="">
+                        <i class="fa-solid fa-book"></i> The Librarian
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="nav-link" href="{{ path('page_player_books') }}" title="">All Books</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <header id="main-menu-player" class="main-menu">
-        {% include 'player/components/_player_header.html.twig' %}
+    <header class="bg-dark row flex-nowrap sticky-top">
+        {% include 'player/components/_player_navbar.html.twig' %}
     </header>
 
-    <main id="main-wrap">
-        <div class="spacer"></div>
-        {% block page_content %}{% endblock %}
-    </main>
+    <div class="row flex-nowrap">
+        {% include 'player/components/_player_sidebar.html.twig' %}
+
+        <main class="col-auto">
+            <div class="spacer"></div>
+            {% block page_content %}{% endblock %}
+        </main>
+    </div>
 
     <footer id="main-footer-player" class="main-footer">
         {% include 'player/components/_player_footer.html.twig' %}

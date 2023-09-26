@@ -2,16 +2,19 @@
 
 namespace App\Infrastructure\Factory\DTOFactory\TheCoach;
 
-use App\Domain\DTO\TheCoach\ExerciseDTO;
-use App\Domain\DTO\TheCoach\MovementDTO;
+use App\Domain\DataTransformer\TheCoach\WarmupPatternDataTransformer;
 use App\Domain\DTO\TheCoach\RoutineDTO;
 use App\Domain\DTO\TheCoach\RoutineToMovementDTO;
 use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Infrastructure\Factory\DTOFactory\DTOFactoryInterface;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 
 final class WorkoutDTOFactory implements DTOFactoryInterface
 {
+    public function __construct(
+        private ExerciseDTOFactory $exerciseDTOFactory,
+    ) {
+
+    }
     public function buildFromRoutine(RoutineDTO $routine): WorkoutDTO
     {
         $workout = new WorkoutDTO();
@@ -31,8 +34,14 @@ final class WorkoutDTOFactory implements DTOFactoryInterface
     {
         foreach ($movements as $movement) {
             $batchId = uniqid();
+
+            $this->buildWarmUpSets($workout, $movement, $batchId);
+
             for ($i = 1; $i <= $movement->numberOfSets; $i++) {
-                $exercise = $this->buildExerciseFromMovement($movement, $batchId);
+                $exercise = $this->exerciseDTOFactory->buildExerciseFromMovement(
+                    $movement,
+                    $batchId
+                );
                 $exercise->workout = $workout;
 
                 $workout->addExercise($exercise);
@@ -41,21 +50,26 @@ final class WorkoutDTOFactory implements DTOFactoryInterface
         }
     }
 
-    private function buildExerciseFromMovement(RoutineToMovementDTO $movement, string $batchId): ExerciseDTO
+    private function buildWarmUpSets(WorkoutDTO $workout, RoutineToMovementDTO $movement, string $batchId): void
     {
-        $exercise = new ExerciseDTO();
-        $exercise->movement = $movement->movement;
+        $pattern = $movement->warmupPattern?->pattern;
+        if (null === $pattern) {
+            return;
+        }
 
-        $exercise->targetReps = $movement->targetReps;
-        $exercise->targetWeight = $movement->targetWeight;
-        $exercise->targetDuration = $movement->targetDuration;
-        $exercise->targetDistance = $movement->targetDistance;
+        $warmupConfigs = explode('||', $pattern);
+        foreach ($warmupConfigs as $warmupConfig) {
+            $setConfigs = WarmupPatternDataTransformer::patternToWeights($warmupConfig, $movement->targetWeight);
+            foreach ($setConfigs as $setConfig) {
+                $exercise = $this->exerciseDTOFactory->buildExerciseFromMovementForWarmup(
+                    $movement,
+                    $batchId,
+                    $setConfig
+                );
 
-        $exercise->batchId = $batchId;
-
-        $exercise->createDate = new \DateTimeImmutable();
-        $exercise->updateDate = new \DateTimeImmutable();
-
-        return $exercise;
+                $exercise->workout = $workout;
+                $workout->addExercise($exercise);
+            }
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Controller\Player\TheCoach;
 
-use App\Domain\DTO\TheCoach\WorkoutDTO;
 use App\Infrastructure\Controller\Player\AbstractPlayerController;
 use App\Infrastructure\Form\FormHandler\Player\TheCoach\PlanWorkoutFormHandler;
 use App\UseCase\Player\TheCoach\CompleteWorkoutUseCase;
@@ -22,7 +21,7 @@ final class WorkoutController extends AbstractPlayerController
     #[Route('/the-coach/workouts/{workoutId}', name: 'page_player_workout_details', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
     public function getWorkout(
         int $workoutId,
-        GetWorkoutUseCase $useCase
+        GetWorkoutUseCase $useCase,
     ): Response {
         return $this->render(
             'player/the-coach/pages/workout-details.html.twig',
@@ -107,17 +106,6 @@ final class WorkoutController extends AbstractPlayerController
         return $this->redirectTo($request,'page_player_workout_details', ['workoutId' => $workoutId]);
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_delete',  requirements: ['workoutId' => '\d+'], methods: ['POST'])]
-    public function deleteWorkout(
-        int $workoutId,
-        Request $request,
-        DeleteWorkoutUseCase $useCase): Response
-    {
-        $useCase->execute($workoutId, $this->getCurrentUserId());
-
-        return $this->redirectTo($request,'page_player_workout_plan_from_routine');
-    }
-
     #[Route('/the-coach/workouts/plan/{routineId}', name: 'page_player_workout_plan_from_routine', requirements: ['routineId' => '\d+'], methods: ['GET', 'POST'])]
     public function planWorkoutFromRoutine(
         Request $request,
@@ -143,5 +131,16 @@ final class WorkoutController extends AbstractPlayerController
         $workout = $useCase->execute($routineId, $this->getCurrentUserId());
 
         return $this->redirectTo($request,  'page_player_workout_details', ['workoutId' => $workout->id]);
+    }
+
+    #[Route('/the-coach/workouts/{workoutId}/delete', name: 'page_player_workout_delete',  requirements: ['workoutId' => '\d+'], methods: ['POST'])]
+    public function deleteWorkout(
+        int $workoutId,
+        Request $request,
+        DeleteWorkoutUseCase $useCase): Response
+    {
+        $useCase->execute($workoutId, $this->getCurrentUserId());
+
+        return $this->redirectTo($request,'page_player_workout_plan_from_routine');
     }
 }

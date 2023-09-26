@@ -39,7 +39,7 @@ final class ExerciseController extends AbstractPlayerController
         );
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/exercises/{exerciseId}/delete', name: 'page_player_exercise_delete', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['GET'])]
+    #[Route('/the-coach/workouts/{workoutId}/exercises/{exerciseId}/delete', name: 'page_player_exercise_delete', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['POST'])]
     public function deleteExercise(
         int $workoutId,
         int $exerciseId,
@@ -51,7 +51,7 @@ final class ExerciseController extends AbstractPlayerController
         return $this->redirectTo($request,'page_player_workout_details', ['workoutId' => $workoutId]);
     }
 
-    #[Route('/the-coach/workouts/{workoutId}/exercises/delete-batch/{batchId}', name: 'page_player_exercise_delete_batch', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
+    #[Route('/the-coach/workouts/{workoutId}/exercises/delete-batch/{batchId}', name: 'page_player_exercise_delete_batch', requirements: ['workoutId' => '\d+'], methods: ['DELETE'])]
     public function deleteBatchOfExercises(
         int $workoutId,
         string $batchId,

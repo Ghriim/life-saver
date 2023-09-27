@@ -1,37 +1,55 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    <article>
-        <header>
-            <h3>
-                {{ workout.title }}<span>[{{ workout.status }}]</span>
-            </h3>
-            <ul>
-                {% if workout.startedDate is null %}
-                    <li>
-                        {% include 'common/components/button/button-start.html.twig' with { action: path('page_player_workout_start', {workoutId: workout.id}) } %}
-                    </li>
-                {% endif %}
-                <li>Edit</li>
-                <li>
-                    {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) } %}
-                </li>
-            </ul>
-        </header>
+    <div class="row flex-nowrap">
+        <div class="col min-vh-100">
+            <div class="row">
+                <article class="card">
+                    <header class="card-header">
+                        <h3 class="card-title">
+                            {{ workout.title }}<span>[{{ workout.status }}]</span>
+                        </h3>
+                    </header>
 
-        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, redirectPostAction: 'page_player_workouts_details'} %}
-    </article>
-    <aside>
-        <div>
-            <ul>
-                <li>Planned: {{ workout.plannedDate ?? 'not yet!' }}</li>
-                <li>Completed: {{ workout.completedDate ?? 'not yet!' }}</li>
-            </ul>
+                    <div class="card-body">
+                        INFOS
+                    </div>
+
+                    <footer class="card-footer">
+                        <ul>
+                            {% if workout.startedDate is null %}
+                                <li>
+                                    {% include 'common/components/button/button-start.html.twig' with { action: path('page_player_workout_start', {workoutId: workout.id}) } %}
+                                </li>
+                            {% endif %}
+                            <li>Edit</li>
+                            <li>
+                                {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) } %}
+                            </li>
+                        </ul>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="row mt-3">
+                    {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, redirectPostAction: 'page_player_workouts_details'} %}
+            </div>
         </div>
-    {% if workout.routineId is not null %}
-        <div>
-                Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
+
+        <div class="col-2">
+            <aside class="card">
+                <div class="card-body">
+                    <ul>
+                        <li>Planned: {{ workout.plannedDate ?? 'not yet!' }}</li>
+                        <li>Completed: {{ workout.completedDate ?? 'not yet!' }}</li>
+                    </ul>
+                </div>
+                {% if workout.routineId is not null %}
+                    <div class="card-footer">
+                        Created from routine: {{ workout.routineTitle }} ({{ workout.routineId }})
+                    </div>
+                {% endif %}
+            </aside>
         </div>
-    {% endif %}
-    </aside>
+    </div>
 {% endblock %}

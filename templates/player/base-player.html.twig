@@ -5,10 +5,12 @@
         {% include 'player/components/_player_navbar.html.twig' %}
     </header>
 
-    <div class="row flex-nowrap">
-        {% include 'player/components/_player_sidebar.html.twig' %}
+    <div class="bg-dark row flex-nowrap">
+        <div class="bg-dark col-auto col-md-2 min-vh-100">
+            {% include 'player/components/_player_sidebar.html.twig' %}
+        </div>
 
-        <main class="col-auto">
+        <main class="col">
             <div class="spacer"></div>
             {% block page_content %}{% endblock %}
         </main>

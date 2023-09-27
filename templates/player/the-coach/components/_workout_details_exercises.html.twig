@@ -1,74 +1,89 @@
-<div>
-    <div>
-        <h4>
-            Exercises
-        </h4>
-    </div>
-    <div>
-        {% for batch in workout.batches %}
-            <div>
-                <h5>
-                    {{ batch.movementName }}
-                    {% if currentBatchId is defined and currentBatchId == batch.batchId %}
-                        <span>[CURRENT]</span>
-                    {% endif %}
-                </h5>
-                <ul>
-                    <li>
-                        {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_exercise_delete_batch', {workoutId: workout.id, batchId: batch.batchId}) } %}
-                    </li>
-                </ul>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Planned</th>
-                        <th>Completed</th>
-                        <th>Rest</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% set lastExerciseId = null %}
-                    {% for exercise in batch.exercises %}
-                        {% set lastExerciseId = exercise.id %}
-                        <tr>
-                            <td>
-                                {{ exercise.setType }}
-                                {% if currentExerciseId is defined and currentExerciseId == exercise.id%}
-                                    <span>[CURRENT]</span>
-                                {% elseif exercise.isCompleted %}
-                                    <span>[completed]</span>
-                                {% endif %}
-                            </td>
-                            <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
-                            <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
-                            <td>{{ exercise.restDuration }}</td>
-                            <td>
-                                {% include 'common/components/button/button-edit.html.twig' with { action: path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) } %}
-                                {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) } %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-
-                    <tr>
-                        <td colspan="4">
-                            <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId, redirect: redirectPostAction}) }}">
-                                Add set
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        {% else %}
-            No exercises in this workout!
-        {% endfor %}
-
-        <br />
+<article class="card">
+    <div class="card-body">
+        <header class="card-header">
+            <h4 class="card-title">
+                Exercises
+            </h4>
+        </header>
 
         <div>
-            <a href="{{ path('page_player_exercise_add', {workoutId: workout.id, redirect: redirectPostAction}) }}">Add Exercise</a>
+            {% for batch in workout.batches %}
+                <div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <h5>
+                                {{ batch.movementName }}
+                                {% if currentBatchId is defined and currentBatchId == batch.batchId %}
+                                    <span>[CURRENT]</span>
+                                {% endif %}
+                            </h5>
+                        </div>
+                        <div class="col-auto">
+                            {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_exercise_delete_batch', {workoutId: workout.id, batchId: batch.batchId}) } %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            PREVIEW
+                        </div>
+                        <div class="col">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Planned</th>
+                                    <th>Completed</th>
+                                    <th>Rest</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set lastExerciseId = null %}
+                                {% for exercise in batch.exercises %}
+                                    {% set lastExerciseId = exercise.id %}
+                                    <tr>
+                                        <td>
+                                            {{ exercise.setType }}
+                                            {% if currentExerciseId is defined and currentExerciseId == exercise.id%}
+                                                <span>[CURRENT]</span>
+                                            {% elseif exercise.isCompleted %}
+                                                <span>[completed]</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ exercise.targetWeight }} x {{ exercise.targetReps }}</td>
+                                        <td>{{ exercise.completedWeight }} x {{ exercise.completedReps }}</td>
+                                        <td>{{ exercise.restDuration }}</td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    {% include 'common/components/button/button-edit.html.twig' with { action: path('page_player_exercise_edit', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) } %}
+                                                </div>
+                                                <div class="col">
+                                                    {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_exercise_delete', {workoutId: workout.id, exerciseId: exercise.id, redirect: redirectPostAction}) } %}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="row mt-3">
+                                <a href="{{ path('page_player_exercise_duplicate', {workoutId: workout.id, exerciseId: lastExerciseId, redirect: redirectPostAction}) }}">
+                                    Add set
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                No exercises in this workout!
+            {% endfor %}
+
+            <br />
+
+            <div class="card-footer">
+                <a href="{{ path('page_player_exercise_add', {workoutId: workout.id, redirect: redirectPostAction}) }}">Add Exercise</a>
+            </div>
         </div>
     </div>
-</div>
+</article>

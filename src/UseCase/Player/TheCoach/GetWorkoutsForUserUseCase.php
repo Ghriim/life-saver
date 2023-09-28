@@ -29,8 +29,10 @@ final class GetWorkoutsForUserUseCase implements UseCaseInterface
             throw new BadRequestHttpException('Invalid "date" requested');
         }
 
+        $groupBy = WorkoutListViewPresenter::WORKOUTS_GROUP_BY_DAY;
         if (self::CONTEXT_SPECIFIC_DATE === $context) {
             $workouts = $this->workoutDTOGateway->getWorkoutsByUserIdForDate($userId, $date);
+            $groupBy = WorkoutListViewPresenter::WORKOUTS_GROUP_BY_HOUR;
         } elseif (self::CONTEXT_HISTORY === $context) {
             $workouts = $this->workoutDTOGateway->getWorkoutsHistoryByUserIdAndDate($userId, $date);
         } elseif (self::CONTEXT_PLANNED === $context) {
@@ -39,6 +41,6 @@ final class GetWorkoutsForUserUseCase implements UseCaseInterface
             throw new BadRequestHttpException('Invalid "context" requested');
         }
 
-        return $this->presenter->present($workouts);
+        return $this->presenter->present($workouts, $groupBy);
     }
 }

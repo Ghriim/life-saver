@@ -4,15 +4,31 @@
     </header>
 
     <div class="card-body">
-        <div class="row row-cols-2 g-4">
-            {% for workout in workouts %}
-                <div class="col">
-                    {% set context = workout.completedDate is null ? 'planned' : 'history' %}
-                    <article>
-                        {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: context} %}
-                    </article>
-                </div>
-            {% endfor %}
-        </div>
+        <table class="table table-striped">
+            <tbody>
+                {% for i in 6..22 %}
+                    <tr>
+                    <td>{{ i }}h</td>
+                    <td>
+                        {% if workoutGroups[i] is defined %}
+                            {% for workout in workoutGroups[i]  %}
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ path('page_player_workout_details', { workoutId: workout.id }) }}">
+                                            {{ workout.title }}
+                                        </a>
+                                    </div>
+                                    <div class="col-auto">
+                                        {% include 'common/components/button/button-start.html.twig' with { action: path('page_player_workout_start', { workoutId: workout.id }) } %}
+                                        {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_workout_delete', { workoutId: workout.id, redirect: 'page_player_dashboard' }) } %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>

@@ -19,8 +19,8 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col">
-            {% include 'player/dashboard/components/_dashboard-workouts.html.twig' with { workouts: workouts } %}
+        <div class="col-md-3">
+            {% include 'player/dashboard/components/_dashboard-workouts.html.twig' with { workoutGroups: workoutGroups } %}
         </div>
     </div>
 {% endblock %}

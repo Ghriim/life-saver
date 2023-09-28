@@ -28,7 +28,7 @@ final class DashboardUseCase implements UseCaseInterface
             'moods' => $this->moodsUseCase->execute($userId, $todayAsString),
             'hydrationSummary' => $this->hydrationUseCase->execute($userId, $todayAsString),
             'activities' => $this->activitiesUseCase->execute($userId, $todayAsString),
-            'workouts' => $this->workoutsForUserUseCase->execute($userId, GetWorkoutsForUserUseCase::CONTEXT_SPECIFIC_DATE, $todayAsString),
+            'workoutGroups' => $this->workoutsForUserUseCase->execute($userId, GetWorkoutsForUserUseCase::CONTEXT_SPECIFIC_DATE, $todayAsString),
         ];
     }
 }

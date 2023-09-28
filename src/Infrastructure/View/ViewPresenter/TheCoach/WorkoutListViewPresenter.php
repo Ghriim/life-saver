@@ -9,12 +9,15 @@ use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
 
 final class WorkoutListViewPresenter implements ViewPresenterInterface
 {
+    public const WORKOUTS_GROUP_BY_HOUR = 'hour';
+    public const WORKOUTS_GROUP_BY_DAY = 'day';
+
     /**
      * @param WorkoutDTO[] $DTOs
      *
      * @return WorkoutListViewModel[]
      */
-    public function present(array $DTOs): array
+    public function present(array $DTOs, ?string $groupBy = null): array
     {
         $models = [];
         foreach ($DTOs as $DTO) {
@@ -25,9 +28,22 @@ final class WorkoutListViewPresenter implements ViewPresenterInterface
             $model->plannedDate = DateTimeViewFormatter::toStringFormat($DTO->plannedDate);
             $model->completedDate = DateTimeViewFormatter::toStringFormat($DTO->completedDate);
 
-            $models[] = $model;
+            $models[$this->computeGroupKey($DTO, $groupBy)][] = $model;
         }
 
         return $models;
+    }
+
+    private function computeGroupKey(WorkoutDTO $DTO, ?string $groupBy): string
+    {
+        if (self::WORKOUTS_GROUP_BY_HOUR === $groupBy) {
+            return $DTO->plannedDate->format('H');
+        }
+
+        if (self::WORKOUTS_GROUP_BY_DAY === $groupBy) {
+            return $DTO->plannedDate->format('Y-m-d');
+        }
+
+        return 'all';
     }
 }

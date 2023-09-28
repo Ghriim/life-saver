@@ -1,16 +1,12 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    <div>
-        <header>
-            {% include 'player/the-coach/components/_dashboard_header.html.twig' %}
-        </header>
-
-        <div>
-            {% for routine in routines %}
-                <article>
-                    <header>
-                        <h3>
+    <div class="row row-cols-3 g-4">
+        {% for routine in routines %}
+            <div class="col">
+                <article class="card">
+                    <header class="card-header">
+                        <h3 class="card-title">
                             <a href="{{ path('page_player_routine', {'routineId': routine.id}) }}" title="">
                                 {{ routine.title }}
                             </a>
@@ -19,22 +15,18 @@
                     <div>
 
                     </div>
-                    <footer>
-                        <ul>
-                            <li>
+                    <footer class="card-footer">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
                                 <form action="{{ path('page_player_workout_plan_from_routine', {routineId: routine.id}) }}" method="get">
                                     <input type="submit" value="Plan">
                                 </form>
-                            </li>
-                            <li>
-                                <form action="{{ path('page_player_workout_start_from_routine', {routineId: routine.id}) }}" method="post">
-                                    <input type="submit" value="Start">
-                                </form>
-                            </li>
-                        </ul>
+                                {% include 'common/components/button/button-start.html.twig' with { action: path('page_player_workout_start_from_routine', {routineId: routine.id}) } %}
+                            </div>
+                        </div>
                     </footer>
                 </article>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

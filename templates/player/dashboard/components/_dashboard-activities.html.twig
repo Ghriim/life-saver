@@ -1,7 +1,19 @@
-<h3>Activity</h3>
-<a href="{{ path('page_player_activity_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Activity</a>
-{% for activity in activities %}
-    <article>
-        {{ activity.title }}
-    </article>
-{% endfor %}
+<div class="card">
+    <header class="card-header">
+        <h3 class="card-title">
+            Activity
+        </h3>
+    </header>
+    <div class="card-body">
+        {% for activity in activities %}
+            <article>
+                {{ activity.title }}
+            </article>
+        {% else %}
+            No activity logged for now.
+        {% endfor %}
+    </div>
+    <footer class="card-footer">
+        <a href="{{ path('page_player_activity_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Activity</a>
+    </footer>
+</div>

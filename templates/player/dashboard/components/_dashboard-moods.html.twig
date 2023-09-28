@@ -1,7 +1,21 @@
-<h3>Moods</h3>
-<a href="{{ path('page_player_mood_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Mood</a>
-{% for mood in moods %}
-    <article>
-        {{ mood.level }} - {{ mood.description }}
-    </article>
-{% endfor %}
+<div class="card h-100">
+    <header class="card-header">
+        <h3 class="card-title">
+            Moods
+        </h3>
+    </header>
+
+    <div class="card-body">
+        {% for mood in moods %}
+            <article>
+                {{ mood.level }} - {{ mood.description }}
+            </article>
+        {% else %}
+            <em>No mood logged for now.</em>
+        {% endfor %}
+    </div>
+
+    <footer class="card-footer">
+        <a href="{{ path('page_player_mood_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Mood</a>
+    </footer>
+</div>

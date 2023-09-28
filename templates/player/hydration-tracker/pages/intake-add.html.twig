@@ -1,14 +1,29 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    {{ form_start(form) }}
-    <div>
-        Volume
-        {{ form_widget(form.volume) }}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <header class="card-header">
+                    <h3 class="card-title">Add water intake</h3>
+                </header>
+                {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="row">
+                        Volume (mL)
+                        {{ form_widget(form.volume) }}
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <a href="{{ path('page_player_current_user_hydration_summary_for_date', {date: date}) }}" class="button cancel-color">Cancel</a>
+                            <button type="submit" class="button action-color">Save</button>
+                        </div>
+                    </div>
+                </footer>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
-    <div>
-        <a href="{{ path('page_player_current_user_hydration_summary_for_date', {date: date}) }}" class="button cancel-color">Cancel</a>
-        <button type="submit" class="button action-color">Save</button>
-    </div>
-    {{ form_end(form) }}
 {% endblock %}

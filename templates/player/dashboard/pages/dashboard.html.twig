@@ -1,19 +1,26 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    <div>
-        {% include 'player/dashboard/components/_dashboard-hydration-summary.html.twig' with { hydrationSummary: hydrationSummary } %}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-6">
+                    {% include 'player/dashboard/components/_dashboard-hydration-summary.html.twig' with { hydrationSummary: hydrationSummary } %}
+                </div>
+                <div class="col">
+                    {% include 'player/dashboard/components/_dashboard-moods.html.twig' with { moods: moods } %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            {% include 'player/dashboard/components/_dashboard-activities.html.twig' with { activities: activities } %}
+        </div>
     </div>
 
-    <div>
-        {% include 'player/dashboard/components/_dashboard-moods.html.twig' with { moods: moods } %}
-    </div>
-
-    <div>
-        {% include 'player/dashboard/components/_dashboard-activities.html.twig' with { activities: activities } %}
-    </div>
-
-    <div>
-        {% include 'player/dashboard/components/_dashboard-workouts.html.twig' with { workouts: workouts } %}
+    <div class="row mt-3">
+        <div class="col">
+            {% include 'player/dashboard/components/_dashboard-workouts.html.twig' with { workouts: workouts } %}
+        </div>
     </div>
 {% endblock %}

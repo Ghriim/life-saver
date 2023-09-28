@@ -64,6 +64,7 @@ final class WorkoutDTORepository extends ServiceEntityRepository implements Work
                     ->andWhere('workout.plannedDate >= :date')
                     ->setParameter('date', $date)
                     ->andWhere('workout.startedDate IS NULL and workout.completedDate IS NULL')
+                    ->orderBy('workout.plannedDate')
                     ->getQuery()
                     ->getResult();
     }
@@ -82,6 +83,7 @@ final class WorkoutDTORepository extends ServiceEntityRepository implements Work
             ))
             ->setParameter('startDate', $beginningOfTheDay)
             ->setParameter('endDate', $endOfTheDay)
+            ->orderBy('workout.plannedDate')
             ->getQuery()->getResult();
     }
 

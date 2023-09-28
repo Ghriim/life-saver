@@ -22,6 +22,7 @@ final class WorkoutListViewPresenter implements ViewPresenterInterface
             $model->id = $DTO->id;
             $model->title = $DTO->title;
             $model->status = $DTO->status;
+            $model->plannedDate = DateTimeViewFormatter::toStringFormat($DTO->plannedDate);
             $model->completedDate = DateTimeViewFormatter::toStringFormat($DTO->completedDate);
 
             $models[] = $model;

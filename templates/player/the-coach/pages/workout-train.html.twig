@@ -1,27 +1,42 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    <article>
-        <header>
-            <h3>
-                {{ workout.title }}
-            </h3>
-            <ul>
-                <li>Edit</li>
-                <li>
-                    <form action="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" method="POST">
-                        <input type="submit" value="Delete">
-                    </form>
-                </li>
-            </ul>
-        </header>
+    <div class="row flex-nowrap">
+        <div class="col min-vh-100">
+            <div class="row">
+                <article class="card">
+                    <header class="card-header">
+                        <h3 class="card-title">
+                            {{ workout.title }}
+                        </h3>
+                    </header>
 
-        {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, currentBatchId: currentBatchId, redirectPostAction: 'page_player_workout_train'} %}
+                    <div class="card-body">
+                        INFOS
+                    </div>
 
-        <div>
-            <form action="{{ path('page_player_workout_complete', {workoutId: workout.id}) }}" method="POST">
-                <input type="submit" value="Complete">
-            </form>
+                    <footer class="card-footer">
+                        <ul>
+                            <li>Edit</li>
+                            <li>
+                                <form action="{{ path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) }}" method="POST">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </li>
+                        </ul>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="row mt-3">
+                {% include 'player/the-coach/components/_workout_details_exercises.html.twig' with {workout: workout, currentBatchId: currentBatchId, redirectPostAction: 'page_player_workout_train'} %}
+            </div>
+
+            <div class="row mt-3">
+                <form action="{{ path('page_player_workout_complete', {workoutId: workout.id}) }}" method="POST">
+                    <input type="submit" value="Complete">
+                </form>
+            </div>
         </div>
-    </article>
+    </div>
 {% endblock %}

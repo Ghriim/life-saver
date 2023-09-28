@@ -15,18 +15,20 @@
                         INFOS
                     </div>
 
-                    <footer class="card-footer">
-                        <ul>
+                    <footer class="card-footer text-center">
+                        <div class="row justify-content-md-center">
                             {% if workout.startedDate is null %}
-                                <li>
+                                <div class="col col-lg-1">
                                     {% include 'common/components/button/button-start.html.twig' with { action: path('page_player_workout_start', {workoutId: workout.id}) } %}
-                                </li>
+                                </div>
                             {% endif %}
-                            <li>Edit</li>
-                            <li>
+                            <div class="col col-lg-1">
+                                Edit
+                            </div>
+                            <div class="col col-lg-1">
                                 {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_workout_delete', {workoutId: workout.id, redirect: 'page_player_workouts_planned'}) } %}
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </footer>
                 </article>
             </div>

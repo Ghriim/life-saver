@@ -1,7 +1,18 @@
-<h3>Workouts</h3>
-{% for workout in workouts %}
-    {% set context = workout.completedDate is null ? 'planned' : 'history' %}
-    <article>
-        {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: context} %}
-    </article>
-{% endfor %}
+<div class="card">
+    <header class="card-header">
+        <h3 class="card-title">Workout(s) of the day</h3>
+    </header>
+
+    <div class="card-body">
+        <div class="row row-cols-2 g-4">
+            {% for workout in workouts %}
+                <div class="col">
+                    {% set context = workout.completedDate is null ? 'planned' : 'history' %}
+                    <article>
+                        {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: context} %}
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

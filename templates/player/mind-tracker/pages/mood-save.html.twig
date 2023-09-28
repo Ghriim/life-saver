@@ -1,18 +1,34 @@
 {% extends 'player/base-player.html.twig' %}
 
 {% block page_content %}
-    {{ form_start(form) }}
-        <div>
-            Level
-            {{ form_widget(form.level) }}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <header class="card-header">
+                    <h3 class="card-title">Save mood</h3>
+                </header>
+                {{ form_start(form) }}
+                    <div class="card-body">
+                        <div class="row">
+                            Level
+                            {{ form_widget(form.level) }}
+                        </div>
+                        <div class="row">
+                            Description
+                            {{ form_widget(form.description) }}
+                        </div>
+                    </div>
+
+                    <footer class="card-footer">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                    <a href="{{ path('page_player_moods_for_current_user') }}" class="button cancel-color">Cancel</a>
+                                    <button type="submit" class="button action-color">Save</button>
+                                </div>
+                        </div>
+                    </footer>
+                {{ form_end(form) }}
+            </div>
         </div>
-        <div>
-            Description
-            {{ form_widget(form.description) }}
-        </div>
-        <div>
-            <a href="{{ path('page_player_moods_for_current_user') }}" class="button cancel-color">Cancel</a>
-            <button type="submit" class="button action-color">Save</button>
-        </div>
-    {{ form_end(form) }}
+    </div>
 {% endblock %}

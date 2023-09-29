@@ -11,8 +11,19 @@
         <h3>
             Workouts history
         </h3>
-        {% for workout in workouts %}
-            {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: 'history'} %}
-        {% endfor %}
+
+        <div class="row row-cols-1 row-cols-md-6">
+            {% for i in 1..31 %}
+                <div class="col p-0 min-vh-10">
+                    <div class="card h-100">{{ i }}
+                        {% if workoutGroups[i] is defined %}
+                            {% for workout in workoutGroups[i]  %}
+                                {% include 'player/the-coach/components/_workout_list_details.html.twig' with {workout: workout, context: 'history'} %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

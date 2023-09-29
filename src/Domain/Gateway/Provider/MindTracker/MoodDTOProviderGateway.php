@@ -7,7 +7,9 @@ use DateTimeImmutable;
 
 interface MoodDTOProviderGateway
 {
-    public function getMoodById(int $sleepId): ?MoodDTO;
+    public function getMoodById(int $moodId): ?MoodDTO;
+
+    public function getLastMoodOfDateByUserId(int $userId, DateTimeImmutable $date): ?MoodDTO;
 
     /**
      * @return MoodDTO[]

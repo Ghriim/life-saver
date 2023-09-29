@@ -41,7 +41,7 @@ final class WorkoutListViewPresenter implements ViewPresenterInterface
         }
 
         if (self::WORKOUTS_GROUP_BY_DAY === $groupBy) {
-            return $DTO->plannedDate->format('Y-m-d');
+            return $DTO->plannedDate->format('d');
         }
 
         return 'all';

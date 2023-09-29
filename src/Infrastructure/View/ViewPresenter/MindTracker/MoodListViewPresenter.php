@@ -17,7 +17,7 @@ final class MoodListViewPresenter implements ViewPresenterInterface
     public function present(array $DTOs): array
     {
         $models = [];
-        foreach ( $DTOs as $DTO) {
+        foreach ($DTOs as $DTO) {
             $model = new MoodListViewModel();
             $model->id = $DTO->id;
             $model->level = $DTO->level;

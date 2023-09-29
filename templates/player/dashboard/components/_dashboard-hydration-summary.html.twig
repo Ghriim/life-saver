@@ -1,29 +1,11 @@
 <div class="card h-100">
     <header class="card-header">
-        <h3 class="card-title">
-            <div class="row">
-                <div class="col">
-                    Hydration
-                </div>
-                <div class="col-auto">
-                    {{ hydrationSummary.dailyProgress }} / {{ hydrationSummary.dailyGoal }}L ({{ hydrationSummary.completion }})
-                </div>
-            </div>
-        </h3>
+        <h5 class="card-title">
+            Hydration
+        </h5>
     </header>
     <div class="card-body">
-        {% for intake in hydrationSummary.intakes %}
-            <article class="row mt-1">
-                <div class="col-auto">
-                    {{ intake.volume }}mL <em>at {{ intake.added }}</em>
-                </div>
-                <div class="col-auto">
-                    {% include 'common/components/button/button-delete.html.twig' with { action: path('page_player_hydration_intake_delete_for_today', {intakeId: intake.id, redirect: 'page_player_dashboard'}) } %}
-                </div>
-            </article>
-        {% else %}
-            <em>No intake logged for now.</em>
-        {% endfor %}
+        {{ hydrationSummary.dailyProgress }} / {{ hydrationSummary.dailyGoal }}L ({{ hydrationSummary.completion }})
     </div>
     <footer class="card-footer">
         <a href="{{ path('page_player_hydration_intake_for_today', {redirect: 'page_player_dashboard'}) }}" title="">Add Water Intake</a>

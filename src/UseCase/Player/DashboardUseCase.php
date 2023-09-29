@@ -4,7 +4,7 @@ namespace App\UseCase\Player;
 
 use App\UseCase\Player\ActivityTracker\GetActivitiesForUserUseCase;
 use App\UseCase\Player\HydrationTracker\GetHydrationSummaryForDateUseCase;
-use App\UseCase\Player\MindTracker\GetMoodsForUserUseCase;
+use App\UseCase\Player\MindTracker\GetLastMoodOfDateForUserUseCase;
 use App\UseCase\Player\TheCoach\GetWorkoutsForUserUseCase;
 use App\UseCase\UseCaseInterface;
 use DateTimeImmutable;
@@ -12,7 +12,7 @@ use DateTimeImmutable;
 final class DashboardUseCase implements UseCaseInterface
 {
     public function __construct(
-        private GetMoodsForUserUseCase $moodsUseCase,
+        private GetLastMoodOfDateForUserUseCase $moodUseCase,
         private GetHydrationSummaryForDateUseCase $hydrationUseCase,
         private GetActivitiesForUserUseCase $activitiesUseCase,
         private GetWorkoutsForUserUseCase $workoutsForUserUseCase,
@@ -25,8 +25,8 @@ final class DashboardUseCase implements UseCaseInterface
         $todayAsString = $today->format('Y-m-d');
 
         return [
-            'moods' => $this->moodsUseCase->execute($userId, $todayAsString),
             'hydrationSummary' => $this->hydrationUseCase->execute($userId, $todayAsString),
+            'mood' => $this->moodUseCase->execute($userId, $today),
             'activities' => $this->activitiesUseCase->execute($userId, $todayAsString),
             'workoutGroups' => $this->workoutsForUserUseCase->execute($userId, GetWorkoutsForUserUseCase::CONTEXT_SPECIFIC_DATE, $todayAsString),
         ];

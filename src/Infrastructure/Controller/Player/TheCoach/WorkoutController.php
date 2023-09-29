@@ -44,7 +44,7 @@ final class WorkoutController extends AbstractPlayerController
 
         return $this->render(
             'player/the-coach/pages/workouts-history.html.twig',
-            ['workouts' => $workouts]
+            ['workoutGroups' => $workouts]
         );
     }
 

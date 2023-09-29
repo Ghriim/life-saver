@@ -12,14 +12,14 @@ use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
 
 final class HydrationSummaryDetailsViewPresenter implements ViewPresenterInterface
 {
-    public function present(HydrationSummaryDTO $DTO, array $intakes): HydrationSummaryDetailsViewModel
+    public function present(HydrationSummaryDTO $DTO, ?array $intakes): HydrationSummaryDetailsViewModel
     {
         $model = new HydrationSummaryDetailsViewModel();
         $model->dailyGoal = $DTO->dailyGoal;
         $model->dailyProgress = $DTO->dailyProgress;
         $model->completion = PercentageViewFormatter::toStringFormat($DTO->dailyProgress, $DTO->dailyGoal);
         $model->added = DateTimeViewFormatter::toStringFormat($DTO->createDate, true);
-        $model->intakes = $this->computeIntakes($intakes);
+        $model->intakes = $this->computeIntakes($intakes ?? []);
 
         return $model;
     }

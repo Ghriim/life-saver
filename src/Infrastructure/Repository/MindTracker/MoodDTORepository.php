@@ -55,4 +55,16 @@ final class MoodDTORepository extends ServiceEntityRepository implements MoodDTO
                     ->orderBy('mood.createDate', Criteria::DESC)
                     ->getQuery()->getResult();
     }
+
+    public function getLastMoodOfDateByUserId(int $userId, DateTimeImmutable $date): ?MoodDTO
+    {
+        $queryBuilder = $this->createQueryBuilder('mood')
+                             ->andWhere('mood.userId = :userId')
+                             ->setParameter('userId', $userId);
+
+        return $this->addCriteriaDate($queryBuilder, $date, 'mood')
+                    ->orderBy('mood.createDate', Criteria::DESC)
+                    ->setMaxResults(1)
+                    ->getQuery()->getOneOrNullResult();
+    }
 }

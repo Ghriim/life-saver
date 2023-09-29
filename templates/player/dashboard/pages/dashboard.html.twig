@@ -4,11 +4,14 @@
     <div class="row">
         <div class="col">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     {% include 'player/dashboard/components/_dashboard-hydration-summary.html.twig' with { hydrationSummary: hydrationSummary } %}
                 </div>
+                <div class="col-md-3">
+                    {% include 'player/dashboard/components/_dashboard-mood.html.twig' with { mood: mood } %}
+                </div>
                 <div class="col">
-                    {% include 'player/dashboard/components/_dashboard-moods.html.twig' with { moods: moods } %}
+                    {% include 'player/dashboard/components/_dashboard-sleeps.html.twig' %}
                 </div>
             </div>
         </div>

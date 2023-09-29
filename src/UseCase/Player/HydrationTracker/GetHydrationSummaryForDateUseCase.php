@@ -34,8 +34,6 @@ final class GetHydrationSummaryForDateUseCase implements UseCaseInterface
             $this->summaryPersister->save($summary);
         }
 
-        $intakes = $this->intakeProviderGateway->getHydrationIntakesBySummary($summary);
-
-        return  $this->presenter->present($summary, $intakes);
+        return  $this->presenter->present($summary, null);
     }
 }

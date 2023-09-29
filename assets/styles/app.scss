@@ -5,10 +5,37 @@ body {
     background-color: lightgray;
 }
 
+.container {
+    position: relative;
+    max-width: 1480px;
+}
+
+.navbar-vertical.navbar-expand-xl {
+    max-width: 12.625rem;
+    top: 0;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar-vertical.navbar-expand-xl + .content {
+   margin-left: 15.625rem;
+}
+
+.content {
+    min-height: 100vh;
+    position: relative;
+}
+
 #main-navbar-player a, #main-menu-player a {
-    color: lightseagreen;
+}
+
+.bg-light-blue {
+    background-color: rgb(233, 240, 253);
 }
 
 .card {
-    border-radius: 0;
+    border-radius: 5px;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(65, 69, 88, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px;
 }

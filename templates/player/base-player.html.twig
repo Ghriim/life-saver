@@ -1,22 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <header class="bg-white row flex-nowrap sticky-top">
-        {% include 'player/components/_player_navbar.html.twig' %}
-    </header>
-
-    <div class="bg-white row flex-nowrap">
-        <div class=" col-auto col-md-2 min-vh-100">
-            {% include 'player/components/_player_sidebar.html.twig' %}
+    <div class="row">
+        <div class="col-auto">
+            <nav class="min-vh-100 sticky-top">
+                {% include 'player/components/_player_sidebar.html.twig' %}
+            </nav>
         </div>
 
-        <main class="col">
-            <div class="spacer"></div>
-            {% block page_content %}{% endblock %}
-        </main>
-    </div>
+        <div class="col">
+            <div class="bg-light-blue row flex-nowrap">
+                <main class="col">
+                    <header class="bg-light-blue row flex-nowrap sticky-top">
+                        {% include 'player/components/_player_navbar.html.twig' %}
+                    </header>
 
-    <footer id="main-footer-player" class="main-footer">
-        {% include 'player/components/_player_footer.html.twig' %}
-    </footer>
+                    <div class="spacer"></div>
+
+                    {% block page_content %}{% endblock %}
+                </main>
+            </div>
+
+            <footer id="main-footer-player" class="main-footer">
+                {% include 'player/components/_player_footer.html.twig' %}
+            </footer>
+        </div>
+    </div>
 {% endblock %}

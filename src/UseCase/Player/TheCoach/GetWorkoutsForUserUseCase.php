@@ -21,7 +21,7 @@ final class GetWorkoutsForUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId, string $context, ?\DateTimeImmutable $date): array
+    public function execute(int $userId, string $context, \DateTimeImmutable $date): array
     {
         $groupBy = WorkoutListViewPresenter::WORKOUTS_GROUP_BY_DAY;
         if (self::CONTEXT_SPECIFIC_DATE === $context) {

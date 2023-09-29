@@ -39,7 +39,7 @@ final class WorkoutController extends AbstractPlayerController
         $workouts = $useCase->execute(
             $this->getCurrentUserId(),
             GetWorkoutsForUserUseCase::CONTEXT_HISTORY,
-            $date,
+            new \DateTimeImmutable($date)
         );
 
         return $this->render(
@@ -58,7 +58,7 @@ final class WorkoutController extends AbstractPlayerController
         $workouts = $useCase->execute(
             $this->getCurrentUserId(),
             GetWorkoutsForUserUseCase::CONTEXT_PLANNED,
-            $date
+            new \DateTimeImmutable($date)
         );
 
         return $this->render(

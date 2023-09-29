@@ -5,9 +5,21 @@
         </h5>
     </header>
     <div class="card-body">
-        Sleep list of the week
+        {% for date, sleep in sleepGroups %}
+            <div>
+                <h5>{{ date }}</h5>
+                {% if sleep.id is not null %}
+                    <div>
+                        Duration: {{ sleep.duration }}
+                    </div>
+                {% else %}
+                    <em>Sleep not logged.</em>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
     <footer class="card-footer">
         <a href="{{ path('page_player_sleep_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Sleep</a>
+        <a href="{{ path('page_player_sleeps_for_current_user') }}" title="">See details</a>
     </footer>
 </div>

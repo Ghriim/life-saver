@@ -4,27 +4,37 @@
     <div>
         <a href="{{ path('page_player_sleep_add') }}" title="">Add new Sleep</a>
     </div>
-    {% for sleep in sleeps %}
-        <article>
-            <ul>
-                <li>
-                    <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">
-                        Id: {{ sleep.id }}</a>
-                </li>
-                <li>In bed: {{ sleep.inBed }}</li>
-                <li>Out of bed: {{ sleep.outOfBed }}</li>
-                <li>Duration: {{ sleep.duration }}</li>
-                <li>
-                    <ul>
-                        <li>
-                            <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('page_player_sleep_delete', {sleepId: sleep.id}) }}" title="">Delete</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </article>
+
+    {% for date, sleep in sleepGroups %}
+        <div class="row">
+            <h5>{{ date }}</h5>
+            <div>
+                {% if sleep.id is not null %}
+                    <article>
+                        <ul>
+                            <li>
+                                <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">
+                                    Id: {{ sleep.id }}</a>
+                            </li>
+                            <li>In bed: {{ sleep.inBed }}</li>
+                            <li>Out of bed: {{ sleep.outOfBed }}</li>
+                            <li>Duration: {{ sleep.duration }}</li>
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('page_player_sleep_edit', {sleepId: sleep.id}) }}" title="">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('page_player_sleep_delete', {sleepId: sleep.id}) }}" title="">Delete</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </article>
+                {% else %}
+                    <em>Sleep not logged.</em>
+                {% endif %}
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

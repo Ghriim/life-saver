@@ -24,9 +24,9 @@ final class GetHydrationSummaryForDateUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId, string $dateAsString): HydrationSummaryDetailsViewModel
+    public function execute(int $userId, \DateTimeImmutable $date): HydrationSummaryDetailsViewModel
     {
-        $summary = $this->provideSummary($userId, $dateAsString);
+        $summary = $this->provideSummary($userId, $date);
         if (null === $summary) {
             $summary = new HydrationSummaryDTO();
             $summary->userId = $userId;

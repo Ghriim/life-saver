@@ -15,11 +15,18 @@ final class SleepController extends AbstractPlayerController
 {
     #[Route('/me/body-tracker/sleeps', name: 'page_player_sleeps_for_current_user', methods: ['GET'])]
     #[Route('/{userId}/body-tracker/sleeps', name: 'page_player_sleeps_for_user', requirements: ['userId' => '\d+'], methods: ['GET'])]
-    public function getSleepsForGivenUser(?int $userId, GetSleepsForUserUseCase $useCase): Response
-    {
-        $sleeps = $useCase->execute($userId ?? $this->getCurrentUserId());
+    public function getSleepsForGivenUser(
+        ?int $userId,
+        Request $request,
+        GetSleepsForUserUseCase $useCase
+    ): Response {
+        $sleeps = $useCase->execute(
+            $userId ?? $this->getCurrentUserId(),
+            $request->query->get('dateStart'),
+            $request->query->get('dateEnd')
+        );
 
-        return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleeps' => $sleeps]);
+        return $this->render('player/body-tracker/pages/sleep-list.html.twig', ['sleepGroups' => $sleeps]);
     }
 
     #[Route('/me/body-tracker/sleeps/add', name: 'page_player_sleep_add', methods: ['GET', 'POST'])]

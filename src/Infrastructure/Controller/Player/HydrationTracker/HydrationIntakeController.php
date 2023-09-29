@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class HydrationIntakeController extends AbstractPlayerController
 {
-    #[Route('/me/hydration-tracker/summaries/today/intakes/add', name: 'page_player_hydration_intake_for_today', requirements: ['intakeId' => '\d+'], methods: ['GET', 'POST'])]
+    #[Route('/me/hydration-tracker/summaries/today/intakes/add', name: 'page_player_hydration_intake_add_for_today', requirements: ['intakeId' => '\d+'], methods: ['GET', 'POST'])]
     #[Route('/me/hydration-tracker/summaries/{date}/intakes/add', name: 'page_player_hydration_intake_add_for_date', requirements: ['intakeId' => '\d+'], methods: ['GET', 'POST'])]
     public function addHydrationIntake(
         ?string $date,

@@ -4,6 +4,7 @@ namespace App\Infrastructure\Repository\BodyTracker;
 
 use App\Domain\DTO\BodyTracker\SleepDTO;
 use App\Domain\Gateway\Provider\BodyTracker\SleepDTOProviderGateway;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
@@ -29,12 +30,24 @@ final class SleepDTORepository extends ServiceEntityRepository implements SleepD
     /**
      * @inheritDoc
      */
-    public function getSleepsByUserId(int $userId): array
+    public function getSleepsByUserId(int $userId, ?DateTimeImmutable $dateStart, ?DateTimeImmutable $dateEnd): array
     {
-        return $this->createQueryBuilder('sleep')
-                    ->andWhere('sleep.userId = :userId')
-                    ->setParameter('userId', $userId)
-                    ->orderBy('sleep.inBed', Criteria::DESC)
-                    ->getQuery()->getResult();
+        $queryBuilder = $this->createQueryBuilder('sleep')
+                        ->andWhere('sleep.userId = :userId')
+                        ->setParameter('userId', $userId)
+                        ->orderBy('sleep.inBed', Criteria::DESC);
+
+
+        if (null !== $dateStart) {
+            $queryBuilder->andWhere('sleep.inBed >= :dateStart')
+                         ->setParameter('dateStart', $dateStart);
+        }
+
+        if (null !== $dateEnd) {
+            $queryBuilder->andWhere('sleep.inBed >= :dateEnd')
+                         ->setParameter('dateEnd', $dateEnd);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

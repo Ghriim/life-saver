@@ -15,10 +15,10 @@ final class GetSleepsForUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId): array
+    public function execute(int $userId, ?\DateTimeImmutable $dateStart, ?\DateTimeImmutable $dateEnd): array
     {
-        $sleepDTOs = $this->sleepDTOGateway->getSleepsByUserId($userId);
+        $sleepDTOs = $this->sleepDTOGateway->getSleepsByUserId($userId, $dateStart, $dateEnd);
 
-        return $this->presenter->present($sleepDTOs);
+        return $this->presenter->present($sleepDTOs, $dateStart, $dateEnd);
     }
 }

@@ -16,12 +16,12 @@ final class GetActivitiesForUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId, ?string $date): array
+    public function execute(int $userId, ?\DateTimeImmutable $date): array
     {
         if (null === $date) {
             $activities = $this->activityDTOGateway->getActivitiesByUserId($userId);
         } else {
-            $activities = $this->activityDTOGateway->getActivitiesByUserIdAndDate($userId, new DateTimeImmutable($date));
+            $activities = $this->activityDTOGateway->getActivitiesByUserIdAndDate($userId, $date);
         }
 
         return $this->presenter->present($activities);

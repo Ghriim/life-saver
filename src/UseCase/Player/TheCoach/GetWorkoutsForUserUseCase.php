@@ -21,14 +21,8 @@ final class GetWorkoutsForUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $userId, string $context, ?string $date): array
+    public function execute(int $userId, string $context, ?\DateTimeImmutable $date): array
     {
-        try {
-            $date = new DateTimeImmutable($date);
-        } catch (\Exception) {
-            throw new BadRequestHttpException('Invalid "date" requested');
-        }
-
         $groupBy = WorkoutListViewPresenter::WORKOUTS_GROUP_BY_DAY;
         if (self::CONTEXT_SPECIFIC_DATE === $context) {
             $workouts = $this->workoutDTOGateway->getWorkoutsByUserIdForDate($userId, $date);

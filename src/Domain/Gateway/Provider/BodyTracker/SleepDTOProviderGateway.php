@@ -11,5 +11,5 @@ interface SleepDTOProviderGateway
     /**
      * @return SleepDTO[]
      */
-    public function getSleepsByUserId(int $userId): array;
+    public function getSleepsByUserId(int $userId, ?\DateTimeImmutable $dateStart, ?\DateTimeImmutable $dateEnd): array;
 }

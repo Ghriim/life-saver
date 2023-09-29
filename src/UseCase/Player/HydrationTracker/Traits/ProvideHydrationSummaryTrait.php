@@ -9,14 +9,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait ProvideHydrationSummaryTrait
 {
-    private function provideSummary(int $userId, string $dateAsString): ?HydrationSummaryDTO
+    private function provideSummary(int $userId, \DateTimeImmutable $date): ?HydrationSummaryDTO
     {
-        try {
-            $date = new DateTimeImmutable($dateAsString);
-        } catch (Exception) {
-            throw new NotFoundHttpException();
-        }
-
         if ($date > new DateTimeImmutable()) {
             throw new NotFoundHttpException();
         }

@@ -17,5 +17,6 @@
 
     <footer class="card-footer">
         <a href="{{ path('page_player_mood_add', {redirect: 'page_player_dashboard'}) }}" title="">Add Mood</a>
+        <a href="{{ path('page_player_moods_for_current_user', {date: "now"|date("d-m-Y") }) }}" title="">See details</a>
     </footer>
 </div>

@@ -7,6 +7,9 @@ use App\Infrastructure\View\ViewFormatter\DateTimeViewFormatter;
 use App\Infrastructure\View\ViewFormatter\DurationViewFormatter;
 use App\Infrastructure\View\ViewModel\BodyTracker\SleepListViewModel;
 use App\Infrastructure\View\ViewPresenter\ViewPresenterInterface;
+use DateInterval;
+use DateTimeImmutable;
+use DatePeriod;
 
 final class SleepListViewPresenter implements ViewPresenterInterface
 {
@@ -15,19 +18,43 @@ final class SleepListViewPresenter implements ViewPresenterInterface
      *
      * @return SleepListViewModel[]
      */
-    public function present(array $DTOs): array
+    public function present(array $DTOs, ?DateTimeImmutable $startDate, ?DateTimeImmutable $endDate): array
     {
-        $models = [];
-        foreach ( $DTOs as $DTO) {
+        $intervalToDisplay = $this->computeIntervalToDisplay($DTOs, $startDate, $endDate);
+
+        foreach ($DTOs as $DTO) {
             $model = new SleepListViewModel();
             $model->id = $DTO->id;
             $model->inBed = DateTimeViewFormatter::toStringFormat($DTO->inBed);
             $model->outOfBed = DateTimeViewFormatter::toStringFormat($DTO->outOfBed);
             $model->duration = null !== $DTO->duration ? DurationViewFormatter::toHMFormat($DTO->duration) : null;
 
-            $models[] = $model;
+            $intervalToDisplay[$DTO->inBed->format('d-m-y')] = $model;
         }
 
-        return $models;
+        return $intervalToDisplay;
+    }
+
+    private function computeIntervalToDisplay(array $DTOs, ?DateTimeImmutable $startDate, ?DateTimeImmutable $endDate): array
+    {
+        if (null === $startDate && false === empty($DTOs)) {
+            $startDate = end($DTOs)->inBed;
+        }
+
+        if (null === $endDate) {
+            $endDate = new DateTimeImmutable();
+        }
+
+        $endDate = $endDate->setTime(0,0,1); // Ensure last day is included
+
+        $interval = DateInterval::createFromDateString('1 day');
+        $period = new DatePeriod($startDate, $interval, $endDate);
+
+        $intervalToDisplay = [];
+        foreach ($period as $date) {
+            $intervalToDisplay[$date->format('d-m-y')] = new SleepListViewModel(); // Placeholder
+        }
+
+        return $intervalToDisplay;
     }
 }

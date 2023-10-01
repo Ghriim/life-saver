@@ -6,6 +6,6 @@ abstract class AbstractPlayerController extends AbstractBaseController
 {
     protected function getCurrentUserId(): int
     {
-        return 1;
+        return $this->getUser()->id;
     }
 }

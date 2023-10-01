@@ -1,0 +1,39 @@
+App\Domain\DTO\User\UserDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\User\UserRepository
+  table: '`USER`'
+  indexes:
+    name_index:
+      columns: [ id ]
+  uniqueConstraints:
+    search_idx:
+      columns: [ email ]
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    email:
+      type: string
+      nullable: false
+      unique: true
+    password:
+      type: string
+      nullable: false
+      unique: false
+    roles:
+      type: json
+      nullable: false
+      unique: false
+
+  oneToOne:
+    settings:
+      targetEntity: UserSettingsDTO
+      cascade: ['persist', 'remove']
+      joinColumn:
+        name: settingsId
+        referencedColumnName: id
+        nullable: false

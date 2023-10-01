@@ -1,21 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
+    <div class="bg-light-blue row">
         <div class="col-auto">
-            <nav class="min-vh-100 sticky-top">
+            <nav class="min-vh-100 sticky-top p-2">
                 {% include 'player/components/_player_sidebar.html.twig' %}
             </nav>
         </div>
 
         <div class="col">
-            <div class="bg-light-blue row flex-nowrap">
+            <div class="row flex-nowrap">
                 <main class="col">
                     <header class="bg-light-blue row flex-nowrap sticky-top">
                         {% include 'player/components/_player_navbar.html.twig' %}
                     </header>
-
-                    <div class="spacer"></div>
 
                     {% block page_content %}{% endblock %}
                 </main>

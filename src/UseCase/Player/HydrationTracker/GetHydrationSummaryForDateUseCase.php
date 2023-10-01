@@ -18,7 +18,6 @@ final class GetHydrationSummaryForDateUseCase implements UseCaseInterface
     public function __construct(
         private HydrationSummaryDTOProviderGateway $summaryProviderGateway,
         private HydrationSummaryDTOPersisterGateway $summaryPersister,
-        private HydrationIntakeDTOProviderGateway $intakeProviderGateway,
         private HydrationSummaryDetailsViewPresenter $presenter,
     ) {
 

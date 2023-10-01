@@ -31,7 +31,7 @@ final class HydrationSummaryController extends AbstractPlayerController
     {
         $summary = $useCase->execute(
             $userId ?? $this->getCurrentUserId(),
-            $date ?? DateTimeViewFormatter::toStringFormat(new DateTimeImmutable(), true),
+            new DateTimeImmutable($date),
         );
 
         return $this->render('player/hydration-tracker/pages/summary-details.html.twig', ['summary' => $summary]);

@@ -1,0 +1,23 @@
+App\Domain\DTO\User\UserSettingsDTO:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\User\UserSettingsRepository
+  table: '`USER_SETTINGS`'
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    lang:
+      type: string
+      nullable: false
+      unique: false
+    weightUnit:
+      type: string
+      nullable: false
+      unique: false
+    distanceUnit:
+      type: string
+      nullable: false
+      unique: false

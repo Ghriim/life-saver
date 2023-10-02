@@ -7,14 +7,12 @@ use App\UseCase\Player\BodyTracker\GetSleepsForUserUseCase;
 use App\UseCase\Player\HydrationTracker\GetHydrationSummaryForDateUseCase;
 use App\UseCase\Player\MindTracker\GetLastMoodOfDateForUserUseCase;
 use App\UseCase\Player\TheCoach\GetWorkoutsForUserUseCase;
-use App\UseCase\Player\User\GetUserSummaryForDateUseCase;
 use App\UseCase\UseCaseInterface;
 use DateTimeImmutable;
 
 final class DashboardUseCase implements UseCaseInterface
 {
     public function __construct(
-        private GetUserSummaryForDateUseCase $summaryUseCase,
         private GetLastMoodOfDateForUserUseCase $moodUseCase,
         private GetHydrationSummaryForDateUseCase $hydrationUseCase,
         private GetSleepsForUserUseCase $sleepsUseCase,

@@ -3,15 +3,29 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+<div class="row justify-content-center">
+    <div class="col-md-3 min-vh-100">
+        {{ form_start(form) }}
+            <div class="card">
+                <header class="card-header">
+                    <div class="card-title">Register</div>
+                </header>
+                <div class="card-body">
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword) }}
+                    {{ form_row(form.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <div class="form-field">
+                        Already registered ? <a href="{{ path('page_login_by_email') }}">Login here.</a>
+                    </div>
+                </div>
+
+                <footer class="card-footer">
+                    <button type="submit" class="">Register</button>
+                </footer>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

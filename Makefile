@@ -40,6 +40,9 @@ yarn:
 	yarn install
 	yarn build
 
+open_in_browser:
+	firefox https://website.superhuman-factory.com:446/login
+
 up:
 	$(DOCKER) up -d
 

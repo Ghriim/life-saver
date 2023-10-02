@@ -27,7 +27,7 @@ services:
         image: ${PROJECT}_php-fpm:${PHP_VERSION}
         env_file:
           - .env
-          - .env.prod
+          - .env.local
         build:
           context: ./.docker/php-fpm/${PHP_VERSION}
           args:

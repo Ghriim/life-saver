@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class UserRepository extends ServiceEntityRepository implements UserDTOProviderGateway, UserProviderInterface
+class UserDTORepository extends ServiceEntityRepository implements UserDTOProviderGateway, UserProviderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

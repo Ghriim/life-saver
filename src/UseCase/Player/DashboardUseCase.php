@@ -7,12 +7,14 @@ use App\UseCase\Player\BodyTracker\GetSleepsForUserUseCase;
 use App\UseCase\Player\HydrationTracker\GetHydrationSummaryForDateUseCase;
 use App\UseCase\Player\MindTracker\GetLastMoodOfDateForUserUseCase;
 use App\UseCase\Player\TheCoach\GetWorkoutsForUserUseCase;
+use App\UseCase\Player\User\GetUserSummaryForDateUseCase;
 use App\UseCase\UseCaseInterface;
 use DateTimeImmutable;
 
 final class DashboardUseCase implements UseCaseInterface
 {
     public function __construct(
+        private GetUserSummaryForDateUseCase $summaryUseCase,
         private GetLastMoodOfDateForUserUseCase $moodUseCase,
         private GetHydrationSummaryForDateUseCase $hydrationUseCase,
         private GetSleepsForUserUseCase $sleepsUseCase,
@@ -26,6 +28,7 @@ final class DashboardUseCase implements UseCaseInterface
         $today = new DateTimeImmutable();
 
         return [
+            'summary' => $this->summaryUseCase->execute($userId, $today),
             'hydrationSummary' => $this->hydrationUseCase->execute($userId, $today),
             'mood' => $this->moodUseCase->execute($userId, $today),
             'sleepGroups' => $this->sleepsUseCase->execute($userId, $today->modify('monday this week'), $today->modify('sunday this week')),

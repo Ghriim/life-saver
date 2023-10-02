@@ -1,6 +1,6 @@
 App\Domain\DTO\User\UserDTO:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\User\UserRepository
+  repositoryClass: App\Infrastructure\Repository\User\UserDTORepository
   table: '`USER`'
   indexes:
     name_index:

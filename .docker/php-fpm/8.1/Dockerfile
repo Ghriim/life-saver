@@ -11,6 +11,9 @@ RUN apt-get update -qq \
         libjpeg62-turbo-dev \
         libpng-dev \
         libxml2-dev \
+        libicu-dev \
+        npm \
+        nodejs \
         npm \
     && npm i -g corepack \
     && pecl install xdebug && docker-php-ext-enable xdebug \
@@ -21,7 +24,9 @@ RUN apt-get update -qq \
         gd \
         dom \
         xml \
+        intl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure intl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
         && cd -
@@ -36,3 +41,4 @@ RUN useradd --shell /bin/bash -u ${DOCKER_USER_ID} -o -c "" -m ${DOCKER_USER} \
     && adduser ${DOCKER_USER} sudo \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && export HOME=/home/${DOCKER_USER}
+

@@ -3,7 +3,6 @@
 include .env
 -include .env.local
 
-
 DOCKER=docker-compose
 DOCKER_EXEC= ${DOCKER} exec
 SF_CONSOLE := ${DOCKER_EXEC} php bin/console
@@ -13,6 +12,7 @@ ifeq ($(APP_ENV),test)
 endif
 
 setup: .env.local docker-compose.yaml
+	$(DOCKER_EXEC) php npm install
 
 .env.local:
 	@touch .env.local
@@ -37,8 +37,8 @@ install_vendor:
 	$(DOCKER_EXEC) php composer install
 
 yarn:
-	yarn install
-	yarn build
+	$(DOCKER_EXEC) php yarn install
+	$(DOCKER_EXEC) php yarn build
 
 open_in_browser:
 	firefox https://website.superhuman-factory.com:446/login
